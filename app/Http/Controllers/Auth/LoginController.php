@@ -17,14 +17,16 @@ class LoginController extends Controller
     {
         $credential = $request->validate([
             'email' => ['required', 'email', 'max:100'],
-            'password' => ['required', 'max:8']
+            'password' => ['required', 'min:8']
         ]);
 
         if (Auth::attempt($credential)) {
             $request->session()->regenerate();
 
-            if (Auth::user()->role === 'admin' || Auth::user()->role === 'owner') {
+            if (Auth::user()->role === 'admin') {
                 return redirect()->route('admin.dashboard');
+            } elseif (Auth::user()->role === 'owner') {
+                return redirect()->route('owner.dashboard');
             } else {
                 return redirect()->route('home');
             }
@@ -33,5 +35,15 @@ class LoginController extends Controller
         return back()->withErrors([
             'email' => 'Email atau Password salah!',
         ])->onlyInput('email');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerate();
+
+        return redirect()->route('auth.login');
     }
 }
