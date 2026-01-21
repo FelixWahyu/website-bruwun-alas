@@ -31,6 +31,6 @@ class RegisterController extends Controller
             'role' => 'pelanggan',
         ]);
 
-        return redirect()->route('auth.login');
+        return redirect()->route('login');
     }
 }
