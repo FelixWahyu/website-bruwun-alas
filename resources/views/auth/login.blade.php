@@ -47,9 +47,8 @@
             </div>
 
             <div class="space-y-1" x-data="{ show: false }">
-                <div class="flex items-center justify-between">
+                <div class="flex items-center">
                     <label for="password" class="block text-sm font-semibold text-gray-700">Password</label>
-                    <a href="#" class="text-sm font-medium text-green-600 hover:text-green-500">Lupa Password?</a>
                 </div>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -60,7 +59,7 @@
                     </div>
                     <input id="password" name="password" :type="show ? 'text' : 'password'" required
                         class="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent sm:text-sm transition-all shadow-sm"
-                        placeholder="••••••••">
+                        placeholder="Masukan Password">
                     <button type="button" @click="show = !show"
                         class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
                         <svg x-show="!show" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -78,9 +77,25 @@
                 </div>
             </div>
 
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <input id="remember_me" name="remember" type="checkbox"
+                        class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded cursor-pointer">
+                    <label for="remember_me" class="ml-2 block text-sm text-gray-700 cursor-pointer select-none">
+                        Ingat Saya
+                    </label>
+                </div>
+
+                <div class="text-sm">
+                    <a href="#" class="font-medium text-green-600 hover:text-green-500">
+                        Lupa password?
+                    </a>
+                </div>
+            </div>
+
             <div>
                 <button type="submit"
-                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-sm font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all transform hover:-translate-y-0.5">
+                    class="w-full cursor-pointer flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-sm font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all transform hover:-translate-y-0.5">
                     Masuk Sekarang
                 </button>
             </div>

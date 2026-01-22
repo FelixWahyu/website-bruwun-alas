@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Owner\DashboardOwnerController;
 
 Route::get('/', [HomeController::class, 'homePage'])->name('home');
+Route::get('/about', [AboutController::class, 'aboutPage'])->name('about');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');

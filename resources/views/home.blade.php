@@ -183,4 +183,234 @@
             </div>
         </div>
     </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-green-600 font-semibold tracking-wider uppercase text-sm">Experience</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">Serunya Berpetualang di Alam</h2>
+                <div class="w-20 h-1.5 bg-green-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-3xl h-96 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=2070&auto=format&fit=crop"
+                        alt="Camping Ground"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Camping Ground</h3>
+                        <p
+                            class="text-gray-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            Nikmati malam bertabur bintang dengan fasilitas kemah yang aman dan nyaman untuk keluarga.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-3xl h-96 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1596464716127-f9a86255b613?q=80&w=2070&auto=format&fit=crop"
+                        alt="Edukasi Tani"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Edukasi Tani</h3>
+                        <p
+                            class="text-gray-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            Belajar cara menanam, memanen, dan mengolah hasil bumi langsung dari petani lokal.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-3xl h-96 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?q=80&w=1974&auto=format&fit=crop"
+                        alt="Outbound"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Outbound & Gathering</h3>
+                        <p
+                            class="text-gray-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            Area luas untuk kegiatan sekolah, kantor, atau komunitas dengan permainan seru.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-green-50/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Fasilitas Lengkap untuk Kenyamanan Anda</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Kami memastikan kunjungan Anda tetap nyaman dengan menyediakan fasilitas pendukung yang bersih,
+                        terawat, dan ramah untuk semua kalangan usia.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <div
+                            class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-green-100 hover:shadow-md transition">
+                            <div class="text-green-600 mr-4 bg-green-50 p-2 rounded-lg">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="font-semibold text-gray-700">Area Parkir Luas</span>
+                        </div>
+                        <div
+                            class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-green-100 hover:shadow-md transition">
+                            <div class="text-green-600 mr-4 bg-green-50 p-2 rounded-lg">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="font-semibold text-gray-700">Mushola & Toilet</span>
+                        </div>
+                        <div
+                            class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-green-100 hover:shadow-md transition">
+                            <div class="text-green-600 mr-4 bg-green-50 p-2 rounded-lg">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="font-semibold text-gray-700">Gazebo Santai</span>
+                        </div>
+                        <div
+                            class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-green-100 hover:shadow-md transition">
+                            <div class="text-green-600 mr-4 bg-green-50 p-2 rounded-lg">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="font-semibold text-gray-700">Warung UMKM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1561577555-4c92ddbe329c?w=600&auto=format&fit=crop"
+                            class="rounded-2xl shadow-lg w-full h-48 object-cover transform translate-y-4">
+                        <img src="https://images.unsplash.com/photo-1562664377-709f2c337eb2?w=600&auto=format&fit=crop"
+                            class="rounded-2xl shadow-lg w-full h-48 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Kata Mereka Tentang <span
+                    class="text-green-600">Bruwun Alas</span></h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 relative">
+                    <div class="text-green-500 mb-4">★★★★★</div>
+                    <p class="text-gray-600 italic mb-6">"Tempatnya sejuk banget, cocok buat healing tipis-tipis bareng
+                        keluarga. Kripik singkongnya juara, wajib beli buat oleh-oleh!"</p>
+                    <div class="flex items-center">
+                        <div
+                            class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">
+                            AS</div>
+                        <div class="ml-3">
+                            <h4 class="font-bold text-gray-900">Andi Saputra</h4>
+                            <p class="text-xs text-gray-500">Pengunjung Lokal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-lg border border-green-100 relative transform md:-translate-y-4">
+                    <div class="absolute -top-4 right-8 text-6xl text-green-100 font-serif">"</div>
+                    <div class="text-green-500 mb-4">★★★★★</div>
+                    <p class="text-gray-600 italic mb-6">"Edukasi taninya sangat bermanfaat buat anak-anak. Fasilitasnya
+                        juga bersih. Bakal balik lagi next holiday."</p>
+                    <div class="flex items-center">
+                        <div
+                            class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">
+                            DR</div>
+                        <div class="ml-3">
+                            <h4 class="font-bold text-gray-900">Dina Ratnasari</h4>
+                            <p class="text-xs text-gray-500">Wisatawan Jakarta</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 relative">
+                    <div class="text-green-500 mb-4">★★★★★</div>
+                    <p class="text-gray-600 italic mb-6">"Suasananya tenang, makanan di warung UMKM harganya terjangkau dan
+                        enak-enak. Recommended!"</p>
+                    <div class="flex items-center">
+                        <div
+                            class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">
+                            BP</div>
+                        <div class="ml-3">
+                            <h4 class="font-bold text-gray-900">Budi Pratama</h4>
+                            <p class="text-xs text-gray-500">Pengunjung Lokal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative py-24 bg-green-900 overflow-hidden">
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Siap Menjelajah?</h2>
+            <p class="text-green-100 text-lg mb-10 max-w-2xl mx-auto">
+                Jangan lewatkan pengalaman seru menyatu dengan alam. Lokasi kami mudah dijangkau dan siap menyambut
+                kedatangan Anda.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://maps.app.goo.gl/EY486naA5oj5rzJY6" target="_blank"
+                    class="inline-flex items-center justify-center px-8 py-4 bg-white text-green-900 font-bold rounded-full hover:bg-green-50 transition transform hover:-translate-y-1 shadow-lg">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    Lihat Petunjuk Arah
+                </a>
+                <a href="#contact"
+                    class="inline-flex items-center justify-center px-8 py-4 border-2 border-white/30 text-white font-bold rounded-full hover:bg-white/10 transition">
+                    Hubungi Kami
+                </a>
+            </div>
+        </div>
+    </section>
 @endsection

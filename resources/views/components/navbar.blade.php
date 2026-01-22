@@ -25,7 +25,7 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-1">
-                @foreach ([['label' => 'Beranda', 'route' => 'home', 'hash' => ''], ['label' => 'Tentang Kami', 'route' => '', 'hash' => '#about'], ['label' => 'Produk', 'route' => '', 'hash' => '#products'], ['label' => 'Kontak', 'route' => '', 'hash' => '#contact']] as $link)
+                @foreach ([['label' => 'Beranda', 'route' => 'home', 'hash' => ''], ['label' => 'Tentang Kami', 'route' => 'about', 'hash' => ''], ['label' => 'Produk', 'route' => '', 'hash' => '#products'], ['label' => 'Kontak', 'route' => '', 'hash' => '#contact']] as $link)
                     <a href="{{ $link['hash'] ? $link['hash'] : route($link['route']) }}"
                         class="px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 
                        {{ request()->routeIs($link['route']) && !$link['hash'] ? 'bg-green-50 text-green-700' : 'text-gray-600 hover:text-green-700 hover:bg-green-50' }}">
@@ -139,9 +139,9 @@
                             </div>
 
                             <div class="border-t border-gray-100 py-1">
-                                <form method="POST" action="{{ route('logout') }}">
+                                <form method="POST" action="{{ route('logout') }}" id="logout-form-desktop">
                                     @csrf
-                                    <button type="submit"
+                                    <button type="submit" onclick="confirmLogout(event,'logout-form-desktop')"
                                         class="w-full flex items-center px-5 py-2.5 text-sm text-red-600 hover:bg-red-50">
                                         <svg class="mr-3 h-4 w-4 text-red-400" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
@@ -206,9 +206,9 @@
                                 class="block px-3 py-2 rounded-lg text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Dashboard</a>
                         @endif
 
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('logout') }}" id="logout-form-mobile">
                             @csrf
-                            <button type="submit"
+                            <button type="submit" onclick="confirmLogout(event,'logout-form-mobile')"
                                 class="w-full text-left block px-3 py-2 rounded-lg text-base font-medium text-red-600 hover:bg-red-50">Keluar</button>
                         </form>
                     </div>

@@ -15,6 +15,7 @@
         rel="stylesheet">
 
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         body {
@@ -23,6 +24,10 @@
 
         [x-cloak] {
             display: none !important;
+        }
+
+        .swal2-popup {
+            font-family: 'Poppins', sans-serif !important;
         }
     </style>
 </head>
@@ -38,12 +43,31 @@
     @include('layouts.footer')
 
     <script>
-        // Fungsi Global untuk Logout Confirmation
-        function confirmLogout() {
-            // Menggunakan confirm bawaan browser (bisa diganti SweetAlert jika mau lebih bagus)
-            if (confirm("Apakah Anda yakin ingin keluar dari sesi ini?")) {
-                document.getElementById('logout-form').submit();
-            }
+        function confirmLogout(event, formId) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Konfirmasi Keluar',
+                text: "Apakah Anda yakin ingin mengakhiri sesi ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#16a34a',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Keluar',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Sedang Keluar...',
+                        timer: 1000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        }
+                    });
+                    document.getElementById(formId).submit();
+                }
+            });
         }
     </script>
 </body>
