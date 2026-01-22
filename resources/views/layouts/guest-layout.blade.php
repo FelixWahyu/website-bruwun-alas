@@ -33,14 +33,12 @@
 </head>
 
 <body class="bg-white text-gray-800">
-
     <div class="flex min-h-screen">
-
         <div class="hidden lg:flex lg:w-1/2 relative bg-gray-900 overflow-hidden">
             <div class="absolute inset-0">
                 <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop"
                     alt="Background Bruwun Alas" class="w-full h-full object-cover opacity-60">
-                <div class="absolute inset-0 bg-linear-to-t from-green-900/90 via-green-900/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-linear-to-t from-red-900/90 via-red-900/40 to-transparent"></div>
             </div>
 
             <div class="relative z-10 w-full flex flex-col justify-between p-12 text-white">
@@ -61,7 +59,7 @@
                     <h2 class="text-4xl font-bold leading-tight mb-4">
                         Nikmati Keasrian Alam <br> dan Produk Lokal Terbaik.
                     </h2>
-                    <p class="text-green-100 text-lg font-light max-w-md">
+                    <p class="text-red-100 text-lg font-light max-w-md">
                         Bergabunglah dengan kami untuk mendukung UMKM lokal dan melestarikan hutan Kulon Progo.
                     </p>
                 </div>
@@ -71,7 +69,7 @@
         <div class="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-12 overflow-y-auto no-scrollbar relative">
 
             <a href="{{ route('home') }}"
-                class="absolute top-6 right-6 text-gray-400 hover:text-green-600 transition flex items-center gap-2 text-sm font-medium">
+                class="absolute top-6 right-6 text-gray-400 hover:text-red-600 transition flex items-center gap-2 text-sm font-medium">
                 Kembali ke Beranda
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

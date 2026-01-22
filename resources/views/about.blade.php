@@ -11,12 +11,12 @@
 
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
             <span
-                class="inline-block py-1 px-3 rounded-full bg-green-500/20 border border-green-400 text-green-300 font-semibold text-xs tracking-widest uppercase mb-4 backdrop-blur-sm">
+                class="inline-block py-1 px-3 rounded-full bg-red-500/20 border border-red-400 text-red-300 font-semibold text-xs tracking-widest uppercase mb-4 backdrop-blur-sm">
                 Profil & Layanan
             </span>
             <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6 tracking-tight">
                 Harmoni Alam & <br> <span
-                    class="text-transparent bg-clip-text bg-linear-to-r from-green-300 to-emerald-500">Kreativitas
+                    class="text-transparent bg-clip-text bg-linear-to-r from-red-300 to-amber-500">Kreativitas
                     Lokal</span>
             </h1>
             <p class="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
@@ -29,7 +29,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-12 items-center">
                 <div class="lg:w-1/2 order-2 lg:order-1">
-                    <h2 class="text-base font-bold text-green-600 uppercase tracking-wide mb-2">Siapa Kami?</h2>
+                    <h2 class="text-base font-bold text-red-600 uppercase tracking-wide mb-2">Siapa Kami?</h2>
                     <h3 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
                         Lebih Dari Sekadar <br> Destinasi Wisata.
                     </h3>
@@ -75,7 +75,7 @@
                     <div class="absolute -z-10 -top-5 -right-5">
                         <svg width="100" height="100" fill="none" viewBox="0 0 100 100">
                             <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                <circle cx="2" cy="2" r="2" class="text-green-200" fill="currentColor" />
+                                <circle cx="2" cy="2" r="2" class="text-red-200" fill="currentColor" />
                             </pattern>
                             <rect width="100" height="100" fill="url(#dots)" />
                         </svg>
@@ -85,10 +85,10 @@
         </div>
     </section>
 
-    <section class="py-20 bg-green-50/50">
+    <section class="py-20 bg-red-50/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="text-green-600 font-bold uppercase tracking-wider text-sm">Produk Unggulan</span>
+                <span class="text-red-600 font-bold uppercase tracking-wider text-sm">Produk Unggulan</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">Karya Otentik Bruwun Alas</h2>
                 <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
                     Kami menghadirkan berbagai produk hasil olahan tangan terampil masyarakat desa yang siap Anda bawa
@@ -110,8 +110,7 @@
                         </div>
                     </div>
                     <div class="p-8">
-                        <div
-                            class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6">
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600 mb-6">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
@@ -123,7 +122,7 @@
                             asli dari hutan Bruwun. Ramah lingkungan dan eksklusif.
                         </p>
                         <a href="{{ route('home') }}#products"
-                            class="inline-flex items-center text-green-600 font-semibold hover:text-green-800">
+                            class="inline-flex items-center text-red-600 font-semibold hover:text-red-800">
                             Lihat Koleksi <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -145,8 +144,7 @@
                         </div>
                     </div>
                     <div class="p-8">
-                        <div
-                            class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6">
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600 mb-6">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
@@ -159,7 +157,7 @@
                             oleh-oleh atau hiasan rumah yang estetik.
                         </p>
                         <a href="{{ route('home') }}#products"
-                            class="inline-flex items-center text-green-600 font-semibold hover:text-green-800">
+                            class="inline-flex items-center text-red-600 font-semibold hover:text-red-800">
                             Lihat Koleksi <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -181,8 +179,7 @@
                         </div>
                     </div>
                     <div class="p-8">
-                        <div
-                            class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6">
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600 mb-6">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
@@ -195,7 +192,7 @@
                             sambal tradisional yang menggugah selera.
                         </p>
                         <a href="{{ route('home') }}#products"
-                            class="inline-flex items-center text-green-600 font-semibold hover:text-green-800">
+                            class="inline-flex items-center text-red-600 font-semibold hover:text-red-800">
                             Lihat Koleksi <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -45,7 +45,7 @@
                             </svg>
                         </div>
                         <input id="name" name="name" type="text" value="{{ old('name') }}" required
-                            class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent sm:text-sm transition shadow-sm"
+                            class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent sm:text-sm transition shadow-sm"
                             placeholder="Budi Santoso">
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                             </svg>
                         </div>
                         <input id="phone" name="phone" type="number" value="{{ old('phone') }}" required
-                            class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent sm:text-sm transition shadow-sm"
+                            class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent sm:text-sm transition shadow-sm"
                             placeholder="08123456789">
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                         </svg>
                     </div>
                     <input id="email" name="email" type="email" value="{{ old('email') }}" required
-                        class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent sm:text-sm transition shadow-sm"
+                        class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent sm:text-sm transition shadow-sm"
                         placeholder="nama@email.com">
                 </div>
             </div>
@@ -93,7 +93,7 @@
                                 </svg>
                             </div>
                             <input id="password" name="password" :type="show ? 'text' : 'password'" required
-                                class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent sm:text-sm transition shadow-sm"
+                                class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent sm:text-sm transition shadow-sm"
                                 placeholder="Min. 8 karakter">
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                             </div>
                             <input id="password_confirmation" name="password_confirmation"
                                 :type="show ? 'text' : 'password'" required
-                                class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent sm:text-sm transition shadow-sm"
+                                class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent sm:text-sm transition shadow-sm"
                                 placeholder="Ketik ulang password">
                         </div>
                     </div>
@@ -118,7 +118,7 @@
 
                 <div class="flex items-center mt-2">
                     <input type="checkbox" id="showPass" @click="show = !show"
-                        class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                        class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
                     <label for="showPass" class="ml-2 block text-sm text-gray-600 cursor-pointer select-none">
                         Tampilkan Password
                     </label>
@@ -127,7 +127,7 @@
 
             <div class="pt-2">
                 <button type="submit"
-                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-sm font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all transform hover:-translate-y-0.5">
+                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-sm font-bold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all transform hover:-translate-y-0.5">
                     Daftar Sekarang
                 </button>
             </div>
@@ -136,7 +136,7 @@
         <div class="mt-8 text-center">
             <p class="text-sm text-gray-600">
                 Sudah punya akun?
-                <a href="{{ route('login') }}" class="font-bold text-green-600 hover:text-green-500 transition-colors">
+                <a href="{{ route('login') }}" class="font-bold text-red-600 hover:text-red-500 transition-colors">
                     Masuk di sini
                 </a>
             </p>

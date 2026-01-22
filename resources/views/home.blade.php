@@ -14,13 +14,13 @@
             <div class="max-w-4xl text-center md:text-left">
                 <div
                     class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium mb-6 animate-fade-in-up mx-auto md:mx-0">
-                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    <span class="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
                     Wisata Edukasi & Konservasi Alam
                 </div>
 
                 <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg tracking-tight">
                     Temukan Kedamaian di <br>
-                    <span class="text-transparent bg-clip-text bg-linear-to-r from-green-300 to-emerald-400">
+                    <span class="text-transparent bg-clip-text bg-linear-to-r from-red-300 to-amber-600">
                         Bruwun Alas
                     </span>
                 </h1>
@@ -33,7 +33,7 @@
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                     <a href="#products"
-                        class="inline-flex justify-center items-center px-8 py-4 text-base font-bold text-white bg-green-600 rounded-full hover:bg-green-700 transition-all duration-300 shadow-lg hover:shadow-green-500/30 hover:-translate-y-1">
+                        class="inline-flex justify-center items-center px-8 py-4 text-base font-bold text-white bg-red-600 rounded-full hover:bg-red-700 transition-all duration-300 shadow-lg hover:shadow-red-500/30 hover:-translate-y-1">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -42,7 +42,7 @@
                     </a>
 
                     <a href="#about"
-                        class="inline-flex justify-center items-center px-8 py-4 text-base font-bold text-white border-2 border-white/30 bg-white/5 backdrop-blur-sm rounded-full hover:bg-white hover:text-green-900 transition-all duration-300 hover:border-white">
+                        class="inline-flex justify-center items-center px-8 py-4 text-base font-bold text-white border-2 border-white/30 bg-white/5 backdrop-blur-sm rounded-full hover:bg-white hover:text-red-900 transition-all duration-300 hover:border-white">
                         Tentang Kami
                     </a>
                 </div>
@@ -62,15 +62,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="relative">
-                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-green-100 rounded-full z-0"></div>
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-red-100 rounded-full z-0"></div>
                     <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&auto=format&fit=crop"
                         alt="Kegiatan UMKM"
                         class="relative z-10 rounded-2xl shadow-xl w-full h-100 object-cover transform hover:scale-[1.02] transition duration-500">
-                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-green-50 rounded-full z-0"></div>
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-red-50 rounded-full z-0"></div>
                 </div>
 
                 <div>
-                    <h2 class="text-base font-semibold text-green-600 uppercase tracking-wide mb-2">Tentang Kami</h2>
+                    <h2 class="text-base font-semibold text-red-600 uppercase tracking-wide mb-2">Tentang Kami</h2>
                     <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">Membangun
                         Ekonomi,<br>Melestarikan Alam.</h3>
 
@@ -84,7 +84,7 @@
                     <ul class="space-y-4">
                         <li class="flex items-start">
                             <div
-                                class="shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mt-1">
+                                class="shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 mt-1">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
@@ -97,7 +97,7 @@
                         </li>
                         <li class="flex items-start">
                             <div
-                                class="shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mt-1">
+                                class="shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 mt-1">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064">
@@ -122,8 +122,7 @@
                     <h2 class="text-3xl font-bold text-gray-900">Produk Terbaru</h2>
                     <p class="text-gray-500 mt-2">Pilihan terbaik minggu ini dari UMKM lokal.</p>
                 </div>
-                <a href="#"
-                    class="inline-flex items-center text-green-600 font-semibold hover:text-green-800 transition">
+                <a href="#" class="inline-flex items-center text-red-600 font-semibold hover:text-red-800 transition">
                     Lihat Semua Produk
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -139,13 +138,13 @@
                         <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&auto=format&fit=crop"
                             alt="Produk 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                         <div
-                            class="absolute top-3 left-3 bg-green-500/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm">
+                            class="absolute top-3 left-3 bg-red-500/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm">
                             Baru
                         </div>
                     </div>
                     <div class="p-5">
-                        <div class="text-xs text-green-600 font-bold uppercase tracking-wider mb-1">Makanan</div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-700 transition">Kripik
+                        <div class="text-xs text-red-600 font-bold uppercase tracking-wider mb-1">Makanan</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-red-700 transition">Kripik
                             Singkong Khas</h3>
                         <div class="flex justify-between items-end mt-4">
                             <div>
@@ -153,7 +152,7 @@
                                 <span class="text-gray-900 font-extrabold text-xl">Rp 15.000</span>
                             </div>
                             <button
-                                class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-green-600 hover:text-white transition-all shadow-sm">
+                                class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-red-600 hover:text-white transition-all shadow-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -166,10 +165,10 @@
 
                 @for ($i = 0; $i < 3; $i++)
                     <div
-                        class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col items-center justify-center text-center h-95 group hover:border-green-200 transition">
+                        class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col items-center justify-center text-center h-95 group hover:border-red-200 transition">
                         <div
-                            class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-50 transition">
-                            <svg class="w-8 h-8 text-gray-300 group-hover:text-green-400" fill="none"
+                            class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-red-50 transition">
+                            <svg class="w-8 h-8 text-gray-300 group-hover:text-red-400" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
@@ -187,9 +186,9 @@
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="text-green-600 font-semibold tracking-wider uppercase text-sm">Experience</span>
+                <span class="text-red-600 font-semibold tracking-wider uppercase text-sm">Experience</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">Serunya Berpetualang di Alam</h2>
-                <div class="w-20 h-1.5 bg-green-500 mx-auto mt-4 rounded-full"></div>
+                <div class="w-20 h-1.5 bg-red-500 mx-auto mt-4 rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -199,7 +198,7 @@
                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-8">
-                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white mb-4">
+                        <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white mb-4">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -219,7 +218,7 @@
                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-8">
-                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white mb-4">
+                        <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white mb-4">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
@@ -240,7 +239,7 @@
                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-8">
-                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white mb-4">
+                        <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white mb-4">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
@@ -258,7 +257,7 @@
         </div>
     </section>
 
-    <section class="py-16 bg-green-50/50">
+    <section class="py-16 bg-red-50/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -270,8 +269,8 @@
 
                     <div class="grid grid-cols-2 gap-6">
                         <div
-                            class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-green-100 hover:shadow-md transition">
-                            <div class="text-green-600 mr-4 bg-green-50 p-2 rounded-lg">
+                            class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-red-100 hover:shadow-md transition">
+                            <div class="text-red-600 mr-4 bg-red-50 p-2 rounded-lg">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4">
@@ -281,8 +280,8 @@
                             <span class="font-semibold text-gray-700">Area Parkir Luas</span>
                         </div>
                         <div
-                            class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-green-100 hover:shadow-md transition">
-                            <div class="text-green-600 mr-4 bg-green-50 p-2 rounded-lg">
+                            class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-red-100 hover:shadow-md transition">
+                            <div class="text-red-600 mr-4 bg-red-50 p-2 rounded-lg">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
@@ -292,8 +291,8 @@
                             <span class="font-semibold text-gray-700">Mushola & Toilet</span>
                         </div>
                         <div
-                            class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-green-100 hover:shadow-md transition">
-                            <div class="text-green-600 mr-4 bg-green-50 p-2 rounded-lg">
+                            class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-red-100 hover:shadow-md transition">
+                            <div class="text-red-600 mr-4 bg-red-50 p-2 rounded-lg">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
@@ -303,8 +302,8 @@
                             <span class="font-semibold text-gray-700">Gazebo Santai</span>
                         </div>
                         <div
-                            class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-green-100 hover:shadow-md transition">
-                            <div class="text-green-600 mr-4 bg-green-50 p-2 rounded-lg">
+                            class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-red-100 hover:shadow-md transition">
+                            <div class="text-red-600 mr-4 bg-red-50 p-2 rounded-lg">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7">
@@ -330,11 +329,11 @@
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Kata Mereka Tentang <span
-                    class="text-green-600">Bruwun Alas</span></h2>
+                    class="text-red-600">Bruwun Alas</span></h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 relative">
-                    <div class="text-green-500 mb-4">★★★★★</div>
+                    <div class="text-red-500 mb-4">★★★★★</div>
                     <p class="text-gray-600 italic mb-6">"Tempatnya sejuk banget, cocok buat healing tipis-tipis bareng
                         keluarga. Kripik singkongnya juara, wajib beli buat oleh-oleh!"</p>
                     <div class="flex items-center">
@@ -348,10 +347,9 @@
                     </div>
                 </div>
 
-                <div
-                    class="bg-white p-8 rounded-2xl shadow-lg border border-green-100 relative transform md:-translate-y-4">
-                    <div class="absolute -top-4 right-8 text-6xl text-green-100 font-serif">"</div>
-                    <div class="text-green-500 mb-4">★★★★★</div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-red-100 relative transform md:-translate-y-4">
+                    <div class="absolute -top-4 right-8 text-6xl text-red-100 font-serif">"</div>
+                    <div class="text-red-500 mb-4">★★★★★</div>
                     <p class="text-gray-600 italic mb-6">"Edukasi taninya sangat bermanfaat buat anak-anak. Fasilitasnya
                         juga bersih. Bakal balik lagi next holiday."</p>
                     <div class="flex items-center">
@@ -366,7 +364,7 @@
                 </div>
 
                 <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 relative">
-                    <div class="text-green-500 mb-4">★★★★★</div>
+                    <div class="text-red-500 mb-4">★★★★★</div>
                     <p class="text-gray-600 italic mb-6">"Suasananya tenang, makanan di warung UMKM harganya terjangkau dan
                         enak-enak. Recommended!"</p>
                     <div class="flex items-center">
@@ -383,21 +381,21 @@
         </div>
     </section>
 
-    <section class="relative py-24 bg-green-900 overflow-hidden">
+    <section class="relative py-24 bg-red-900 overflow-hidden">
         <div class="absolute inset-0 opacity-10"
             style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
         </div>
 
         <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
             <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Siap Menjelajah?</h2>
-            <p class="text-green-100 text-lg mb-10 max-w-2xl mx-auto">
+            <p class="text-red-100 text-lg mb-10 max-w-2xl mx-auto">
                 Jangan lewatkan pengalaman seru menyatu dengan alam. Lokasi kami mudah dijangkau dan siap menyambut
                 kedatangan Anda.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="https://maps.app.goo.gl/EY486naA5oj5rzJY6" target="_blank"
-                    class="inline-flex items-center justify-center px-8 py-4 bg-white text-green-900 font-bold rounded-full hover:bg-green-50 transition transform hover:-translate-y-1 shadow-lg">
+                    class="inline-flex items-center justify-center px-8 py-4 bg-white text-red-900 font-bold rounded-full hover:bg-red-50 transition transform hover:-translate-y-1 shadow-lg">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />

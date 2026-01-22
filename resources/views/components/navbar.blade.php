@@ -7,7 +7,7 @@
             <div class="shrink-0 flex items-center">
                 <a href="{{ route('home') }}" class="flex items-center gap-2 group">
                     <div
-                        class="w-10 h-10 bg-linear-to-br from-green-600 to-green-800 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:shadow-green-500/30 transition-all duration-300">
+                        class="w-10 h-10 bg-linear-to-br from-red-600 to-red-800 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:shadow-red-500/30 transition-all duration-300">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
@@ -15,8 +15,8 @@
                     </div>
                     <div class="flex flex-col">
                         <span
-                            class="text-xl font-bold text-gray-900 tracking-tight leading-none group-hover:text-green-700 transition-colors">
-                            Bruwun<span class="text-green-600">Alas</span>
+                            class="text-xl font-bold text-gray-900 tracking-tight leading-none group-hover:text-red-700 transition-colors">
+                            Bruwun<span class="text-red-600">Alas</span>
                         </span>
                         <span class="text-[10px] uppercase tracking-widest text-gray-400 font-medium">Authentic
                             Taste</span>
@@ -28,7 +28,7 @@
                 @foreach ([['label' => 'Beranda', 'route' => 'home', 'hash' => ''], ['label' => 'Tentang Kami', 'route' => 'about', 'hash' => ''], ['label' => 'Produk', 'route' => '', 'hash' => '#products'], ['label' => 'Kontak', 'route' => '', 'hash' => '#contact']] as $link)
                     <a href="{{ $link['hash'] ? $link['hash'] : route($link['route']) }}"
                         class="px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 
-                       {{ request()->routeIs($link['route']) && !$link['hash'] ? 'bg-green-50 text-green-700' : 'text-gray-600 hover:text-green-700 hover:bg-green-50' }}">
+                       {{ request()->routeIs($link['route']) && !$link['hash'] ? 'bg-red-50 text-red-700' : 'text-gray-600 hover:text-red-700 hover:bg-red-50' }}">
                         {{ $link['label'] }}
                     </a>
                 @endforeach
@@ -38,16 +38,16 @@
 
                 @if (!auth()->check() || auth()->user()->role == 'pelanggan')
                     <a href="#"
-                        class="relative p-2 text-gray-500 hover:text-green-600 hover:bg-gray-100 rounded-full transition-all duration-200 group mr-1">
+                        class="relative p-2 text-gray-500 hover:text-red-600 hover:bg-gray-100 rounded-full transition-all duration-200 group mr-1">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                         </svg>
                         <span class="absolute top-1 right-1 flex h-4 w-4">
                             <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                             <span
-                                class="relative inline-flex rounded-full h-4 w-4 bg-green-600 text-[10px] font-bold text-white justify-center items-center">0</span>
+                                class="relative inline-flex rounded-full h-4 w-4 bg-red-600 text-[10px] font-bold text-white justify-center items-center">0</span>
                         </span>
                     </a>
                 @endif
@@ -57,18 +57,18 @@
                 @guest
                     <div class="hidden md:flex items-center gap-3">
                         <a href="{{ route('login') }}"
-                            class="px-4 py-2 text-sm font-semibold text-gray-600 hover:text-green-600 transition">Masuk</a>
+                            class="px-4 py-2 text-sm font-semibold text-gray-600 hover:text-red-600 transition">Masuk</a>
                         <a href="{{ route('register') }}"
-                            class="px-5 py-2.5 text-sm font-semibold text-white bg-green-600 rounded-full shadow-md hover:bg-green-700 hover:shadow-lg hover:-translate-y-0.5 transition-all">Daftar</a>
+                            class="px-5 py-2.5 text-sm font-semibold text-white bg-red-600 rounded-full shadow-md hover:bg-red-700 hover:shadow-lg hover:-translate-y-0.5 transition-all">Daftar</a>
                     </div>
                 @endguest
 
                 @auth
                     <div class="relative hidden md:block" @click.away="userDropdownOpen = false">
                         <button @click="userDropdownOpen = !userDropdownOpen"
-                            class="flex items-center gap-2 p-1 pl-3 pr-1 rounded-full border border-gray-200 hover:border-green-300 hover:shadow-sm transition-all bg-white group focus:outline-none">
+                            class="flex items-center gap-2 p-1 pl-3 pr-1 rounded-full border border-gray-200 hover:border-red-300 hover:shadow-sm transition-all bg-white group focus:outline-none">
                             <div class="text-right hidden lg:block">
-                                <p class="text-xs font-bold text-gray-700 leading-none group-hover:text-green-700">
+                                <p class="text-xs font-bold text-gray-700 leading-none group-hover:text-red-700">
                                     {{ Auth::user()->name }}</p>
                                 <p class="text-[10px] text-gray-400 leading-none mt-1 capitalize">{{ Auth::user()->role }}
                                 </p>
@@ -108,7 +108,7 @@
 
                                 @if (Auth::user()->role == 'pelanggan')
                                     <a href="#"
-                                        class="flex items-center px-5 py-2.5 text-sm text-gray-600 hover:bg-green-50 hover:text-green-700">
+                                        class="flex items-center px-5 py-2.5 text-sm text-gray-600 hover:bg-red-50 hover:text-red-700">
                                         <svg class="mr-3 h-4 w-4 text-gray-400" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -117,7 +117,7 @@
                                         Edit Profil
                                     </a>
                                     <a href="#"
-                                        class="flex items-center px-5 py-2.5 text-sm text-gray-600 hover:bg-green-50 hover:text-green-700">
+                                        class="flex items-center px-5 py-2.5 text-sm text-gray-600 hover:bg-red-50 hover:text-red-700">
                                         <svg class="mr-3 h-4 w-4 text-gray-400" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -127,7 +127,7 @@
                                     </a>
                                 @else
                                     <a href="{{ $dashboardLink }}"
-                                        class="flex items-center px-5 py-2.5 text-sm text-gray-600 hover:bg-green-50 hover:text-green-700">
+                                        class="flex items-center px-5 py-2.5 text-sm text-gray-600 hover:bg-red-50 hover:text-red-700">
                                         <svg class="mr-3 h-4 w-4 text-gray-400" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -158,7 +158,7 @@
 
                 <div class="md:hidden flex items-center">
                     <button @click="mobileMenuOpen = !mobileMenuOpen" type="button"
-                        class="text-gray-500 hover:text-green-600 focus:outline-none p-2 rounded-lg hover:bg-green-50 transition">
+                        class="text-gray-500 hover:text-red-600 focus:outline-none p-2 rounded-lg hover:bg-red-50 transition">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -184,7 +184,7 @@
                     <div class="flex items-center px-2">
                         <div class="shrink-0">
                             <div
-                                class="h-12 w-12 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-lg shadow-md">
+                                class="h-12 w-12 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-lg shadow-md">
                                 {{ substr(Auth::user()->name, 0, 2) }}
                             </div>
                         </div>
@@ -196,14 +196,14 @@
                     <div class="mt-4 space-y-1 px-2">
                         @if (Auth::user()->role == 'pelanggan')
                             <a href="#"
-                                class="block px-3 py-2 rounded-lg text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Edit
+                                class="block px-3 py-2 rounded-lg text-base font-medium text-gray-600 hover:bg-red-50 hover:text-red-700">Edit
                                 Profil</a>
                             <a href="#"
-                                class="block px-3 py-2 rounded-lg text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Riwayat
+                                class="block px-3 py-2 rounded-lg text-base font-medium text-gray-600 hover:bg-red-50 hover:text-red-700">Riwayat
                                 Pesanan</a>
                         @else
                             <a href="#"
-                                class="block px-3 py-2 rounded-lg text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Dashboard</a>
+                                class="block px-3 py-2 rounded-lg text-base font-medium text-gray-600 hover:bg-red-50 hover:text-red-700">Dashboard</a>
                         @endif
 
                         <form method="POST" action="{{ route('logout') }}" id="logout-form-mobile">
@@ -217,14 +217,14 @@
 
             <div class="space-y-1">
                 <a href="{{ route('home') }}"
-                    class="block px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-green-700 hover:bg-green-50 transition">Beranda</a>
+                    class="block px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-red-700 hover:bg-red-50 transition">Beranda</a>
                 <a href="#about"
-                    class="block px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-green-700 hover:bg-green-50 transition">Tentang
+                    class="block px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-red-700 hover:bg-red-50 transition">Tentang
                     Kami</a>
                 <a href="#products"
-                    class="block px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-green-700 hover:bg-green-50 transition">Produk</a>
+                    class="block px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-red-700 hover:bg-red-50 transition">Produk</a>
                 <a href="#contact"
-                    class="block px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-green-700 hover:bg-green-50 transition">Kontak</a>
+                    class="block px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-red-700 hover:bg-red-50 transition">Kontak</a>
             </div>
 
             @guest
@@ -233,7 +233,7 @@
                         class="w-full text-center px-4 py-3 border border-gray-300 rounded-xl text-gray-700 font-bold hover:bg-gray-50 transition">Masuk
                         Akun</a>
                     <a href="{{ route('register') }}"
-                        class="w-full text-center px-4 py-3 bg-green-600 text-white rounded-xl font-bold shadow-md hover:bg-green-700 transition">Daftar
+                        class="w-full text-center px-4 py-3 bg-red-600 text-white rounded-xl font-bold shadow-md hover:bg-red-700 transition">Daftar
                         Sekarang</a>
                 </div>
             @endguest

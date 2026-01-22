@@ -41,7 +41,7 @@
                         </svg>
                     </div>
                     <input id="email" name="email" type="email" autocomplete="email" required
-                        class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent sm:text-sm transition-all shadow-sm"
+                        class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent sm:text-sm transition-all shadow-sm"
                         placeholder="nama@email.com">
                 </div>
             </div>
@@ -58,7 +58,7 @@
                         </svg>
                     </div>
                     <input id="password" name="password" :type="show ? 'text' : 'password'" required
-                        class="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent sm:text-sm transition-all shadow-sm"
+                        class="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent sm:text-sm transition-all shadow-sm"
                         placeholder="Masukan Password">
                     <button type="button" @click="show = !show"
                         class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
@@ -80,14 +80,14 @@
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
                     <input id="remember_me" name="remember" type="checkbox"
-                        class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded cursor-pointer">
+                        class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded cursor-pointer">
                     <label for="remember_me" class="ml-2 block text-sm text-gray-700 cursor-pointer select-none">
                         Ingat Saya
                     </label>
                 </div>
 
                 <div class="text-sm">
-                    <a href="#" class="font-medium text-green-600 hover:text-green-500">
+                    <a href="#" class="font-medium text-red-600 hover:text-red-500">
                         Lupa password?
                     </a>
                 </div>
@@ -95,7 +95,7 @@
 
             <div>
                 <button type="submit"
-                    class="w-full cursor-pointer flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-sm font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all transform hover:-translate-y-0.5">
+                    class="w-full cursor-pointer flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-sm font-bold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all transform hover:-translate-y-0.5">
                     Masuk Sekarang
                 </button>
             </div>
@@ -104,7 +104,7 @@
         <div class="mt-8 text-center">
             <p class="text-sm text-gray-600">
                 Belum punya akun?
-                <a href="{{ route('register') }}" class="font-bold text-green-600 hover:text-green-500 transition-colors">
+                <a href="{{ route('register') }}" class="font-bold text-red-600 hover:text-red-500 transition-colors">
                     Daftar gratis di sini
                 </a>
             </p>
