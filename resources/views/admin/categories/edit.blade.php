@@ -1,7 +1,7 @@
 @extends('layouts.admin-layout')
 
 @section('title', 'Edit Kategori')
-@section('header', 'Edit Kategori')
+@section('header_title', 'Edit Kategori')
 
 @section('content')
     <div class="max-w-2xl bg-white rounded-lg shadow-md p-6">

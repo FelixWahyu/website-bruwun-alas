@@ -40,7 +40,7 @@
                 </svg>
                 Kelola Kategori
             </a>
-            <a href="#"
+            <a href="{{ route('admin.products.index') }}"
                 class="flex items-center text-sm px-4 py-3 text-gray-600 transition-colors rounded-xl hover:bg-red-50 hover:text-red-700 group">
                 <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-600" fill="none" stroke="currentColor"
                     viewBox="0 0 24 24">
