@@ -15,11 +15,4 @@
             <h3 class="text-2xl font-bold text-gray-800 mt-1">56</h3>
         </div>
     </div>
-
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <h3 class="font-bold text-lg mb-4">Grafik Bulanan</h3>
-        <div class="h-64 bg-gray-50 rounded flex items-center justify-center text-gray-400">
-            Area Grafik
-        </div>
-    </div>
 @endsection

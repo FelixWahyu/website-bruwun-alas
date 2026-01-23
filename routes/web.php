@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -24,6 +25,13 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')->middleware('role:admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [DashboardAdminController::class, 'dashboardPage'])->name('dashboard');
+
+        Route::get('/kategory', [CategoryController::class, 'index'])->name('category');
+        Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+        Route::post('/category/create', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::put('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
+        Route::delete('/category/{category}/delete', [CategoryController::class, 'destroy'])->name('category.destroy');
     });
 
     Route::prefix('owner')->middleware('role:owner')->name('owner.')->group(function () {

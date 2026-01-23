@@ -50,8 +50,8 @@
                 text: "Apakah Anda yakin ingin mengakhiri sesi ini?",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#16a34a',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: 'red',
+                cancelButtonColor: 'gray',
                 confirmButtonText: 'Keluar',
                 cancelButtonText: 'Batal',
                 reverseButtons: true

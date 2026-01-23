@@ -11,6 +11,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         body {
@@ -47,14 +48,12 @@
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <div class="relative px-4 py-1 rounded-full border border-gray-300" x-data="{ dropdownOpen: false }"
-                        @click.away="dropdownOpen = false">
+                    <div class="relative px-0.75 py-0.75 rounded-full border shadow-sm border-gray-300"
+                        x-data="{ dropdownOpen: false }" @click.away="dropdownOpen = false">
                         <button @click="dropdownOpen = !dropdownOpen"
                             class="flex items-center gap-3 cursor-pointer focus:outline-none">
                             <div class="text-right hidden md:block">
                                 <p class="text-sm font-bold text-gray-700">{{ Auth::user()->name }}</p>
-                                <span
-                                    class="text-xs text-gray-500 capitalize bg-gray-100 px-2 py-0.5 rounded-full">{{ Auth::user()->role }}</span>
                             </div>
                             <div
                                 class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-green-700 font-bold border border-green-200">
@@ -65,15 +64,17 @@
                         <div x-show="dropdownOpen"
                             class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl z-50 py-2 border border-gray-100"
                             x-cloak>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50">Profile</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50">Settings</a>
+                            <div class="block px-4 py-2 border-b border-gray-300">
+                                <span
+                                    class="text-xs text-gray-500 capitalize bg-gray-100 px-2 py-0.5 rounded-full">{{ Auth::user()->role }}</span>
+                            </div>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50">Edit
+                                Profile</a>
                             <div class="border-t border-gray-100 my-1"></div>
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" action="{{ route('logout') }}" id="logout">
                                 @csrf
-                                <button type="submit"
-                                    class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">Keluar</button>
+                                <button type="submit" onclick="confirmLogout(event,'logout')"
+                                    class="w-full text-left px-4 py-2 cursor-pointer text-sm text-red-600 hover:bg-red-50">Keluar</button>
                             </form>
                         </div>
                     </div>
@@ -85,6 +86,35 @@
             </main>
         </div>
     </div>
+
+    <script>
+        function confirmLogout(event, formId) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Konfirmasi Keluar',
+                text: "Apakah Anda yakin ingin mengakhiri sesi ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: 'red',
+                cancelButtonColor: 'gray',
+                confirmButtonText: 'Keluar',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Sedang Keluar...',
+                        timer: 1000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        }
+                    });
+                    document.getElementById(formId).submit();
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
