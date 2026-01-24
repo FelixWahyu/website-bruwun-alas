@@ -25,7 +25,7 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-1">
-                @foreach ([['label' => 'Beranda', 'route' => 'home', 'hash' => ''], ['label' => 'Tentang Kami', 'route' => 'about', 'hash' => ''], ['label' => 'Produk', 'route' => '', 'hash' => '#products'], ['label' => 'Kontak', 'route' => '', 'hash' => '#contact']] as $link)
+                @foreach ([['label' => 'Beranda', 'route' => 'home', 'hash' => ''], ['label' => 'Tentang Kami', 'route' => 'about', 'hash' => ''], ['label' => 'Produk', 'route' => 'katalogProduk', 'hash' => ''], ['label' => 'Kontak', 'route' => '', 'hash' => '#contact']] as $link)
                     <a href="{{ $link['hash'] ? $link['hash'] : route($link['route']) }}"
                         class="px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 
                        {{ request()->routeIs($link['route']) && !$link['hash'] ? 'bg-red-50 text-red-700' : 'text-gray-600 hover:text-red-700 hover:bg-red-50' }}">
@@ -35,20 +35,41 @@
             </div>
 
             <div class="flex items-center gap-3">
+                @php
+                    $cartCount = 0;
+                    // Jika login sebagai pelanggan
+                    if (auth()->check() && auth()->user()->role == 'pelanggan') {
+                        $cartCount = \App\Models\Cart::where('user_id', auth()->id())->count();
+                    }
+                    // Jika belum login (Guest)
+                    elseif (!auth()->check()) {
+                        $guestId = \Illuminate\Support\Facades\Cookie::get('bruwun_guest_id');
+                        if ($guestId) {
+                            $cartCount = \App\Models\Cart::where('guest_id', $guestId)->count();
+                        }
+                    }
+                @endphp
 
+                <!-- ICON KERANJANG (Selalu Muncul kecuali Admin/Owner) -->
                 @if (!auth()->check() || auth()->user()->role == 'pelanggan')
-                    <a href="#"
+                    <a href="{{ route('cart.index') }}"
                         class="relative p-2 text-gray-500 hover:text-red-600 hover:bg-gray-100 rounded-full transition-all duration-200 group mr-1">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                         </svg>
-                        <span class="absolute top-1 right-1 flex h-4 w-4">
-                            <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                            <span
-                                class="relative inline-flex rounded-full h-4 w-4 bg-red-600 text-[10px] font-bold text-white justify-center items-center">0</span>
-                        </span>
+
+                        <!-- Badge Jumlah -->
+                        @if ($cartCount > 0)
+                            <span class="absolute top-0 right-0 flex h-5 w-5 -mt-1 -mr-1">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span
+                                    class="relative inline-flex rounded-full h-5 w-5 bg-red-600 text-[10px] font-bold text-white justify-center items-center">
+                                    {{ $cartCount > 99 ? '99+' : $cartCount }}
+                                </span>
+                            </span>
+                        @endif
                     </a>
                 @endif
 

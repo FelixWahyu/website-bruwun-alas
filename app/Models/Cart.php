@@ -8,6 +8,7 @@ class Cart extends Model
 {
     protected $fillable = [
         'user_id',
+        'guest_id',
         'product_variant_id',
         'quantity'
     ];
