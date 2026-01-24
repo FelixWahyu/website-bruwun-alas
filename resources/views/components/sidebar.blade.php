@@ -30,9 +30,9 @@
         </a>
 
         @if (Auth::user()->role == 'admin')
-            <a href="{{ route('admin.category') }}"
-                class="flex items-center text-sm px-4 py-3 text-gray-600 transition-colors rounded-xl hover:bg-red-50 hover:text-red-700 group {{ request()->routeIs('admin.category') ? 'bg-red-50 text-red-600 font-semibold' : '' }}">
-                <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-600 {{ request()->routeIs('admin.category') ? 'text-red-600' : '' }}"
+            <a href="{{ route('admin.category.index') }}"
+                class="flex items-center text-sm px-4 py-3 text-gray-600 transition-colors rounded-xl hover:bg-red-50 hover:text-red-700 group {{ request()->routeIs('admin.category.*') ? 'bg-red-50 text-red-600 font-semibold' : '' }}">
+                <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-600 {{ request()->routeIs('admin.category.*') ? 'text-red-600' : '' }}"
                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
@@ -41,9 +41,9 @@
                 Kelola Kategori
             </a>
             <a href="{{ route('admin.products.index') }}"
-                class="flex items-center text-sm px-4 py-3 text-gray-600 transition-colors rounded-xl hover:bg-red-50 hover:text-red-700 group">
-                <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-600" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
+                class="flex items-center text-sm px-4 py-3 text-gray-600 transition-colors rounded-xl hover:bg-red-50 hover:text-red-700 group {{ request()->routeIs('admin.products.*') ? 'bg-red-50 text-red-600 font-semibold' : '' }}">
+                <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-600 {{ request()->routeIs('admin.products.*') ? 'text-red-600' : '' }}"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                 </svg>

@@ -9,9 +9,17 @@ use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::latest()->get();
+        $categories = Category::latest()
+            ->when(
+                $request->filled('search'),
+                fn($q) =>
+                $q->where('name', 'like', "%{$request->search}%")
+            )
+            ->paginate(5)
+            ->withQueryString();
+
         return view('admin.categories.category-page', compact('categories'));
     }
 
