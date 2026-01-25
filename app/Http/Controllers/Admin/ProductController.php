@@ -44,9 +44,10 @@ class ProductController extends Controller
             'product_name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'description' => 'required',
-            'weight' => 'required|integer|min:1',
+            'weight' => 'nullable|integer|min:1',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'variants' => 'required|array',
+            'gender' => 'required|in:pria,wanita,anak,unisex'
         ]);
 
         $hasEnabledVariant = false;
@@ -74,6 +75,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'weight' => $request->weight,
             'thumbnail' => $thumbnailPath,
+            'gender' => $request->gender,
             'is_active' => true,
         ]);
 
@@ -112,6 +114,7 @@ class ProductController extends Controller
             'description' => 'required',
             'weight' => 'required|integer',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'gender' => 'required|in:pria,wanita,anak,unisex',
         ]);
 
         DB::beginTransaction();
@@ -131,6 +134,7 @@ class ProductController extends Controller
                 'slug' => Str::slug($request->product_name) . '-' . Str::random(5),
                 'description' => $request->description,
                 'weight' => $request->weight,
+                'gender' => $request->gender,
                 'is_active' => $request->has('is_active'),
             ]);
 

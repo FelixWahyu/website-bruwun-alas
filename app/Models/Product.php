@@ -13,6 +13,7 @@ class Product extends Model
         'weight',
         'thumbnail',
         'description',
+        'gender',
         'is_active'
     ];
 
