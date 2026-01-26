@@ -92,10 +92,27 @@
                             <div class="relative">
                                 <select name="gender"
                                     class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition text-sm appearance-none bg-white">
-                                    <option value="unisex">Unisex (Semua)</option>
-                                    <option value="pria">Pria</option>
-                                    <option value="wanita">Wanita</option>
-                                    <option value="anak">Anak-anak</option>
+
+                                    <option value="unisex"
+                                        {{ old('gender', $product->gender) == 'unisex' ? 'selected' : '' }}>
+                                        Unisex (Semua)
+                                    </option>
+
+                                    <option value="pria"
+                                        {{ old('gender', $product->gender) == 'pria' ? 'selected' : '' }}>
+                                        Pria
+                                    </option>
+
+                                    <option value="wanita"
+                                        {{ old('gender', $product->gender) == 'wanita' ? 'selected' : '' }}>
+                                        Wanita
+                                    </option>
+
+                                    <option value="anak"
+                                        {{ old('gender', $product->gender) == 'anak' ? 'selected' : '' }}>
+                                        Anak-anak
+                                    </option>
+
                                 </select>
                                 <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
                                     <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor"
