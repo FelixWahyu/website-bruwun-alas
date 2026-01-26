@@ -45,7 +45,7 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'description' => 'required',
             'weight' => 'nullable|integer|min:1',
-            'thumbnail' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
             'variants' => 'required|array',
             'gender' => 'required|in:pria,wanita,anak,unisex'
         ]);
@@ -113,7 +113,7 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'description' => 'required',
             'weight' => 'required|integer',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'gender' => 'required|in:pria,wanita,anak,unisex',
         ]);
 

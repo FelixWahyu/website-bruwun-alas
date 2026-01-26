@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -16,6 +17,7 @@ Route::get('/', [HomeController::class, 'homePage'])->name('home');
 Route::get('/about', [AboutController::class, 'aboutPage'])->name('about');
 Route::get('/katalog-produk', [KatalogProdukController::class, 'index'])->name('katalogProduk');
 Route::get('/katalog-produk/{slug}', [KatalogProdukController::class, 'show'])->name('product.detail');
+
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'store'])->name('cart.store');
 Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
@@ -30,8 +32,18 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::middleware('role::pelanggan')->group(function () {
-        Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::middleware('role:pelanggan')->group(function () {
+        // Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+        Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+        Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+        Route::get('/checkout/success/{id}', [CheckoutController::class, 'success'])->name('checkout.success');
+
+        Route::get('/orders', function () {
+            return 'Riwayat Pesanan';
+        })->name('orders.history');
+        Route::get('/profile', function () {
+            return 'Profil User';
+        })->name('profile');
     });
 
     Route::prefix('admin')->middleware('role:admin')->name('admin.')->group(function () {
