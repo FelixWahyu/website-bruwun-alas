@@ -10,11 +10,20 @@ use Illuminate\Http\Request;
 use App\Models\PaymentMethod;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 
 class CheckoutController extends Controller
 {
+    private function getApiConfig()
+    {
+        return [
+            'url' => config('services.rajaongkir.base_url'),
+            'key' => config('services.rajaongkir.key'),
+        ];
+    }
+
     public function index()
     {
         $guestId = Cookie::get('bruwun_guest_id');
@@ -42,7 +51,6 @@ class CheckoutController extends Controller
         // 2. Hitung Total Berat & Harga (Estimasi)
         $totalWeight = 0;
         $subtotal = 0;
-
         foreach ($carts as $cart) {
             $totalWeight += $cart->variant->product->weight * $cart->quantity;
             $subtotal += $cart->variant->price * $cart->quantity;
@@ -51,7 +59,115 @@ class CheckoutController extends Controller
         // 3. Ambil Metode Pembayaran (Bank Transfer / E-wallet)
         $paymentMethods = PaymentMethod::where('is_active', true)->get();
 
-        return view('checkout.checkout-page', compact('carts', 'subtotal', 'totalWeight', 'paymentMethods'));
+        $provinces = [];
+        try {
+            $api = $this->getApiConfig();
+            // Endpoint Komerce: /destination/province
+            $response = Http::withoutVerifying()
+                ->withHeaders(['key' => $api['key']])
+                ->get($api['url'] . '/destination/province');
+
+            // Struktur Komerce: $json['data']
+            if ($response->successful()) {
+                $provinces = $response->json()['data'] ?? [];
+            }
+        } catch (\Exception $e) {
+            $provinces = [];
+        }
+
+        return view('checkout.checkout-page', compact('carts', 'subtotal', 'totalWeight', 'paymentMethods', 'provinces'));
+    }
+
+    public function getCities($provinceId)
+    {
+        try {
+            $api = $this->getApiConfig();
+            // URL Baru: /destination/city/{province_id}
+            $response = Http::withoutVerifying()
+                ->withHeaders(['key' => $api['key']])
+                ->get($api['url'] . '/destination/city/' . $provinceId);
+
+            $data = $response->json()['data'] ?? [];
+            return response()->json($data);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function getSubdistricts($cityId)
+    {
+        try {
+            $api = $this->getApiConfig();
+            // URL Baru: /destination/sub-district/{city_id}
+            // Note: Komerce menamakan parameter district_id, tapi di flow kita itu city_id
+            $response = Http::withoutVerifying()
+                ->withHeaders(['key' => $api['key']])
+                ->get($api['url'] . '/destination/sub-district/' . $cityId);
+
+            $data = $response->json()['data'] ?? [];
+            return response()->json($data);
+        } catch (\Exception $e) {
+            return response()->json([], 500);
+        }
+    }
+
+    public function checkOngkir(Request $request)
+    {
+        try {
+            $api = $this->getApiConfig();
+
+            // URL Spesifik Komerce untuk Hitung Ongkir Kecamatan
+            $url = 'https://rajaongkir.komerce.id/api/v1/calculate/district/domestic-cost';
+
+            // Menggunakan asForm() untuk application/x-www-form-urlencoded
+            $response = Http::withoutVerifying()
+                ->asForm()
+                ->withHeaders([
+                    'key' => $api['key']
+                ])
+                ->post($url, [
+                    'origin'      => config('services.rajaongkir.origin_city'), // Pastikan ini ID Kecamatan Toko Anda jika endpoint ini butuh ID Kecamatan, atau ID Kota jika support
+                    'destination' => $request->subdistrict_id, // ID Kecamatan Tujuan
+                    'weight'      => $request->weight,
+                    'courier'     => $request->courier
+                ]);
+
+            $result = $response->json();
+
+            // Debugging: Jika ingin melihat respon asli dari Komerce, buka komentar di bawah:
+            // return response()->json($result);
+
+            $data = $result['data'] ?? [];
+
+            // Mapping Response Komerce agar sesuai dengan Format Frontend (RajaOngkir Style)
+            $costs = [];
+
+            // Iterasi data dari Komerce
+            foreach ($data as $service) {
+                $costs[] = [
+                    // Komerce biasanya return: name, code, service, description, cost, etd
+                    'service' => $service['service'] ?? $service['code'] ?? 'Layanan',
+                    'description' => $service['description'] ?? $service['service'] ?? '',
+                    'cost' => [
+                        [
+                            'value' => $service['cost'] ?? $service['price'] ?? 0,
+                            'etd'   => $service['etd'] ?? '-'
+                        ]
+                    ]
+                ];
+            }
+
+            // Return format yang dimengerti oleh View/AlpineJS
+            return response()->json([
+                [
+                    'code' => $request->courier,
+                    'name' => strtoupper($request->courier),
+                    'costs' => $costs
+                ]
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     public function store(Request $request)
@@ -59,13 +175,15 @@ class CheckoutController extends Controller
         // 1. Validasi Input
         $request->validate([
             'address' => 'required|string',
-            'province' => 'required|string',
-            'city' => 'required|string',
-            'subdistrict' => 'required|string',
+            'province_name' => 'required',
+            'city_name' => 'required',
+            'subdistrict_name' => 'required',
             'postal_code' => 'required|numeric',
             'phone' => 'required|numeric',
             'payment_method_id' => 'required|exists:payment_methods,id',
             'proof_of_payment' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'shipping_service' => 'required|string',
+            'shipping_cost' => 'required|numeric',
         ]);
 
         // 2. Cek Stok Ulang (Mencegah Race Condition)
@@ -84,21 +202,25 @@ class CheckoutController extends Controller
             $proofPath = $request->file('proof_of_payment')->store('payments', 'public');
 
             // 4. Hitung Total
-            $totalPrice = 0;
+            $subTotal = 0;
             foreach ($carts as $cart) {
-                $totalPrice += $cart->variant->price * $cart->quantity;
+                $subTotal += $cart->variant->price * $cart->quantity;
             }
 
-            // 5. Buat String Alamat Lengkap (Snapshot)
-            $fullAddress = "{$request->address}, Kec. {$request->subdistrict}, {$request->city}, {$request->province}, {$request->postal_code}. (Telp: {$request->phone})";
+            $provinceName = $request->province_name;
+            $cityName = $request->city_name;
+
+            $fullAddress = "{$request->address}, {$cityName}, {$provinceName}, {$request->postal_code}. (Telp: {$request->phone}) - Pengiriman: {$request->shipping_service}";
+
+            $grandTotal = $subTotal + $request->shipping_cost;
 
             // 6. Simpan Order
             $order = Order::create([
                 'user_id' => Auth::id(),
                 'invoice_code' => 'INV-' . date('Ymd') . '-' . strtoupper(Str::random(5)),
-                'total_pice' => $totalPrice,
-                'shipping_cost' => 0, // Default 0, admin yang input nanti
-                'grand_total' => $totalPrice, // Nanti admin update + ongkir
+                'total_pice' => $subTotal,
+                'shipping_cost' => $request->shipping_cost, // Default 0, admin yang input nanti
+                'grand_total' => $grandTotal, // Nanti admin update + ongkir
                 'status' => 'menunggu_konfirmasi',
                 'shipping_address' => $fullAddress,
                 'proof_of_payment' => $proofPath,

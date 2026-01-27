@@ -44,6 +44,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/profile', function () {
             return 'Profil User';
         })->name('profile');
+
+        Route::get('/api/cities/{provinceId}', [CheckoutController::class, 'getCities'])->name('api.cities');
+        Route::get('/api/subdistricts/{cityId}', [CheckoutController::class, 'getSubdistricts'])->name('api.subdistricts');
+        Route::post('/api/check-ongkir', [CheckoutController::class, 'checkOngkir'])->name('api.checkOngkir');
     });
 
     Route::prefix('admin')->middleware('role:admin')->name('admin.')->group(function () {
@@ -64,4 +68,26 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+});
+
+Route::get('/test-api', function () {
+    // Ambil Config
+    $url = config('services.rajaongkir.base_url') . '/destination/sub-district';
+    $key = config('services.rajaongkir.key');
+
+    try {
+        // Coba request ke Komerce
+        $response = Illuminate\Support\Facades\Http::withoutVerifying()
+            ->withHeaders(['key' => $key])
+            ->get($url);
+
+        return [
+            'status' => $response->status(),
+            'body' => $response->json(), // Ini akan menampilkan isi data asli dari Komerce
+            'config_url' => $url,
+            'config_key' => substr($key, 0, 5) . '...' // Cek apakah key terbaca (hidden)
+        ];
+    } catch (\Exception $e) {
+        return ['error' => $e->getMessage()];
+    }
 });
