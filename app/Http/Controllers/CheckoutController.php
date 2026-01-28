@@ -29,13 +29,11 @@ class CheckoutController extends Controller
         $guestId = Cookie::get('bruwun_guest_id');
 
         if ($guestId) {
-            // Update semua cart milik guest menjadi milik user yang sedang login
             Cart::where('guest_id', $guestId)->update([
                 'guest_id' => null,
                 'user_id' => Auth::id()
             ]);
 
-            // Hapus cookie guest agar tidak dobel merge di masa depan
             Cookie::queue(Cookie::forget('bruwun_guest_id'));
         }
 
@@ -62,12 +60,10 @@ class CheckoutController extends Controller
         $provinces = [];
         try {
             $api = $this->getApiConfig();
-            // Endpoint Komerce: /destination/province
             $response = Http::withoutVerifying()
                 ->withHeaders(['key' => $api['key']])
                 ->get($api['url'] . '/destination/province');
 
-            // Struktur Komerce: $json['data']
             if ($response->successful()) {
                 $provinces = $response->json()['data'] ?? [];
             }
@@ -82,7 +78,6 @@ class CheckoutController extends Controller
     {
         try {
             $api = $this->getApiConfig();
-            // URL Baru: /destination/city/{province_id}
             $response = Http::withoutVerifying()
                 ->withHeaders(['key' => $api['key']])
                 ->get($api['url'] . '/destination/city/' . $provinceId);
@@ -98,8 +93,7 @@ class CheckoutController extends Controller
     {
         try {
             $api = $this->getApiConfig();
-            // URL Baru: /destination/sub-district/{city_id}
-            // Note: Komerce menamakan parameter district_id, tapi di flow kita itu city_id
+
             $response = Http::withoutVerifying()
                 ->withHeaders(['key' => $api['key']])
                 ->get($api['url'] . '/destination/sub-district/' . $cityId);
@@ -120,10 +114,8 @@ class CheckoutController extends Controller
         try {
             $api = $this->getApiConfig();
 
-            // URL Spesifik Komerce untuk Hitung Ongkir Kecamatan
             $url = 'https://rajaongkir.komerce.id/api/v1/calculate/district/domestic-cost';
 
-            // Menggunakan asForm() untuk application/x-www-form-urlencoded
             $response = Http::withoutVerifying()
                 ->asForm()
                 ->withHeaders([
@@ -137,8 +129,8 @@ class CheckoutController extends Controller
                     'destination' => $request->subdistrict_id,
 
                     'weight'      => $request->weight,
-                    'courier'     => $request->courier, // jne, sicepat, idexpress
-                    'payment_method' => 'NON_COD' // Tambahkan ini agar hasil lebih akurat
+                    'courier'     => $request->courier,
+                    'payment_method' => 'NON_COD'
                 ]);
 
             $result = $response->json();
@@ -226,8 +218,8 @@ class CheckoutController extends Controller
                 'user_id' => Auth::id(),
                 'invoice_code' => 'INV-' . date('Ymd') . '-' . strtoupper(Str::random(5)),
                 'total_pice' => $subTotal,
-                'shipping_cost' => $request->shipping_cost, // Default 0, admin yang input nanti
-                'grand_total' => $grandTotal, // Nanti admin update + ongkir
+                'shipping_cost' => $request->shipping_cost,
+                'grand_total' => $grandTotal,
                 'status' => 'menunggu_pembayaran',
                 'shipping_address' => $fullAddress,
                 'proof_of_payment' => null,
@@ -308,7 +300,7 @@ class CheckoutController extends Controller
 
             $order->update([
                 'proof_of_payment' => $path,
-                'status' => 'menunggu_konfirmasi' // Update status jadi menunggu konfirmasi admin
+                'status' => 'menunggu_konfirmasi'
             ]);
 
             return redirect()->route('checkout.success', $order->id);
