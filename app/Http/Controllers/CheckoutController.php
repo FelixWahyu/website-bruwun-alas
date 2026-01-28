@@ -192,7 +192,6 @@ class CheckoutController extends Controller
             'postal_code' => 'required|numeric',
             'phone' => 'required|numeric',
             'payment_method_id' => 'required|exists:payment_methods,id',
-            'proof_of_payment' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'shipping_service' => 'required|string',
             'shipping_cost' => 'required|numeric',
         ]);
@@ -209,9 +208,6 @@ class CheckoutController extends Controller
         DB::beginTransaction();
 
         try {
-            // 3. Upload Bukti Bayar
-            $proofPath = $request->file('proof_of_payment')->store('payments', 'public');
-
             // 4. Hitung Total
             $subTotal = 0;
             foreach ($carts as $cart) {
@@ -232,9 +228,9 @@ class CheckoutController extends Controller
                 'total_pice' => $subTotal,
                 'shipping_cost' => $request->shipping_cost, // Default 0, admin yang input nanti
                 'grand_total' => $grandTotal, // Nanti admin update + ongkir
-                'status' => 'menunggu_konfirmasi',
+                'status' => 'menunggu_pembayaran',
                 'shipping_address' => $fullAddress,
-                'proof_of_payment' => $proofPath,
+                'proof_of_payment' => null,
                 'note' => $request->note
             ]);
 
@@ -269,13 +265,56 @@ class CheckoutController extends Controller
 
             DB::commit();
 
-            return redirect()->route('checkout.success', $order->id);
+            return redirect()->route('checkout.payment', ['id' => $order->id, 'bank' => $request->payment_method_id]);
         } catch (\Exception $e) {
             DB::rollBack();
             // Hapus gambar jika gagal
             if (isset($proofPath)) Storage::disk('public')->delete($proofPath);
             return back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage())->withInput();
         }
+    }
+
+    public function payment(Request $request, $id)
+    {
+        $order = Order::where('user_id', Auth::id())->where('id', $id)->firstOrFail();
+
+        // Jika status bukan menunggu pembayaran, lempar ke history
+        if ($order->status != 'menunggu_pembayaran') {
+            return redirect()->route('orders.history');
+        }
+
+        // Ambil Bank yang dipilih user (dari parameter URL atau default ambil semua aktif)
+        $bankId = $request->query('bank');
+        $bank = PaymentMethod::find($bankId);
+
+        // Jika parameter bank hilang, ambil bank pertama atau tampilkan list lagi (opsional)
+        if (!$bank) {
+            $bank = PaymentMethod::where('is_active', true)->first();
+        }
+
+        return view('checkout.payment', compact('order', 'bank'));
+    }
+
+    public function updatePayment(Request $request, $id)
+    {
+        $request->validate([
+            'proof_of_payment' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $order = Order::where('user_id', Auth::id())->where('id', $id)->firstOrFail();
+
+        if ($request->hasFile('proof_of_payment')) {
+            $path = $request->file('proof_of_payment')->store('payments', 'public');
+
+            $order->update([
+                'proof_of_payment' => $path,
+                'status' => 'menunggu_konfirmasi' // Update status jadi menunggu konfirmasi admin
+            ]);
+
+            return redirect()->route('checkout.success', $order->id);
+        }
+
+        return back()->with('error', 'Upload gagal.');
     }
 
     public function success($id)

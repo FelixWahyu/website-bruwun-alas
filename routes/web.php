@@ -37,6 +37,10 @@ Route::middleware('auth')->group(function () {
         // Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
         Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
         Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+
+        Route::get('/payment/{id}', [CheckoutController::class, 'payment'])->name('checkout.payment');
+        Route::post('/payment/{id}', [CheckoutController::class, 'updatePayment'])->name('checkout.updatePayment');
+
         Route::get('/checkout/success/{id}', [CheckoutController::class, 'success'])->name('checkout.success');
 
         Route::get('/orders', function () {

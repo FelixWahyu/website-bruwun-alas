@@ -164,9 +164,6 @@
                                     </label>
                                 @endforeach
                             </div>
-                            <label class="block text-sm font-medium mb-2">Upload Bukti Transfer</label>
-                            <input type="file" name="proof_of_payment" required accept="image/*"
-                                class="w-full border rounded-lg p-2">
                             <div class="mt-4">
                                 <label class="block text-sm font-medium mb-1">Catatan</label>
                                 <textarea name="note" rows="2" class="w-full border rounded-lg px-4 py-2">{{ old('note') }}</textarea>
