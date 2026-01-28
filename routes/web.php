@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\KatalogProdukController;
@@ -61,6 +62,10 @@ Route::middleware('auth')->group(function () {
         Route::delete('/category/{category}/delete', [CategoryController::class, 'destroy'])->name('category.destroy');
 
         Route::resource('products', ProductController::class);
+
+        Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+        Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
     });
 
     Route::prefix('owner')->middleware('role:owner')->name('owner.')->group(function () {

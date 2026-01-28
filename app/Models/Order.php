@@ -13,6 +13,7 @@ class Order extends Model
         'shipping_cost',
         'grand_total',
         'status',
+        'resi_number',
         'shipping_address',
         'proof_of_payment',
         'note'

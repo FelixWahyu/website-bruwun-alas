@@ -113,6 +113,10 @@ class CheckoutController extends Controller
 
     public function checkOngkir(Request $request)
     {
+        if (!$request->subdistrict_id) {
+            return response()->json([]);
+        }
+
         try {
             $api = $this->getApiConfig();
 
@@ -126,38 +130,45 @@ class CheckoutController extends Controller
                     'key' => $api['key']
                 ])
                 ->post($url, [
-                    'origin'      => config('services.rajaongkir.origin_city'), // Pastikan ini ID Kecamatan Toko Anda jika endpoint ini butuh ID Kecamatan, atau ID Kota jika support
-                    'destination' => $request->subdistrict_id, // ID Kecamatan Tujuan
+                    // Origin diambil dari .env (ID KECAMATAN TOKO)
+                    'origin'      => config('services.rajaongkir.origin_city'),
+
+                    // Destination diambil dari input user (ID KECAMATAN TUJUAN)
+                    'destination' => $request->subdistrict_id,
+
                     'weight'      => $request->weight,
-                    'courier'     => $request->courier
+                    'courier'     => $request->courier, // jne, sicepat, idexpress
+                    'payment_method' => 'NON_COD' // Tambahkan ini agar hasil lebih akurat
                 ]);
 
             $result = $response->json();
 
-            // Debugging: Jika ingin melihat respon asli dari Komerce, buka komentar di bawah:
-            // return response()->json($result);
-
-            $data = $result['data'] ?? [];
-
-            // Mapping Response Komerce agar sesuai dengan Format Frontend (RajaOngkir Style)
-            $costs = [];
-
-            // Iterasi data dari Komerce
-            foreach ($data as $service) {
-                $costs[] = [
-                    // Komerce biasanya return: name, code, service, description, cost, etd
-                    'service' => $service['service'] ?? $service['code'] ?? 'Layanan',
-                    'description' => $service['description'] ?? $service['service'] ?? '',
-                    'cost' => [
-                        [
-                            'value' => $service['cost'] ?? $service['price'] ?? 0,
-                            'etd'   => $service['etd'] ?? '-'
-                        ]
-                    ]
-                ];
+            // Debugging: Cek jika ada error dari API
+            if (isset($result['meta']['code']) && $result['meta']['code'] != 200) {
+                return response()->json(['error' => $result['meta']['message'] ?? 'API Error'], 500);
             }
 
-            // Return format yang dimengerti oleh View/AlpineJS
+            $data = $result['data'] ?? [];
+            $costs = [];
+
+            foreach ($data as $service) {
+                // Filter: Hanya ambil layanan yang ada harganya
+                $costValue = $service['cost'] ?? $service['price'] ?? 0;
+
+                if ($costValue > 0) {
+                    $costs[] = [
+                        'service' => $service['service'] ?? $service['service_code'] ?? 'Layanan',
+                        'description' => $service['description'] ?? $service['service_name'] ?? '',
+                        'cost' => [
+                            [
+                                'value' => $costValue,
+                                'etd'   => $service['etd'] ?? '-'
+                            ]
+                        ]
+                    ];
+                }
+            }
+
             return response()->json([
                 [
                     'code' => $request->courier,
@@ -181,7 +192,7 @@ class CheckoutController extends Controller
             'postal_code' => 'required|numeric',
             'phone' => 'required|numeric',
             'payment_method_id' => 'required|exists:payment_methods,id',
-            'proof_of_payment' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'proof_of_payment' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'shipping_service' => 'required|string',
             'shipping_cost' => 'required|numeric',
         ]);
