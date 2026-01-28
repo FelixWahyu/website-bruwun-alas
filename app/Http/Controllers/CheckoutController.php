@@ -192,7 +192,7 @@ class CheckoutController extends Controller
             'postal_code' => 'required|numeric',
             'phone' => 'required|numeric',
             'payment_method_id' => 'required|exists:payment_methods,id',
-            'proof_of_payment' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'proof_of_payment' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'shipping_service' => 'required|string',
             'shipping_cost' => 'required|numeric',
         ]);
