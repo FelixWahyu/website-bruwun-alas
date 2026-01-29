@@ -13,6 +13,7 @@ use App\Http\Controllers\KatalogProdukController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\PaymentMethodController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Owner\DashboardOwnerController;
 
 Route::get('/', [HomeController::class, 'homePage'])->name('home');
@@ -73,6 +74,8 @@ Route::middleware('auth')->group(function () {
         Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
 
         Route::resource('payment-method', PaymentMethodController::class);
+
+        Route::resource('users', UserController::class);
     });
 
     Route::prefix('owner')->middleware('role:owner')->name('owner.')->group(function () {
