@@ -59,14 +59,14 @@
                 </svg>
                 Pesanan Masuk
             </a>
-            <a href="#"
-                class="flex items-center text-sm px-4 py-3 text-gray-600 transition-colors rounded-xl hover:bg-red-50 hover:text-red-700 group">
+            <a href="{{ route('admin.payment-method.index') }}"
+                class="flex items-center text-sm px-4 py-3 text-gray-600 transition-colors rounded-xl hover:bg-red-50 hover:text-red-700 group {{ request()->routeIs('admin.payment-method.*') ? 'bg-red-50 text-red-600 font-semibold' : '' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                    stroke="currentColor" class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-600">
+                    stroke="currentColor"
+                    class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-600 {{ request()->routeIs('admin.payment-method.*') ? 'text-red-600' : '' }}">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
                 </svg>
-
                 Metode Pembayaran
             </a>
             <a href="#"
