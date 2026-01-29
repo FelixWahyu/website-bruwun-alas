@@ -1,7 +1,7 @@
 <aside :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
     class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-white border-r border-gray-200 lg:translate-x-0 lg:static lg:inset-0">
 
-    <div class="flex items-center justify-center h-20 border-b border-gray-100">
+    <div class="flex items-center justify-center h-20">
         <a href="{{ route('home') }}" class="flex items-center gap-2">
             <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center text-white shadow-md">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
