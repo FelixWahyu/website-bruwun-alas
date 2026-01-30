@@ -5,15 +5,16 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\KatalogProdukController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\PaymentMethodController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Owner\DashboardOwnerController;
 
 Route::get('/', [HomeController::class, 'homePage'])->name('home');
@@ -76,6 +77,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('payment-method', PaymentMethodController::class);
 
         Route::resource('users', UserController::class);
+
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     });
 
     Route::prefix('owner')->middleware('role:owner')->name('owner.')->group(function () {

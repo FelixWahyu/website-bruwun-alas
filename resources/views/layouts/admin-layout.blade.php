@@ -109,7 +109,7 @@
                             <p class="text-xs text-gray-500 capitalize">{{ Auth::user()->role }}</p>
                         </div>
 
-                        <a href="#"
+                        <a href="{{ route('admin.profile.edit') }}"
                             class="flex items-center px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-blue-600 transition group">
                             <svg class="w-4 h-4 mr-3 text-gray-400 group-hover:text-blue-500" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24">

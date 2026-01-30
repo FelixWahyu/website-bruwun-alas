@@ -130,13 +130,17 @@
                                 class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition text-sm">{{ old('description', $product->description) }}</textarea>
                         </div>
 
-                        <div class="flex items-center p-4 bg-gray-50 rounded-xl border border-gray-200">
-                            <input type="checkbox" name="is_active" id="is_active"
-                                class="w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
-                                {{ $product->is_active ? 'checked' : '' }}>
-                            <label for="is_active"
-                                class="ml-3 text-sm font-medium text-gray-700 select-none cursor-pointer">
-                                Tampilkan produk ini di katalog toko (Aktif)
+                        <div class="pt-4">
+                            <label class="flex items-center cursor-pointer">
+                                <div class="relative">
+                                    <input type="checkbox" name="is_active" id="is_active" class="sr-only peer"
+                                        {{ $product->is_active ? 'checked' : '' }}>
+                                    <div
+                                        class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-100 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                                    </div>
+                                </div>
+                                <span class="ml-3 text-sm font-medium text-gray-900">Tampilkan produk ini di katalog toko
+                                    (Aktif)</span>
                             </label>
                         </div>
                     </div>
