@@ -128,7 +128,7 @@
                                 @endphp
 
                                 @if (Auth::user()->role == 'pelanggan')
-                                    <a href="#"
+                                    <a href="{{ route('profile') }}"
                                         class="flex items-center px-5 py-2.5 text-sm text-gray-600 hover:bg-red-50 hover:text-red-700">
                                         <svg class="mr-3 h-4 w-4 text-gray-400" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
@@ -216,7 +216,7 @@
                     </div>
                     <div class="mt-4 space-y-1 px-2">
                         @if (Auth::user()->role == 'pelanggan')
-                            <a href="#"
+                            <a href="{{ route('profile') }}"
                                 class="block px-3 py-2 rounded-lg text-base font-medium text-gray-600 hover:bg-red-50 hover:text-red-700">Edit
                                 Profil</a>
                             <a href="#"

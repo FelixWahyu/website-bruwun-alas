@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\KatalogProdukController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\ProfilePelangganController;
 use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Owner\DashboardOwnerController;
@@ -49,9 +50,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/orders', function () {
             return 'Riwayat Pesanan';
         })->name('orders.history');
-        Route::get('/profile', function () {
-            return 'Profil User';
-        })->name('profile');
+
+        Route::get('/profile', [ProfilePelangganController::class, 'index'])->name('profile');
+        Route::put('/profile', [ProfilePelangganController::class, 'update'])->name('profile.update');
 
         Route::get('/api/cities/{provinceId}', [CheckoutController::class, 'getCities'])->name('api.cities');
         Route::get('/api/subdistricts/{cityId}', [CheckoutController::class, 'getSubdistricts'])->name('api.subdistricts');
