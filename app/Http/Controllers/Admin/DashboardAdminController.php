@@ -15,29 +15,23 @@ class DashboardAdminController extends Controller
 {
     public function dashboardPage()
     {
-        // 1. KARTU STATISTIK UTAMA
-        $totalPendapatan = Order::where('status', 'selesai')->sum('grand_total'); // Hanya hitung yang sudah selesai
+        $totalPendapatan = Order::where('status', 'selesai')->sum('grand_total');
         $totalPesanan = Order::count();
         $totalProduk = Product::count();
         $totalPelanggan = User::where('role', 'pelanggan')->count();
 
-        // 2. PRODUK MAU HABIS (Stok < 5)
-        // Kita ambil varian yang stoknya sedikit, lalu load relasi product-nya
         $stokMenipis = ProductVariant::with('product')
             ->where('stock', '<=', 5)
             ->orderBy('stock', 'asc')
             ->limit(5)
             ->get();
 
-        // 3. TOP 5 PRODUK TERLARIS
-        // Menggunakan agragasi sum pada tabel order_items
         $produkTerlaris = OrderItem::select('product_name', DB::raw('SUM(quantity) as total_terjual'))
             ->groupBy('product_name')
             ->orderByDesc('total_terjual')
             ->limit(5)
             ->get();
 
-        // 4. HISTORY PESANAN TERBARU
         $pesananTerbaru = Order::with('user')
             ->latest()
             ->limit(5)
