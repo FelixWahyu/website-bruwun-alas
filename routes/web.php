@@ -8,6 +8,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -47,9 +48,12 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/checkout/success/{id}', [CheckoutController::class, 'success'])->name('checkout.success');
 
-        Route::get('/orders', function () {
-            return 'Riwayat Pesanan';
-        })->name('orders.history');
+        Route::get('/orders', [OrderHistoryController::class, 'index'])->name('orders.history');
+
+        Route::get('/orders/{id}', [OrderHistoryController::class, 'show'])->name('orders.details');
+
+        Route::put('/orders/{id}/complete', [OrderHistoryController::class, 'markAsCompleted'])->name('orders.complete');
+        Route::put('/orders/{id}/cancel', [OrderHistoryController::class, 'cancelOrder'])->name('orders.cancel');
 
         Route::get('/profile', [ProfilePelangganController::class, 'index'])->name('profile');
         Route::put('/profile', [ProfilePelangganController::class, 'update'])->name('profile.update');

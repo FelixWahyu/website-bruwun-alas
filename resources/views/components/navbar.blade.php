@@ -137,7 +137,7 @@
                                         </svg>
                                         Edit Profil
                                     </a>
-                                    <a href="#"
+                                    <a href="{{ route('orders.history') }}"
                                         class="flex items-center px-5 py-2.5 text-sm text-gray-600 hover:bg-red-50 hover:text-red-700">
                                         <svg class="mr-3 h-4 w-4 text-gray-400" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
@@ -219,7 +219,7 @@
                             <a href="{{ route('profile') }}"
                                 class="block px-3 py-2 rounded-lg text-base font-medium text-gray-600 hover:bg-red-50 hover:text-red-700">Edit
                                 Profil</a>
-                            <a href="#"
+                            <a href="{{ route('orders.history') }}"
                                 class="block px-3 py-2 rounded-lg text-base font-medium text-gray-600 hover:bg-red-50 hover:text-red-700">Riwayat
                                 Pesanan</a>
                         @else
