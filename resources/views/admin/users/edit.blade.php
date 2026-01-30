@@ -4,22 +4,20 @@
 
 @section('content')
     <div class="max-w-3xl mx-auto">
-
-        <div class="mb-6 flex items-center gap-3">
-            <a href="{{ route('admin.users.index') }}"
-                class="p-2 rounded-xl bg-white border border-gray-200 hover:bg-gray-50 text-gray-500 transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-            </a>
-            <div>
-                <h2 class="text-xl font-bold text-gray-900">Edit Data Pengguna</h2>
-                <p class="text-sm text-gray-500">Perbarui informasi untuk: <span
-                        class="font-semibold text-gray-800">{{ $user->name }}</span></p>
-            </div>
-        </div>
-
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="mb-3 px-8 pt-4 flex items-center gap-3">
+                <div class="p-2 bg-blue-50 text-blue-600 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-gray-900">Edit Data Pengguna</h2>
+                    <p class="text-sm text-gray-500">Perbarui informasi untuk: <span
+                            class="font-semibold text-gray-800">{{ $user->name }}</span></p>
+                </div>
+            </div>
 
             <form action="{{ route('admin.users.update', $user->id) }}" method="POST" class="p-6 md:p-8">
                 @csrf
@@ -143,11 +141,11 @@
 
                 <div class="pt-6 border-t border-gray-100 flex items-center justify-end gap-3">
                     <a href="{{ route('admin.users.index') }}"
-                        class="px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition text-sm">
+                        class="px-6 py-3 bg-white border border-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition text-sm">
                         Batal
                     </a>
                     <button type="submit"
-                        class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-lg hover:shadow-blue-500/30 text-sm flex items-center">
+                        class="px-6 py-3 bg-blue-600 cursor-pointer text-white font-bold rounded-xl hover:bg-blue-700 transition-all hover:-translate-y-0.5 shadow-lg hover:shadow-blue-500/30 text-sm flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
