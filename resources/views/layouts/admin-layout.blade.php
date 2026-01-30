@@ -77,7 +77,7 @@
 
                 <div class="relative" x-data="{ dropdownOpen: false }" @click.away="dropdownOpen = false">
                     <button @click="dropdownOpen = !dropdownOpen"
-                        class="flex items-center gap-3 focus:outline-none group">
+                        class="flex items-center cursor-pointer gap-3 focus:outline-none group">
                         <div class="text-right hidden md:block">
                             <p class="text-sm font-bold text-gray-700 group-hover:text-blue-600 transition">
                                 {{ Auth::user()->name }}</p>
