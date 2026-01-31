@@ -399,7 +399,7 @@
                     </svg>
                     Lihat Petunjuk Arah
                 </a>
-                <a href="#contact"
+                <a href="{{ route('contact') }}"
                     class="inline-flex items-center justify-center px-8 py-4 border-2 border-white/30 text-white font-bold rounded-full hover:bg-white/10 transition">
                     Hubungi Kami
                 </a>
