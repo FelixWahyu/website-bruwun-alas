@@ -58,18 +58,12 @@
                     <li><a href="{{ route('home') }}"
                             class="hover:text-red-400 hover:translate-x-1 transition-all inline-block">Beranda</a>
                     </li>
-                    <li><a href="#about"
+                    <li><a href="{{ route('about') }}"
                             class="hover:text-red-400 hover:translate-x-1 transition-all inline-block">Tentang
                             Kami</a></li>
-                    <li><a href="#products"
+                    <li><a href="{{ route('katalogProduk') }}"
                             class="hover:text-red-400 hover:translate-x-1 transition-all inline-block">Katalog
                             Produk</a></li>
-                    <li><a href="#"
-                            class="hover:text-red-400 hover:translate-x-1 transition-all inline-block">Fasilitas</a>
-                    </li>
-                    <li><a href="#"
-                            class="hover:text-red-400 hover:translate-x-1 transition-all inline-block">Galeri Foto</a>
-                    </li>
                 </ul>
             </div>
 

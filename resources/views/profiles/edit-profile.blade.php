@@ -42,9 +42,9 @@
                                 </svg>
                                 Riwayat Pesanan
                             </a>
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" action="{{ route('logout') }}" id="form-logout-profile">
                                 @csrf
-                                <button type="submit" onclick="return confirm('Keluar dari akun?')"
+                                <button type="submit" onclick="confirmLogout(event,'form-logout-profile')"
                                     class="w-full flex items-center px-4 py-3 text-red-600 hover:bg-red-50 font-medium rounded-xl transition">
                                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -397,7 +397,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    Lihat Petunjuk Arah
+                    Lihat Petunjuk Map
                 </a>
                 <a href="{{ route('contact') }}"
                     class="inline-flex items-center justify-center px-8 py-4 border-2 border-white/30 text-white font-bold rounded-full hover:bg-white/10 transition">
