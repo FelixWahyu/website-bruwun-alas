@@ -3,7 +3,7 @@
 
     <div class="flex items-center justify-center h-20">
         <a href="{{ route('home') }}" class="flex items-center gap-2">
-            <div class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white">
+            <div class="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center text-white">
                 <img src="{{ asset('img/logo-ba.webp') }}" class="w-full h-full object-cover" alt="logo-bruwun-alas">
             </div>
             <span class="text-xl font-bold text-gray-800">
