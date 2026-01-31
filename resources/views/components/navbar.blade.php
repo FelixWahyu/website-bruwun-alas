@@ -80,7 +80,7 @@
                 @auth
                     <div class="relative hidden md:block" @click.away="userDropdownOpen = false">
                         <button @click="userDropdownOpen = !userDropdownOpen"
-                            class="flex items-center gap-2 p-1 pl-3 pr-1 rounded-full border border-gray-200 hover:border-red-300 hover:shadow-sm transition-all bg-white group focus:outline-none">
+                            class="flex items-center gap-2 p-1 pl-3 pr-1 cursor-pointer rounded-full border border-gray-200 hover:border-red-300 hover:shadow-sm transition-all bg-white group focus:outline-none">
                             <div class="text-right hidden lg:block">
                                 <p class="text-xs font-bold text-gray-700 leading-none group-hover:text-red-700">
                                     {{ Auth::user()->name }}</p>
