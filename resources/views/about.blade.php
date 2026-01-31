@@ -48,17 +48,6 @@
                             karya warga sekitar yang kami kurasi dengan standar kualitas terbaik.
                         </p>
                     </div>
-
-                    <div class="mt-8 flex gap-8 border-t border-gray-100 pt-6">
-                        <div>
-                            <span class="block text-3xl font-bold text-gray-900">100%</span>
-                            <span class="text-sm text-gray-500">Karya Lokal</span>
-                        </div>
-                        <div>
-                            <span class="block text-3xl font-bold text-gray-900">12 Ha</span>
-                            <span class="text-sm text-gray-500">Area Konservasi</span>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="lg:w-1/2 order-1 lg:order-2 relative">

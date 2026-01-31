@@ -12,11 +12,6 @@
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-4xl text-center md:text-left">
-                <div
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium mb-6 animate-fade-in-up mx-auto md:mx-0">
-                    <span class="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
-                    Wisata Edukasi & Konservasi Alam
-                </div>
 
                 <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg tracking-tight">
                     Temukan Kedamaian di <br>

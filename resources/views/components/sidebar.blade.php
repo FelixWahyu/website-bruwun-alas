@@ -3,11 +3,8 @@
 
     <div class="flex items-center justify-center h-20">
         <a href="{{ route('home') }}" class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center text-white shadow-md">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
+            <div class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white">
+                <img src="{{ asset('img/logo-ba.webp') }}" class="w-full h-full object-cover" alt="logo-bruwun-alas">
             </div>
             <span class="text-xl font-bold text-gray-800">
                 Bruwun<span class="text-red-600">Alas</span>

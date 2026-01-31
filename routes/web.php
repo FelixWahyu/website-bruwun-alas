@@ -17,12 +17,14 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfilePelangganController;
 use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Owner\DashboardOwnerController;
 
 Route::get('/', [HomeController::class, 'homePage'])->name('home');
 Route::get('/about', [AboutController::class, 'aboutPage'])->name('about');
 Route::get('/katalog-produk', [KatalogProdukController::class, 'index'])->name('katalogProduk');
 Route::get('/katalog-produk/{slug}', [KatalogProdukController::class, 'show'])->name('product.detail');
+Route::get('/contact', [ContactController::class, 'contactForm'])->name('contact');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'store'])->name('cart.store');

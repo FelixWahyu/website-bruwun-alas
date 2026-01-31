@@ -7,11 +7,9 @@
             <div class="shrink-0 flex items-center">
                 <a href="{{ route('home') }}" class="flex items-center gap-2 group">
                     <div
-                        class="w-10 h-10 bg-linear-to-br from-red-600 to-red-800 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:shadow-red-500/30 transition-all duration-300">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                        </svg>
+                        class="w-10 h-10 bg-linear-to-br from-red-50 to-red-100 rounded-xl flex items-center justify-center text-white group-hover:shadow-red-500/30 transition-all duration-300">
+                        <img src="{{ asset('img/logo-ba.webp') }}" class="w-full h-full object-cover"
+                            alt="logo-bruwun-alas">
                     </div>
                     <div class="flex flex-col">
                         <span
@@ -25,7 +23,7 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-1">
-                @foreach ([['label' => 'Beranda', 'route' => 'home', 'hash' => ''], ['label' => 'Tentang Kami', 'route' => 'about', 'hash' => ''], ['label' => 'Produk', 'route' => 'katalogProduk', 'hash' => ''], ['label' => 'Kontak', 'route' => '', 'hash' => '#contact']] as $link)
+                @foreach ([['label' => 'Beranda', 'route' => 'home', 'hash' => ''], ['label' => 'Tentang Kami', 'route' => 'about', 'hash' => ''], ['label' => 'Produk', 'route' => 'katalogProduk', 'hash' => ''], ['label' => 'Kontak', 'route' => 'contact', 'hash' => '']] as $link)
                     <a href="{{ $link['hash'] ? $link['hash'] : route($link['route']) }}"
                         class="px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 
                        {{ request()->routeIs($link['route']) && !$link['hash'] ? 'bg-red-50 text-red-700' : 'text-gray-600 hover:text-red-700 hover:bg-red-50' }}">
@@ -37,12 +35,9 @@
             <div class="flex items-center gap-3">
                 @php
                     $cartCount = 0;
-                    // Jika login sebagai pelanggan
                     if (auth()->check() && auth()->user()->role == 'pelanggan') {
                         $cartCount = \App\Models\Cart::where('user_id', auth()->id())->count();
-                    }
-                    // Jika belum login (Guest)
-                    elseif (!auth()->check()) {
+                    } elseif (!auth()->check()) {
                         $guestId = \Illuminate\Support\Facades\Cookie::get('bruwun_guest_id');
                         if ($guestId) {
                             $cartCount = \App\Models\Cart::where('guest_id', $guestId)->count();
@@ -50,7 +45,6 @@
                     }
                 @endphp
 
-                <!-- ICON KERANJANG (Selalu Muncul kecuali Admin/Owner) -->
                 @if (!auth()->check() || auth()->user()->role == 'pelanggan')
                     <a href="{{ route('cart.index') }}"
                         class="relative p-2 text-gray-500 hover:text-red-600 hover:bg-gray-100 rounded-full transition-all duration-200 group mr-1">
@@ -59,7 +53,6 @@
                                 d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                         </svg>
 
-                        <!-- Badge Jumlah -->
                         @if ($cartCount > 0)
                             <span class="absolute top-0 right-0 flex h-5 w-5 -mt-1 -mr-1">
                                 <span
@@ -239,12 +232,12 @@
             <div class="space-y-1">
                 <a href="{{ route('home') }}"
                     class="block px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-red-700 hover:bg-red-50 transition">Beranda</a>
-                <a href="#about"
+                <a href="{{ route('about') }}"
                     class="block px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-red-700 hover:bg-red-50 transition">Tentang
                     Kami</a>
-                <a href="#products"
+                <a href="{{ route('katalogProduk') }}"
                     class="block px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-red-700 hover:bg-red-50 transition">Produk</a>
-                <a href="#contact"
+                <a href="{{ route('contact') }}"
                     class="block px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-red-700 hover:bg-red-50 transition">Kontak</a>
             </div>
 
