@@ -54,7 +54,7 @@ class SalesReportExport implements FromCollection, WithHeadings, WithMapping, Wi
             $order->created_at->format('d-m-Y'),
             $order->invoice_code,
             $order->user->name,
-            $order->total_price,
+            $order->total_pice,
             $order->shipping_cost,
             $order->grand_total,
             ucfirst($order->status),
