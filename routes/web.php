@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Owner\ChartController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\Admin\ProductController;
@@ -66,7 +67,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/api/check-ongkir', [CheckoutController::class, 'checkOngkir'])->name('api.checkOngkir');
     });
 
-    Route::prefix('admin')->middleware('role:admin')->name('admin.')->group(function () {
+    Route::prefix('admin')->middleware('role:admin,owner')->name('admin.')->group(function () {
         Route::get('/dashboard', [DashboardAdminController::class, 'dashboardPage'])->name('dashboard');
 
         Route::get('/kategory', [CategoryController::class, 'index'])->name('category.index');
@@ -95,6 +96,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('owner')->middleware('role:owner')->name('owner.')->group(function () {
         Route::get('/dashboard', [DashboardOwnerController::class, 'dashboardPage'])->name('dashboard');
+        Route::get('/charts', [ChartController::class, 'index'])->name('charts.index');
     });
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
