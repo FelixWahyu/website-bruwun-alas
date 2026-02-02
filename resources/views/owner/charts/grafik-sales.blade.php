@@ -44,12 +44,12 @@
             </div>
 
             <!-- Metode Pembayaran -->
-            {{-- <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                 <h3 class="text-lg font-bold text-gray-800 mb-4">Metode Pembayaran Favorit</h3>
                 <div class="relative h-72 w-full flex justify-center">
                     <canvas id="paymentChart"></canvas>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </div>
 
@@ -201,30 +201,30 @@
             }
         });
 
-        // new Chart(document.getElementById('paymentChart'), {
-        //     type: 'polarArea',
-        //     data: {
-        //         labels: @json($labelsPayment),
-        //         datasets: [{
-        //             data: @json($dataPayment),
-        //             backgroundColor: [
-        //                 'rgba(255, 99, 132, 0.7)',
-        //                 'rgba(75, 192, 192, 0.7)',
-        //                 'rgba(255, 205, 86, 0.7)',
-        //                 'rgba(201, 203, 207, 0.7)',
-        //                 'rgba(54, 162, 235, 0.7)'
-        //             ]
-        //         }]
-        //     },
-        //     options: {
-        //         responsive: true,
-        //         maintainAspectRatio: false,
-        //         plugins: {
-        //             legend: {
-        //                 position: 'right'
-        //             }
-        //         }
-        //     }
-        // });
+        new Chart(document.getElementById('paymentChart'), {
+            type: 'polarArea',
+            data: {
+                labels: @json($labelsPayment),
+                datasets: [{
+                    data: @json($dataPayment),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(255, 205, 86, 0.7)',
+                        'rgba(201, 203, 207, 0.7)',
+                        'rgba(54, 162, 235, 0.7)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }
+        });
     </script>
 @endsection

@@ -56,101 +56,108 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 xl:grid-cols-3 gap-4">
-            <div
-                class="xl:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col h-full">
-                <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/30">
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900">Pesanan Masuk Terbaru</h3>
-                        <p class="text-sm text-gray-500">Pantau transaksi yang baru masuk.</p>
+        <div class="grid grid-cols-1 gap-4 xl:grid-cols-3">
+            @if (auth()->user()->role === 'admin')
+                <div
+                    class="xl:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col h-full">
+                    <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/30">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900">Pesanan Masuk Terbaru</h3>
+                            <p class="text-sm text-gray-500">Pantau transaksi yang baru masuk.</p>
+                        </div>
+                        <a href="{{ route('admin.orders.index') }}"
+                            class="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-xl transition">
+                            Lihat Semua
+                        </a>
                     </div>
-                    <a href="{{ route('admin.orders.index') }}"
-                        class="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-xl transition">
-                        Lihat Semua
-                    </a>
-                </div>
 
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead class="text-xs text-gray-500 uppercase bg-gray-50 font-semibold border-b border-gray-100">
-                            <tr>
-                                <th class="px-6 py-4">Invoice</th>
-                                <th class="px-6 py-4">Pelanggan</th>
-                                <th class="px-6 py-4">Total</th>
-                                <th class="px-6 py-4 text-center">Status</th>
-                                <th class="px-6 py-4 text-center">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            @forelse($pesananTerbaru as $order)
-                                <tr class="hover:bg-gray-50/50 transition">
-                                    <td class="px-6 py-4">
-                                        <span class="font-mono font-medium text-gray-700">#{{ $order->invoice_code }}</span>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center gap-3">
-                                            <div
-                                                class="w-8 h-8 rounded-full bg-linear-to-br from-blue-100 to-blue-200 flex items-center justify-center text-xs font-bold text-blue-700">
-                                                {{ substr($order->user->name, 0, 1) }}
-                                            </div>
-                                            <div>
-                                                <p class="text-sm font-medium text-gray-900">{{ $order->user->name }}</p>
-                                                <p class="text-xs text-gray-500">{{ $order->created_at->diffForHumans() }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 font-bold text-gray-900">
-                                        Rp {{ number_format($order->grand_total, 0, ',', '.') }}
-                                    </td>
-                                    <td class="px-6 py-4 text-center">
-                                        @php
-                                            $statusStyles = [
-                                                'menunggu_pembayaran' => 'bg-gray-100 text-gray-600',
-                                                'menunggu_konfirmasi' =>
-                                                    'bg-yellow-100 text-yellow-700 border border-yellow-200',
-                                                'diproses' => 'bg-blue-100 text-blue-700 border border-blue-200',
-                                                'dikirim' => 'bg-purple-100 text-purple-700 border border-purple-200',
-                                                'selesai' => 'bg-green-100 text-green-700 border border-green-200',
-                                                'dibatalkan' => 'bg-red-100 text-red-700 border border-red-200',
-                                            ];
-                                        @endphp
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold {{ $statusStyles[$order->status] ?? 'bg-gray-100 text-gray-600' }}">
-                                            {{ str_replace('_', ' ', ucfirst($order->status)) }}
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 text-center">
-                                        <a href="{{ route('admin.orders.show', $order->id) }}"
-                                            class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
-                            @empty
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead
+                                class="text-xs text-gray-500 uppercase bg-gray-50 font-semibold border-b border-gray-100">
                                 <tr>
-                                    <td colspan="5" class="px-6 py-12 text-center text-gray-500">
-                                        <div class="flex flex-col items-center justify-center">
-                                            <svg class="w-10 h-10 text-gray-300 mb-3" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                                            </svg>
-                                            <p>Belum ada pesanan masuk.</p>
-                                        </div>
-                                    </td>
+                                    <th class="px-6 py-4">Invoice</th>
+                                    <th class="px-6 py-4">Pelanggan</th>
+                                    <th class="px-6 py-4">Total</th>
+                                    <th class="px-6 py-4 text-center">Status</th>
+                                    <th class="px-6 py-4 text-center">Aksi</th>
                                 </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                @forelse($pesananTerbaru as $order)
+                                    <tr class="hover:bg-gray-50/50 transition">
+                                        <td class="px-6 py-4">
+                                            <span
+                                                class="font-mono font-medium text-gray-700">#{{ $order->invoice_code }}</span>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-3">
+                                                <div
+                                                    class="w-8 h-8 rounded-full bg-linear-to-br from-blue-100 to-blue-200 flex items-center justify-center text-xs font-bold text-blue-700">
+                                                    {{ substr($order->user->name, 0, 1) }}
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-900">{{ $order->user->name }}
+                                                    </p>
+                                                    <p class="text-xs text-gray-500">
+                                                        {{ $order->created_at->diffForHumans() }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 font-bold text-gray-900">
+                                            Rp {{ number_format($order->grand_total, 0, ',', '.') }}
+                                        </td>
+                                        <td class="px-6 py-4 text-center">
+                                            @php
+                                                $statusStyles = [
+                                                    'menunggu_pembayaran' => 'bg-gray-100 text-gray-600',
+                                                    'menunggu_konfirmasi' =>
+                                                        'bg-yellow-100 text-yellow-700 border border-yellow-200',
+                                                    'diproses' => 'bg-blue-100 text-blue-700 border border-blue-200',
+                                                    'dikirim' =>
+                                                        'bg-purple-100 text-purple-700 border border-purple-200',
+                                                    'selesai' => 'bg-green-100 text-green-700 border border-green-200',
+                                                    'dibatalkan' => 'bg-red-100 text-red-700 border border-red-200',
+                                                ];
+                                            @endphp
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold {{ $statusStyles[$order->status] ?? 'bg-gray-100 text-gray-600' }}">
+                                                {{ str_replace('_', ' ', ucfirst($order->status)) }}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 text-center">
+                                            <a href="{{ route('admin.orders.show', $order->id) }}"
+                                                class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="px-6 py-12 text-center text-gray-500">
+                                            <div class="flex flex-col items-center justify-center">
+                                                <svg class="w-10 h-10 text-gray-300 mb-3" fill="none"
+                                                    stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                                </svg>
+                                                <p>Belum ada pesanan masuk.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            @endif
 
             <div class="space-y-8">
-
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
                     <h3 class="text-lg font-bold text-gray-900 mb-6 flex items-center">
                         <span class="p-1.5 bg-yellow-100 text-yellow-600 rounded-lg mr-3">

@@ -223,7 +223,8 @@ class CheckoutController extends Controller
                 'status' => 'menunggu_pembayaran',
                 'shipping_address' => $fullAddress,
                 'proof_of_payment' => null,
-                'note' => $request->note
+                'note' => $request->note,
+                'payment_method_id' => $request->payment_method_id,
             ]);
 
             // 7. Simpan Order Items & Kurangi Stok

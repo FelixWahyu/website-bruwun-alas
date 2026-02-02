@@ -23,10 +23,8 @@ class LoginController extends Controller
         if (Auth::attempt($credential)) {
             $request->session()->regenerate();
 
-            if (Auth::user()->role === 'admin') {
+            if (Auth::user()->role === 'admin' || Auth::user()->role === 'owner') {
                 return redirect()->route('admin.dashboard');
-            } elseif (Auth::user()->role === 'owner') {
-                return redirect()->route('owner.dashboard');
             } else {
                 return redirect()->route('home');
             }
