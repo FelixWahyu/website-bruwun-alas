@@ -1,4 +1,4 @@
-@extends('layouts.app-layout');
+@extends('layouts.app-layout')
 @section('title', 'Beranda - Wisata Edukasi Bruwun Alas')
 @section('content')
     <section class="relative min-h-[110vh] flex items-center -mt-32 pt-40 pb-40 overflow-hidden group">

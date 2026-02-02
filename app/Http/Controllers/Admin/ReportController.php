@@ -13,22 +13,26 @@ class ReportController extends Controller
 {
     public function index(Request $request)
     {
-        // Default: Tanggal awal bulan ini sampai hari ini
         $startDate = $request->input('start_date', Carbon::now()->startOfMonth()->format('Y-m-d'));
         $endDate = $request->input('end_date', Carbon::now()->format('Y-m-d'));
+        $status = $request->input('status', 'all');
 
-        // Query Data untuk Tampilan Tabel
-        $orders = Order::with('user')
-            ->where('status', 'selesai') // Hanya hitung yang sudah lunas/selesai
-            ->whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
-            ->latest()
-            ->get();
+        $query = Order::with('user')
+            ->whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59']);
 
-        // Hitung Ringkasan
-        $totalPendapatan = $orders->sum('grand_total');
+        if ($status !== 'all') {
+            $query->where('status', $status);
+        }
+
+        $orders = $query->latest()->get();
+
         $totalTransaksi = $orders->count();
 
-        return view('admin.reports.sales-report', compact('orders', 'startDate', 'endDate', 'totalPendapatan', 'totalTransaksi'));
+        $totalPendapatan = Order::whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
+            ->whereIn('status', ['dikirim', 'selesai'])
+            ->sum('grand_total');
+
+        return view('admin.reports.sales-report', compact('orders', 'startDate', 'endDate', 'status', 'totalPendapatan', 'totalTransaksi'));
     }
 
     public function export(Request $request)
@@ -40,7 +44,8 @@ class ReportController extends Controller
 
         $startDate = $request->start_date;
         $endDate = $request->end_date;
+        $status = $request->status ?? 'all';
 
-        return Excel::download(new SalesReportExport($startDate, $endDate), 'Laporan-Penjualan-' . $startDate . '-sd-' . $endDate . '.xlsx');
+        return Excel::download(new SalesReportExport($startDate, $endDate, $status), 'Laporan-Penjualan-' . $startDate . '-sd-' . $endDate . '.xlsx');
     }
 }

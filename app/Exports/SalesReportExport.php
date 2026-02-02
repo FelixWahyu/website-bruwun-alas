@@ -13,21 +13,25 @@ class SalesReportExport implements FromCollection, WithHeadings, WithMapping, Wi
 {
     protected $startDate;
     protected $endDate;
+    protected $status;
 
-    public function __construct($startDate, $endDate)
+    public function __construct($startDate, $endDate, $status = null)
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
+        $this->status = $status;
     }
 
     public function collection()
     {
-        // Ambil data order yang sudah SELESAI dalam rentang tanggal
-        return Order::with('user')
-            ->where('status', 'selesai')
-            ->whereBetween('created_at', [$this->startDate . ' 00:00:00', $this->endDate . ' 23:59:59'])
-            ->latest()
-            ->get();
+        $query = Order::with('user')
+            ->whereBetween('created_at', [$this->startDate . ' 00:00:00', $this->endDate . ' 23:59:59']);
+
+        if ($this->status && $this->status !== 'all') {
+            $query->where('status', $this->status);
+        }
+
+        return $query->latest()->get();
     }
 
     public function headings(): array
@@ -51,13 +55,13 @@ class SalesReportExport implements FromCollection, WithHeadings, WithMapping, Wi
 
         return [
             $no,
-            $order->created_at->format('d-m-Y'),
+            $order->created_at->format('d-m-Y H:i'),
             $order->invoice_code,
             $order->user->name,
             $order->total_pice,
             $order->shipping_cost,
             $order->grand_total,
-            ucfirst($order->status),
+            ucwords(str_replace('_', ' ', $order->status)),
         ];
     }
 

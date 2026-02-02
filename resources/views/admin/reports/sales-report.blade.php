@@ -7,12 +7,14 @@
     <div class="space-y-8">
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
             <div
                 class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between hover:shadow-md transition duration-200">
                 <div>
-                    <p class="text-sm font-medium text-gray-500 mb-1">Pendapatan Periode Ini</p>
+                    <p class="text-sm font-medium text-gray-500 mb-1">Pendapatan (Selesai/Dikirim)</p>
                     <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Rp
                         {{ number_format($totalPendapatan, 0, ',', '.') }}</h3>
+                    <p class="text-xs text-gray-400 mt-1">Dalam periode terpilih</p>
                 </div>
                 <div class="p-4 bg-green-50 rounded-2xl text-green-600">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,9 +27,10 @@
             <div
                 class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between hover:shadow-md transition duration-200">
                 <div>
-                    <p class="text-sm font-medium text-gray-500 mb-1">Total Transaksi Selesai</p>
+                    <p class="text-sm font-medium text-gray-500 mb-1">Jumlah Transaksi</p>
                     <h3 class="text-2xl font-bold text-gray-900 tracking-tight">{{ $totalTransaksi }} <span
                             class="text-sm font-normal text-gray-400">Pesanan</span></h3>
+                    <p class="text-xs text-gray-400 mt-1">Sesuai filter status</p>
                 </div>
                 <div class="p-4 bg-blue-50 rounded-2xl text-blue-600">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -38,53 +41,64 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
             <form action="{{ route('admin.reports.index') }}" method="GET"
-                class="flex flex-col lg:flex-row lg:items-end gap-4">
+                class="flex flex-col xl:flex-row xl:items-end gap-6">
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
                     <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Dari
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Dari
                             Tanggal</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <input type="date" name="start_date" value="{{ $startDate }}"
-                                class="block w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
-                        </div>
+                        <input type="date" name="start_date" value="{{ $startDate }}"
+                            class="block w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-gray-50 hover:bg-white cursor-pointer">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Sampai
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Sampai
                             Tanggal</label>
+                        <input type="date" name="end_date" value="{{ $endDate }}"
+                            class="block w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-gray-50 hover:bg-white cursor-pointer">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Status
+                            Pesanan</label>
                         <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <select name="status"
+                                class="block w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition appearance-none bg-gray-50 hover:bg-white cursor-pointer pr-10">
+                                <option value="all" {{ $status == 'all' ? 'selected' : '' }}>Semua Status</option>
+                                <option value="menunggu_pembayaran"
+                                    {{ $status == 'menunggu_pembayaran' ? 'selected' : '' }}>Menunggu Pembayaran</option>
+                                <option value="menunggu_konfirmasi"
+                                    {{ $status == 'menunggu_konfirmasi' ? 'selected' : '' }}>Menunggu Konfirmasi</option>
+                                <option value="diproses" {{ $status == 'diproses' ? 'selected' : '' }}>Diproses</option>
+                                <option value="dikirim" {{ $status == 'dikirim' ? 'selected' : '' }}>Dikirim</option>
+                                <option value="selesai" {{ $status == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                                <option value="dibatalkan" {{ $status == 'dibatalkan' ? 'selected' : '' }}>Dibatalkan
+                                </option>
+                            </select>
+                            <div
+                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        d="M19 9l-7 7-7-7" />
                                 </svg>
                             </div>
-                            <input type="date" name="end_date" value="{{ $endDate }}"
-                                class="block w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
                         </div>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-3 w-full lg:w-auto mt-2 lg:mt-0">
+                <div class="flex items-center gap-3 w-full xl:w-auto mt-2 xl:mt-0">
                     <button type="submit"
-                        class="flex-1 lg:flex-none justify-center inline-flex items-center px-5 py-2.5 bg-gray-800 hover:bg-gray-900 text-white text-sm font-bold rounded-xl transition shadow-lg hover:shadow-gray-500/30">
+                        class="flex-1 xl:flex-none justify-center inline-flex items-center px-6 py-2.5 bg-gray-800 hover:bg-gray-900 text-white text-sm font-bold rounded-xl transition shadow-lg hover:shadow-gray-500/30">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                         </svg>
-                        Filter Data
+                        Terapkan Filter
                     </button>
 
-                    <a href="{{ route('admin.reports.export', ['start_date' => $startDate, 'end_date' => $endDate]) }}"
-                        class="flex-1 lg:flex-none justify-center inline-flex items-center px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold rounded-xl transition shadow-lg hover:shadow-green-500/30">
+                    <a href="{{ route('admin.reports.export', ['start_date' => $startDate, 'end_date' => $endDate, 'status' => $status]) }}"
+                        class="flex-1 xl:flex-none justify-center inline-flex items-center px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold rounded-xl transition shadow-lg hover:shadow-green-500/30 whitespace-nowrap">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4-4m0 0l-4 4m4-4v12" />
@@ -101,9 +115,9 @@
                     <thead>
                         <tr
                             class="bg-gray-50/50 border-b border-gray-100 text-xs uppercase tracking-wider text-gray-500 font-bold">
-                            <th class="px-6 py-4">Tanggal</th>
-                            <th class="px-6 py-4">Invoice</th>
+                            <th class="px-6 py-4">Tanggal & Invoice</th>
                             <th class="px-6 py-4">Pelanggan</th>
+                            <th class="px-6 py-4 text-center">Status</th>
                             <th class="px-6 py-4 text-right">Subtotal</th>
                             <th class="px-6 py-4 text-right">Ongkir</th>
                             <th class="px-6 py-4 text-right">Grand Total</th>
@@ -112,19 +126,37 @@
                     <tbody class="divide-y divide-gray-100">
                         @forelse($orders as $order)
                             <tr class="hover:bg-gray-50/50 transition duration-150 group">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                    {{ $order->created_at->format('d M Y') }}
-                                    <span class="text-xs text-gray-400 block">{{ $order->created_at->format('H:i') }}</span>
-                                </td>
                                 <td class="px-6 py-4">
-                                    <span
-                                        class="font-mono text-sm font-bold text-gray-800 bg-gray-100 px-2 py-1 rounded border border-gray-200 group-hover:border-blue-200 group-hover:text-blue-700 transition">
-                                        {{ $order->invoice_code }}
-                                    </span>
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="text-sm font-medium text-gray-900">{{ $order->created_at->format('d M Y') }}</span>
+                                        <span
+                                            class="text-xs font-mono text-gray-500 mt-0.5 group-hover:text-blue-600 transition">#{{ $order->invoice_code }}</span>
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="text-sm font-medium text-gray-900">{{ $order->user->name }}</div>
                                     <div class="text-xs text-gray-500">{{ $order->user->email }}</div>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    @php
+                                        $badges = [
+                                            'menunggu_pembayaran' => ['bg' => 'bg-gray-100', 'text' => 'text-gray-600'],
+                                            'menunggu_konfirmasi' => [
+                                                'bg' => 'bg-yellow-100',
+                                                'text' => 'text-yellow-700',
+                                            ],
+                                            'diproses' => ['bg' => 'bg-blue-100', 'text' => 'text-blue-700'],
+                                            'dikirim' => ['bg' => 'bg-purple-100', 'text' => 'text-purple-700'],
+                                            'selesai' => ['bg' => 'bg-green-100', 'text' => 'text-green-700'],
+                                            'dibatalkan' => ['bg' => 'bg-red-100', 'text' => 'text-red-700'],
+                                        ];
+                                        $style = $badges[$order->status] ?? $badges['menunggu_pembayaran'];
+                                    @endphp
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wide {{ $style['bg'] }} {{ $style['text'] }}">
+                                        {{ str_replace('_', ' ', $order->status) }}
+                                    </span>
                                 </td>
                                 <td class="px-6 py-4 text-right text-sm text-gray-600">
                                     Rp {{ number_format($order->total_pice, 0, ',', '.') }}
@@ -133,8 +165,7 @@
                                     Rp {{ number_format($order->shipping_cost, 0, ',', '.') }}
                                 </td>
                                 <td class="px-6 py-4 text-right">
-                                    <span
-                                        class="text-sm font-bold text-green-700 bg-green-50 px-2.5 py-1 rounded-lg border border-green-100">
+                                    <span class="text-sm font-bold text-gray-900">
                                         Rp {{ number_format($order->grand_total, 0, ',', '.') }}
                                     </span>
                                 </td>
@@ -145,15 +176,15 @@
                                     <div class="flex flex-col items-center justify-center">
                                         <div
                                             class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
-                                            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor"
+                                            <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                             </svg>
                                         </div>
-                                        <h3 class="text-gray-900 font-medium text-lg">Tidak ada data penjualan</h3>
-                                        <p class="text-gray-500 text-sm mt-1">Coba ubah filter tanggal untuk melihat data
-                                            lainnya.</p>
+                                        <h3 class="text-gray-900 font-medium text-lg">Data Tidak Ditemukan</h3>
+                                        <p class="text-gray-500 text-sm mt-1">Coba sesuaikan filter tanggal atau status
+                                            pesanan.</p>
                                     </div>
                                 </td>
                             </tr>
@@ -161,12 +192,12 @@
                     </tbody>
 
                     @if ($orders->count() > 0)
-                        <tfoot class="bg-gray-50 border-t border-gray-200">
+                        <tfoot class="bg-gray-50 border-t border-gray-200 font-bold text-gray-900 text-sm">
                             <tr>
                                 <td colspan="5"
-                                    class="px-6 py-4 text-right text-sm font-bold text-gray-600 uppercase tracking-wide">
-                                    Total Halaman Ini</td>
-                                <td class="px-6 py-4 text-right text-sm font-bold text-gray-900">
+                                    class="px-6 py-4 text-right uppercase tracking-wider text-xs text-gray-500">Total
+                                    Halaman Ini</td>
+                                <td class="px-6 py-4 text-right text-base text-green-600">
                                     Rp {{ number_format($orders->sum('grand_total'), 0, ',', '.') }}
                                 </td>
                             </tr>
