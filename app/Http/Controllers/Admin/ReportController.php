@@ -24,9 +24,9 @@ class ReportController extends Controller
             $query->where('status', $status);
         }
 
-        $orders = $query->latest()->get();
+        $totalTransaksi = $query->count();
 
-        $totalTransaksi = $orders->count();
+        $orders = $query->latest()->paginate(10)->withQueryString();
 
         $totalPendapatan = Order::whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])
             ->whereIn('status', ['dikirim', 'selesai'])

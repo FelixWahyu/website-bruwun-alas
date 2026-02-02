@@ -89,7 +89,7 @@
 
                 <div class="flex items-center gap-3 w-full xl:w-auto mt-2 xl:mt-0">
                     <button type="submit"
-                        class="flex-1 xl:flex-none justify-center inline-flex items-center px-6 py-2.5 bg-gray-800 hover:bg-gray-900 text-white text-sm font-bold rounded-xl transition shadow-lg hover:shadow-gray-500/30">
+                        class="flex-1 cursor-pointer xl:flex-none justify-center inline-flex items-center px-6 py-2.5 bg-gray-800 hover:bg-gray-900 text-white text-sm font-bold rounded-xl transition shadow-lg hover:shadow-gray-500/30">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
@@ -204,6 +204,9 @@
                         </tfoot>
                     @endif
                 </table>
+            </div>
+            <div class="mt-6">
+                {{ $orders->links() }}
             </div>
         </div>
     </div>
