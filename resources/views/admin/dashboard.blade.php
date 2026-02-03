@@ -56,7 +56,16 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-4 xl:grid-cols-3">
+        {{-- <div class="grid grid-cols-1 gap-4 xl:grid-cols-3">
+            @if (auth()->user()->role == 'owner')
+                <div class="xl:col-span-2 bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Tren Pendapatan (Tahun Ini)</h3>
+                    <div class="relative h-64 w-full">
+                        <canvas id="incomeChart"></canvas>
+                    </div>
+                </div>
+            @endif
+
             @if (auth()->user()->role === 'admin')
                 <div
                     class="xl:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col h-full">
@@ -239,8 +248,99 @@
                         @endforelse
                     </div>
                 </div>
-
             </div>
-        </div>
+        </div> --}}
     </div>
+
+    {{-- <script>
+        const incomeData = @json($chartPendapatan ?? []);
+        const dailyLabels = @json($chartHarianLabels ?? []);
+        const dailyData = @json($chartHarianData ?? []);
+        const payLabels = @json($chartPaymentLabels ?? []);
+        const payData = @json($chartPaymentData ?? []);
+
+        new Chart(document.getElementById('incomeChart'), {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+                datasets: [{
+                    label: 'Pendapatan',
+                    data: incomeData,
+                    borderColor: '#2563eb',
+                    backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: (val) => 'Rp ' + val / 1000 + 'k'
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('dailyChart'), {
+            type: 'bar',
+            data: {
+                labels: dailyLabels,
+                datasets: [{
+                    label: 'Transaksi',
+                    data: dailyData,
+                    backgroundColor: '#10b981',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        display: false
+                    },
+                    y: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('paymentChart'), {
+            type: 'doughnut',
+            data: {
+                labels: payLabels,
+                datasets: [{
+                    data: payData,
+                    backgroundColor: ['#3b82f6', '#f59e0b', '#10b981', '#ef4444'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                cutout: '70%'
+            }
+        });
+    </script> --}}
 @endsection

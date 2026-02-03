@@ -37,6 +37,38 @@ class DashboardAdminController extends Controller
             ->limit(5)
             ->get();
 
+        $pendapatanBulanan = Order::select(
+            DB::raw('MONTH(created_at) as bulan'),
+            DB::raw('SUM(grand_total) as total')
+        )
+            ->where('status', 'selesai')
+            ->whereYear('created_at', date('Y'))
+            ->groupBy('bulan')->orderBy('bulan')->pluck('total', 'bulan')->toArray();
+
+        $chartPendapatan = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $chartPendapatan[] = $pendapatanBulanan[$i] ?? 0;
+        }
+
+        $penjualanHarian = Order::select(
+            DB::raw('DATE(created_at) as tanggal'),
+            DB::raw('COUNT(*) as total')
+        )
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy('tanggal')->orderBy('tanggal')->get();
+
+        $chartHarianLabels = $penjualanHarian->pluck('tanggal');
+        $chartHarianData = $penjualanHarian->pluck('total');
+
+        $topPayment = DB::table('orders')
+            ->join('payment_methods', 'orders.payment_method_id', '=', 'payment_methods.id')
+            ->select('payment_methods.bank_name', DB::raw('count(*) as total'))
+            ->groupBy('payment_methods.bank_name')->orderByDesc('total')->get();
+
+        $chartPaymentLabels = $topPayment->pluck('bank_name');
+        $chartPaymentData = $topPayment->pluck('total');
+
         return view('admin.dashboard', compact(
             'totalPendapatan',
             'totalPesanan',
@@ -44,7 +76,12 @@ class DashboardAdminController extends Controller
             'totalPelanggan',
             'stokMenipis',
             'produkTerlaris',
-            'pesananTerbaru'
+            'pesananTerbaru',
+            'chartPendapatan',
+            'chartHarianLabels',
+            'chartHarianData',
+            'chartPaymentLabels',
+            'chartPaymentData'
         ));
     }
 }
