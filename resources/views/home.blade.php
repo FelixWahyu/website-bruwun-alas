@@ -409,7 +409,7 @@
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://maps.app.goo.gl/EY486naA5oj5rzJY6" target="_blank"
+                <a href="https://maps.app.goo.gl/wb5zNBc6mqoqp5LL6" target="_blank"
                     class="inline-flex items-center justify-center px-8 py-4 bg-white text-red-900 font-bold rounded-full hover:bg-red-50 transition transform hover:-translate-y-1 shadow-lg">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

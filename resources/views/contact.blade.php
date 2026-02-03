@@ -40,7 +40,7 @@
                             Customer Service kami.
                         </p>
 
-                        <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Bruwun%20Alas,%20saya%20ingin%20bertanya%20mengenai..."
+                        <a href="https://wa.me/6281329347500?text=Halo%20Admin%20Bruwun%20Alas,%20saya%20ingin%20bertanya%20mengenai..."
                             target="_blank"
                             class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-full text-lg shadow-lg hover:shadow-green-500/30 transition transform hover:-translate-y-1">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
@@ -95,15 +95,11 @@
                         <ul class="space-y-3 text-sm">
                             <li class="flex justify-between border-b border-gray-50 pb-2">
                                 <span class="text-gray-600">Senin - Jumat</span>
-                                <span class="font-bold text-gray-900">08.00 - 20.00</span>
+                                <span class="font-bold text-gray-900">08.00 - 17.00</span>
                             </li>
                             <li class="flex justify-between border-b border-gray-50 pb-2">
-                                <span class="text-gray-600">Sabtu</span>
-                                <span class="font-bold text-gray-900">09.00 - 17.00</span>
-                            </li>
-                            <li class="flex justify-between">
-                                <span class="text-gray-600">Minggu</span>
-                                <span class="font-bold text-red-500">Tutup</span>
+                                <span class="text-gray-600">Sabtu - Minggu</span>
+                                <span class="font-bold text-gray-900">08.00 - 17.00</span>
                             </li>
                         </ul>
                     </div>
@@ -127,11 +123,12 @@
                             <div>
                                 <h3 class="text-xl font-bold text-gray-900">Lokasi Kami</h3>
                                 <p class="text-gray-500 mt-1 max-w-lg text-sm">
-                                    Jl. Raya Hutan Bruwun No. 45, Kecamatan Alas, Kabupaten Alam, Indonesia 55123
+                                    Jl. Jend. Sudirman No.296, Pereng, Sokanegara, Kec. Purwokerto Tim., Kabupaten Banyumas,
+                                    Jawa Tengah 53116
                                 </p>
                             </div>
                         </div>
-                        <a href="https://maps.google.com" target="_blank"
+                        <a href="https://maps.app.goo.gl/wb5zNBc6mqoqp5LL6" target="_blank"
                             class="mt-4 md:mt-0 text-sm font-bold text-red-600 hover:text-red-700 flex items-center">
                             Buka di Google Maps
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,7 +140,7 @@
 
                     <div class="h-96 w-full bg-gray-200">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.088327918544!2d110.3735!3d-7.7756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNDYnMzIuMiJTIDExMMKwMjInMjQuNiJF!5e0!3m2!1sid!2sid!4v1633000000000!5m2!1sid!2sid"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7912.729901637072!2d109.22070094624223!3d-7.4248027999999975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655f0046dd66bb%3A0x738aae92f5eb00bd!2sToko%20Batik%20%26%20Ecoprint%20(%20Bruwun%20Alas)!5e0!3m2!1sid!2sid!4v1770109828740!5m2!1sid!2sid"
                             width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
                             class="grayscale hover:grayscale-0 transition duration-500">
                         </iframe>

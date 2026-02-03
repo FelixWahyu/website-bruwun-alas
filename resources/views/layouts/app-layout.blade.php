@@ -42,7 +42,7 @@
 
     @include('layouts.footer')
 
-    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Bruwun%20Alas,%20saya%20butuh%20bantuan." target="_blank"
+    <a href="https://wa.me/6281329347500?text=Halo%20Admin%20Bruwun%20Alas,%20saya%20butuh%20bantuan." target="_blank"
         class="fixed bottom-6 right-6 z-50 group flex items-center bg-green-500 text-white rounded-full p-4 shadow-lg hover:bg-green-600 transition-all duration-300 hover:shadow-green-500/50 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-green-300"
         aria-label="Chat WhatsApp">
 
