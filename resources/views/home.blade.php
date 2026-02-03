@@ -27,7 +27,7 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <a href="#products"
+                    <a href="{{ route('katalogProduk') }}"
                         class="inline-flex justify-center items-center px-8 py-4 text-base font-bold text-white bg-red-600 rounded-full hover:bg-red-700 transition-all duration-300 shadow-lg hover:shadow-red-500/30 hover:-translate-y-1">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -36,7 +36,7 @@
                         Belanja Produk
                     </a>
 
-                    <a href="#about"
+                    <a href="{{ route('about') }}"
                         class="inline-flex justify-center items-center px-8 py-4 text-base font-bold text-white border-2 border-white/30 bg-white/5 backdrop-blur-sm rounded-full hover:bg-white hover:text-red-900 transition-all duration-300 hover:border-white">
                         Tentang Kami
                     </a>
@@ -100,8 +100,9 @@
                                 </svg>
                             </div>
                             <div class="ml-4">
-                                <h4 class="text-lg font-bold text-gray-900">Wisata Ramah Lingkungan</h4>
-                                <p class="text-gray-500 text-sm">Konsep zero waste dan edukasi konservasi.</p>
+                                <h4 class="text-lg font-bold text-gray-900">Edukasi Pembuatan Batik Ekoprint</h4>
+                                <p class="text-gray-500 text-sm">Konsep zero waste dan edukasi pengolahan limbah sampah daun
+                                    menjadi batik.</p>
                             </div>
                         </li>
                     </ul>
@@ -117,7 +118,8 @@
                     <h2 class="text-3xl font-bold text-gray-900">Produk Terbaru</h2>
                     <p class="text-gray-500 mt-2">Pilihan terbaik minggu ini dari UMKM lokal.</p>
                 </div>
-                <a href="#" class="inline-flex items-center text-red-600 font-semibold hover:text-red-800 transition">
+                <a href="{{ route('katalogProduk') }}"
+                    class="inline-flex items-center text-red-600 font-semibold hover:text-red-800 transition">
                     Lihat Semua Produk
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -127,53 +129,71 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div
-                    class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                    <div class="relative h-56 bg-gray-200 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&auto=format&fit=crop"
-                            alt="Produk 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                        <div
-                            class="absolute top-3 left-3 bg-red-500/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm">
-                            Baru
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <div class="text-xs text-red-600 font-bold uppercase tracking-wider mb-1">Makanan</div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-red-700 transition">Kripik
-                            Singkong Khas</h3>
-                        <div class="flex justify-between items-end mt-4">
-                            <div>
-                                <span class="text-gray-400 text-xs line-through block">Rp 20.000</span>
-                                <span class="text-gray-900 font-extrabold text-xl">Rp 15.000</span>
-                            </div>
-                            <button
-                                class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-red-600 hover:text-white transition-all shadow-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                @for ($i = 0; $i < 3; $i++)
+                @forelse ($products as $product)
                     <div
-                        class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col items-center justify-center text-center h-95 group hover:border-red-200 transition">
-                        <div
-                            class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-red-50 transition">
-                            <svg class="w-8 h-8 text-gray-300 group-hover:text-red-400" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                </path>
-                            </svg>
+                        class="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden">
+                        <div class="relative w-full pt-[100%] bg-gray-100 overflow-hidden">
+                            <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->product_name }}"
+                                class="absolute top-0 left-0 w-full h-full object-center object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+                                <span
+                                    class="bg-white/95 backdrop-blur-sm text-red-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                                    {{ $product->category->name }}
+                                </span>
+                            </div>
+
+                            @php
+                                $colors = [
+                                    'pria' => 'bg-blue-500',
+                                    'wanita' => 'bg-pink-500',
+                                    'anak' => 'bg-yellow-500',
+                                    'unisex' => 'bg-purple-500',
+                                ];
+                            @endphp
+                            <div
+                                class="absolute top-3 right-3 {{ $colors[$product->gender] ?? 'bg-gray-500' }} text-white text-[10px] font-bold px-2 py-1 rounded uppercase shadow-sm">
+                                {{ $product->gender }}
+                            </div>
+
+                            <div
+                                class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <a href="{{ route('product.detail', $product->slug) }}"
+                                    class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 bg-white text-gray-900 font-bold py-2 px-6 rounded-full shadow-lg hover:bg-red-600 hover:text-white text-sm">
+                                    Lihat Detail
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-gray-900 font-bold mb-1">Produk Segera Hadir</h3>
-                        <p class="text-gray-400 text-sm">Nantikan koleksi terbaru kami.</p>
+
+                        <div class="p-5 flex flex-col grow">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-1 leading-snug line-clamp-2 group-hover:text-red-600 transition-colors">
+                                <a href="{{ route('product.detail', $product->slug) }}">
+                                    {{ $product->product_name }}
+                                </a>
+                            </h3>
+
+                            <div class="mt-auto pt-4 flex items-center justify-between border-t border-gray-50">
+                                <div>
+                                    <p class="text-xs text-gray-400 mb-0.5">Mulai dari</p>
+                                    <p class="text-xl font-extrabold text-red-600">
+                                        Rp {{ number_format($product->variants->min('price'), 0, ',', '.') }}
+                                    </p>
+                                </div>
+                                <a href="{{ route('product.detail', $product->slug) }}"
+                                    class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                @endfor
+                @empty
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-gray-500">Belum ada produk yang ditampilkan.</p>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
