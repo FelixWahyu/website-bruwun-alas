@@ -37,7 +37,6 @@ class CheckoutController extends Controller
             Cookie::queue(Cookie::forget('bruwun_guest_id'));
         }
 
-        // 1. Ambil Keranjang User
         $carts = Cart::with(['variant.product'])
             ->where('user_id', Auth::id())
             ->get();
@@ -46,7 +45,6 @@ class CheckoutController extends Controller
             return redirect()->route('cart.index')->with('error', 'Keranjang Anda kosong.');
         }
 
-        // 2. Hitung Total Berat & Harga (Estimasi)
         $totalWeight = 0;
         $subtotal = 0;
         foreach ($carts as $cart) {
@@ -54,18 +52,17 @@ class CheckoutController extends Controller
             $subtotal += $cart->variant->price * $cart->quantity;
         }
 
-        // 3. Ambil Metode Pembayaran (Bank Transfer / E-wallet)
         $paymentMethods = PaymentMethod::where('is_active', true)->get();
 
         $provinces = [];
         try {
             $api = $this->getApiConfig();
-            $response = Http::withoutVerifying()
-                ->withHeaders(['key' => $api['key']])
+            $response = Http::withoutVerifying()->withHeaders(['key' => $api['key']])
                 ->get($api['url'] . '/destination/province');
 
             if ($response->successful()) {
-                $provinces = $response->json()['data'] ?? [];
+                $json = $response->json();
+                $provinces = $json['data'] ?? $json['rajaongkir']['results'] ?? [];
             }
         } catch (\Exception $e) {
             $provinces = [];
@@ -78,82 +75,88 @@ class CheckoutController extends Controller
     {
         try {
             $api = $this->getApiConfig();
-            $response = Http::withoutVerifying()
-                ->withHeaders(['key' => $api['key']])
-                ->get($api['url'] . '/destination/city/' . $provinceId);
+            $url = $api['url'] . '/destination/city/' . $provinceId;
 
-            $data = $response->json()['data'] ?? [];
+            if (strpos($api['url'], 'api.rajaongkir.com') !== false) {
+                $response = Http::withoutVerifying()->withHeaders(['key' => $api['key']])->get($api['url'] . '/city', ['province' => $provinceId]);
+            } else {
+                $response = Http::withoutVerifying()->withHeaders(['key' => $api['key']])->get($url);
+            }
+
+            $json = $response->json();
+            $data = $json['data'] ?? $json['rajaongkir']['results'] ?? [];
+
             return response()->json($data);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    public function getSubdistricts($cityId)
-    {
-        try {
-            $api = $this->getApiConfig();
+    // public function getSubdistricts($cityId)
+    // {
+    //     try {
+    //         $api = $this->getApiConfig();
 
-            $response = Http::withoutVerifying()
-                ->withHeaders(['key' => $api['key']])
-                ->get($api['url'] . '/destination/sub-district/' . $cityId);
+    //         $response = Http::withoutVerifying()
+    //             ->withHeaders(['key' => $api['key']])
+    //             ->get($api['url'] . '/destination/sub-district/' . $cityId);
 
-            $data = $response->json()['data'] ?? [];
-            return response()->json($data);
-        } catch (\Exception $e) {
-            return response()->json([], 500);
-        }
-    }
+    //         $data = $response->json()['data'] ?? [];
+    //         return response()->json($data);
+    //     } catch (\Exception $e) {
+    //         return response()->json([], 500);
+    //     }
+    // }
 
     public function checkOngkir(Request $request)
     {
-        if (!$request->subdistrict_id) {
+        if (!$request->city_id) {
             return response()->json([]);
         }
 
         try {
             $api = $this->getApiConfig();
 
-            $url = 'https://rajaongkir.komerce.id/api/v1/calculate/district/domestic-cost';
+            $url = $api['url'] . '/calculate/domestic-cost'; // Komerce
+            if (strpos($api['url'], 'api.rajaongkir.com') !== false) {
+                $url = $api['url'] . '/cost'; // RajaOngkir Asli
+            }
 
             $response = Http::withoutVerifying()
                 ->asForm()
-                ->withHeaders([
-                    'key' => $api['key']
-                ])
+                ->withHeaders(['key' => $api['key']])
                 ->post($url, [
-                    // Origin diambil dari .env (ID KECAMATAN TOKO)
-                    'origin'      => config('services.rajaongkir.origin_city'),
-
-                    // Destination diambil dari input user (ID KECAMATAN TUJUAN)
-                    'destination' => $request->subdistrict_id,
-
+                    'origin'      => config('services.rajaongkir.origin_city'), // ID KOTA ASAL (42)
+                    'destination' => $request->city_id, // ID KOTA TUJUAN
                     'weight'      => $request->weight,
-                    'courier'     => $request->courier,
-                    'payment_method' => 'NON_COD'
+                    'courier'     => $request->courier
                 ]);
 
             $result = $response->json();
 
-            // Debugging: Cek jika ada error dari API
-            if (isset($result['meta']['code']) && $result['meta']['code'] != 200) {
-                return response()->json(['error' => $result['meta']['message'] ?? 'API Error'], 500);
-            }
-
-            $data = $result['data'] ?? [];
+            // Mapping Data Cost (Komerce/RajaOngkir)
             $costs = [];
 
-            foreach ($data as $service) {
-                // Filter: Hanya ambil layanan yang ada harganya
-                $costValue = $service['cost'] ?? $service['price'] ?? 0;
-
-                if ($costValue > 0) {
+            // 1. Cek Format RajaOngkir Starter
+            if (isset($result['rajaongkir']['results'][0]['costs'])) {
+                $rawCosts = $result['rajaongkir']['results'][0]['costs'];
+                foreach ($rawCosts as $c) {
                     $costs[] = [
-                        'service' => $service['service'] ?? $service['service_code'] ?? 'Layanan',
-                        'description' => $service['description'] ?? $service['service_name'] ?? '',
+                        'service' => $c['service'],
+                        'description' => $c['description'],
+                        'cost' => $c['cost'] // Array value, etd, note
+                    ];
+                }
+            }
+            // 2. Cek Format Komerce (Data langsung array services)
+            elseif (isset($result['data'])) {
+                foreach ($result['data'] as $service) {
+                    $costs[] = [
+                        'service' => $service['service_code'] ?? $service['service_name'] ?? 'REG',
+                        'description' => $service['description'] ?? $service['service'] ?? '',
                         'cost' => [
                             [
-                                'value' => $costValue,
+                                'value' => $service['price'] ?? $service['cost'] ?? 0,
                                 'etd'   => $service['etd'] ?? '-'
                             ]
                         ]
@@ -175,45 +178,47 @@ class CheckoutController extends Controller
 
     public function store(Request $request)
     {
-        // 1. Validasi Input
         $request->validate([
             'address' => 'required|string',
             'province_name' => 'required',
             'city_name' => 'required',
-            'subdistrict_name' => 'required',
-            'postal_code' => 'required|numeric',
+            'subdistrict' => 'required|string',
+            'postal_code' => 'required|string|max:10',
             'phone' => 'required|numeric',
             'payment_method_id' => 'required|exists:payment_methods,id',
             'shipping_service' => 'required|string',
             'shipping_cost' => 'required|numeric',
         ]);
 
-        // 2. Cek Stok Ulang (Mencegah Race Condition)
-        $carts = Cart::with('variant')->where('user_id', Auth::id())->get();
+        // $carts = Cart::with('variant')->where('user_id', Auth::id())->get();
+        $carts = Cart::with('variant.product')->where('user_id', Auth::id())->get();
 
-        foreach ($carts as $cart) {
-            if ($cart->variant->stock < $cart->quantity) {
-                return back()->with('error', 'Stok produk ' . $cart->variant->product->product_name . ' (' . $cart->variant->size . ') tidak mencukupi.');
-            }
-        }
+        if ($carts->isEmpty()) return redirect()->route('cart.index');
+
 
         DB::beginTransaction();
 
         try {
-            // 4. Hitung Total
+            foreach ($carts as $cart) {
+                $variant = $cart->variant()->lockForUpdate()->first();
+                if ($variant->stock < $cart->quantity) {
+                    return back()->with('error', 'Stok produk ' . $variant->product->product_name . ' (' . $variant->size . ') tidak mencukupi.');
+                }
+            }
+
             $subTotal = 0;
             foreach ($carts as $cart) {
                 $subTotal += $cart->variant->price * $cart->quantity;
             }
 
-            $provinceName = $request->province_name;
-            $cityName = $request->city_name;
+            $fullAddress = "{$request->address}, Kec. {$request->subdistrict}, {$request->city_name}, {$request->province_name}, {$request->postal_code}. (Telp: {$request->phone}) - Pengiriman: {$request->shipping_service}";
 
-            $fullAddress = "{$request->address}, {$cityName}, {$provinceName}, {$request->postal_code}. (Telp: {$request->phone}) - Pengiriman: {$request->shipping_service}";
+            if (!str_contains($request->shipping_service, strtoupper($request->courier ?? ''))) {
+                throw new \Exception('Data pengiriman tidak valid');
+            }
 
             $grandTotal = $subTotal + $request->shipping_cost;
 
-            // 6. Simpan Order
             $order = Order::create([
                 'user_id' => Auth::id(),
                 'invoice_code' => 'INV-' . date('Ymd') . '-' . strtoupper(Str::random(5)),
@@ -227,7 +232,6 @@ class CheckoutController extends Controller
                 'payment_method_id' => $request->payment_method_id,
             ]);
 
-            // 7. Simpan Order Items & Kurangi Stok
             foreach ($carts as $cart) {
                 OrderItem::create([
                     'order_id' => $order->id,
@@ -238,19 +242,17 @@ class CheckoutController extends Controller
                     'price' => $cart->variant->price,
                 ]);
 
-                // Kurangi Stok
                 $cart->variant->decrement('stock', $cart->quantity);
             }
 
-            // 8. Kosongkan Keranjang
             Cart::where('user_id', Auth::id())->delete();
 
             // 9. Update Data Alamat User (Agar next time auto-fill)
             $user = Auth::user();
             $user->update([
                 'address' => $request->address,
-                'province' => $request->province,
-                'city' => $request->city,
+                'province' => $request->province_name,
+                'city' => $request->city_name,
                 'subdistrict' => $request->subdistrict,
                 'postal_code' => $request->postal_code,
                 'phone' => $request->phone
@@ -261,7 +263,6 @@ class CheckoutController extends Controller
             return redirect()->route('checkout.payment', ['id' => $order->id, 'bank' => $request->payment_method_id]);
         } catch (\Exception $e) {
             DB::rollBack();
-            // Hapus gambar jika gagal
             if (isset($proofPath)) Storage::disk('public')->delete($proofPath);
             return back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage())->withInput();
         }
@@ -271,16 +272,13 @@ class CheckoutController extends Controller
     {
         $order = Order::where('user_id', Auth::id())->where('id', $id)->firstOrFail();
 
-        // Jika status bukan menunggu pembayaran, lempar ke history
         if ($order->status != 'menunggu_pembayaran') {
             return redirect()->route('orders.history');
         }
 
-        // Ambil Bank yang dipilih user (dari parameter URL atau default ambil semua aktif)
         $bankId = $request->query('bank');
         $bank = PaymentMethod::find($bankId);
 
-        // Jika parameter bank hilang, ambil bank pertama atau tampilkan list lagi (opsional)
         if (!$bank) {
             $bank = PaymentMethod::where('is_active', true)->first();
         }

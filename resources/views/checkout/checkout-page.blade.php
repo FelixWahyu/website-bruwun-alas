@@ -37,7 +37,7 @@
                 @csrf
                 <input type="hidden" name="province_name" x-model="provinceName">
                 <input type="hidden" name="city_name" x-model="cityName">
-                <input type="hidden" name="subdistrict_name" x-model="subdistrictName">
+                {{-- <input type="hidden" name="subdistrict_name" x-model="subdistrictName"> --}}
                 <input type="hidden" name="shipping_service" x-model="shippingService">
                 <input type="hidden" name="shipping_cost" x-model="shippingCost">
 
@@ -61,55 +61,54 @@
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1.5">No. WhatsApp</label>
-                                        <input type="number" name="phone" value="{{ old('phone', Auth::user()->phone) }}"
+                                        <input type="tel" name="phone" pattern="[0-9]+" inputmode="numeric"
+                                            value="{{ old('phone', Auth::user()->phone) }}"
                                             class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-red-500 focus:border-red-500 text-sm"
                                             placeholder="08123456789" required>
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5">Provinsi</label>
+                                    <label class="block text-sm font-medium mb-1">Provinsi</label>
                                     <select name="province_id" x-model="provinceId" @change="getCity()"
-                                        class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-red-500 focus:border-red-500 text-sm bg-white"
-                                        required>
+                                        class="w-full border rounded-lg px-4 py-2" required>
                                         <option value="">Pilih Provinsi</option>
                                         @foreach ($provinces as $prov)
-                                            <option value="{{ $prov['id'] }}">{{ $prov['name'] }}</option>
+                                            <option value="{{ $prov['province_id'] ?? $prov['id'] }}">
+                                                {{ $prov['province'] ?? $prov['name'] }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
 
+                                <!-- KOTA -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5">Kota/Kabupaten</label>
-                                    <select name="city_id" x-model="cityId" @change="getSubdistrict()"
-                                        :disabled="!provinceId"
-                                        class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-red-500 focus:border-red-500 text-sm bg-white disabled:bg-gray-50 disabled:text-gray-400"
-                                        required>
+                                    <label class="block text-sm font-medium mb-1">Kota/Kabupaten</label>
+                                    <select name="city_id" x-model="cityId" @change="onCityChange()" :disabled="!provinceId"
+                                        class="w-full border rounded-lg px-4 py-2 disabled:bg-gray-100" required>
                                         <option value="">Pilih Kota</option>
-                                        <template x-for="city in cities" :key="city.id">
-                                            <option :value="city.id" x-text="city.name"></option>
+                                        <template x-for="city in cities" :key="city.city_id || city.id">
+                                            <option :value="city.city_id || city.id"
+                                                x-text="(city.type || '') + ' ' + (city.city_name || city.name)">
+                                            </option>
                                         </template>
                                     </select>
                                 </div>
 
+                                <!-- KECAMATAN MANUAL -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5">Kecamatan</label>
-                                    <select name="subdistrict_id" x-model="subdistrictId" @change="resetOngkir()"
-                                        :disabled="!cityId"
-                                        class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-red-500 focus:border-red-500 text-sm bg-white disabled:bg-gray-50 disabled:text-gray-400"
-                                        required>
-                                        <option value="">Pilih Kecamatan</option>
-                                        <template x-for="sub in subdistricts" :key="sub.id">
-                                            <option :value="sub.id" x-text="sub.name"></option>
-                                        </template>
-                                    </select>
+                                    <label class="block text-sm font-medium mb-1">Kecamatan</label>
+                                    <input type="text" name="subdistrict"
+                                        value="{{ old('subdistrict', Auth::user()->subdistrict) }}"
+                                        class="w-full border rounded-lg px-4 py-2" placeholder="Masukan Kecamatan" required>
                                 </div>
 
+                                <!-- KODE POS -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5">Kode Pos</label>
-                                    <input type="number" name="postal_code"
-                                        class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-red-500 focus:border-red-500 text-sm"
-                                        placeholder="Contoh: 55571" required>
+                                    <label class="block text-sm font-medium mb-1">Kode Pos</label>
+                                    <input type="text" inputMode="numeric" name="postal_code" pattern="[0-9]+"
+                                        value="{{ old('postal_code', Auth::user()->postal_code) }}"
+                                        class="w-full border rounded-lg px-4 py-2" required>
                                 </div>
 
                                 <div class="md:col-span-2">
@@ -121,67 +120,53 @@
                             </div>
                         </div>
 
-                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                            <div class="p-6 border-b border-gray-100 bg-gray-50/50 flex items-center gap-3">
-                                <span
-                                    class="flex items-center justify-center w-8 h-8 rounded-full bg-red-600 text-white font-bold text-sm">2</span>
-                                <h2 class="text-lg font-bold text-gray-800">Metode Pengiriman</h2>
+                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                            <h2 class="text-lg font-bold text-gray-800 mb-4">2. Metode Pengiriman</h2>
+
+                            <label class="block text-sm font-medium mb-3">Pilih Kurir</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                                <template x-for="c in ['jne', 'pos', 'jnt', 'tiki']">
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="courier_code" :value="c" x-model="courier"
+                                            @change="checkOngkir()" class="peer sr-only" :disabled="!cityId">
+                                        <div
+                                            class="p-3 border rounded-xl text-center peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:text-red-700 transition hover:bg-gray-50 uppercase font-bold text-sm">
+                                            <span x-text="c"></span>
+                                        </div>
+                                    </label>
+                                </template>
                             </div>
 
-                            <div class="p-6">
-                                <label class="block text-sm font-medium text-gray-700 mb-3">Pilih Kurir</label>
-                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-                                    <template x-for="c in ['jne', 'sicepat', 'jnt', 'idexpress']">
-                                        <label class="cursor-pointer">
-                                            <input type="radio" name="courier_code" :value="c"
-                                                x-model="courier" @change="checkOngkir()" class="peer sr-only"
-                                                :disabled="!subdistrictId">
-                                            <div
-                                                class="p-3 border rounded-xl text-center peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:text-red-700 transition hover:bg-gray-50 h-full flex items-center justify-center uppercase font-bold text-sm text-gray-600">
-                                                <span x-text="c"></span>
+                            <div x-show="isLoading" class="text-center py-4 text-red-600 font-bold">Cek Ongkir...</div>
+
+                            <div x-show="costs.length > 0" class="space-y-3" x-transition>
+                                <p class="text-sm font-medium text-gray-700">Layanan Tersedia:</p>
+
+                                <template x-for="(cost, index) in costs" :key="index">
+                                    <label
+                                        class="relative flex items-center justify-between p-4 border border-gray-200 rounded-xl cursor-pointer hover:border-red-500 hover:bg-red-50/30 transition group"
+                                        :class="{
+                                            'border-red-500 bg-red-50/30': shippingService && shippingService.includes(
+                                                cost.service)
+                                        }">
+
+                                        <div class="flex items-center">
+                                            <input type="radio" name="shipping_option"
+                                                @click="selectShipping(cost.service, cost.cost?.[0]?.value || 0)"
+                                                class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300" required>
+                                            <div class="ml-3">
+                                                <span class="block text-sm font-bold text-gray-900"
+                                                    x-text="cost.service + ' (' + cost.description + ')'"></span>
+                                                <span class="block text-xs text-gray-500 mt-0.5"
+                                                    x-text="'Estimasi: ' + (cost.cost?.[0]?.etd ? cost.cost[0].etd.replace('HARI','').replace('Hari','') : '-') + ' Hari'"></span>
                                             </div>
-                                        </label>
-                                    </template>
-                                </div>
-
-                                <div x-show="isLoading" class="flex items-center justify-center py-8 text-red-600">
-                                    <svg class="animate-spin h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10"
-                                            stroke="currentColor" stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                        </path>
-                                    </svg>
-                                    <span class="text-sm font-medium">Mengecek Ongkir...</span>
-                                </div>
-
-                                <div x-show="costs.length > 0" class="space-y-3" x-transition>
-                                    <p class="text-sm font-medium text-gray-700">Layanan Tersedia:</p>
-                                    <div class="grid gap-3">
-                                        <template x-for="cost in costs" :key="cost.service">
-                                            <label
-                                                class="relative flex items-center justify-between p-4 border border-gray-200 rounded-xl cursor-pointer hover:border-red-500 hover:bg-red-50/30 transition group">
-                                                <div class="flex items-center">
-                                                    <input type="radio" name="shipping_option"
-                                                        @click="selectShipping(cost.service, cost.cost[0].value)"
-                                                        class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300"
-                                                        required>
-                                                    <div class="ml-3">
-                                                        <span class="block text-sm font-bold text-gray-900"
-                                                            x-text="cost.service + ' (' + cost.description + ')'"></span>
-                                                        <span class="block text-xs text-gray-500 mt-0.5"
-                                                            x-text="'Estimasi sampai: ' + cost.cost[0].etd + (courier === 'pos' ? '' : ' Hari')"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="text-right">
-                                                    <span class="block text-sm font-bold text-red-700"
-                                                        x-text="formatRupiah(cost.cost[0].value)"></span>
-                                                </div>
-                                            </label>
-                                        </template>
-                                    </div>
-                                </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="block text-sm font-bold text-red-700"
+                                                x-text="formatRupiah(cost.cost?.[0]?.value || 0)"></span>
+                                        </div>
+                                    </label>
+                                </template>
                             </div>
                         </div>
 
@@ -275,7 +260,7 @@
                                 <div class="flex justify-between items-center pt-3 border-t border-gray-100">
                                     <span class="text-base font-bold text-gray-900">Total Bayar</span>
                                     <span class="text-xl font-extrabold text-red-600"
-                                        x-text="formatRupiah({{ $grandTotal }} + parseInt(shippingCost))"></span>
+                                        x-text="formatRupiah({{ $grandTotal }} + (parseInt(shippingCost) || 0))"></span>
                                 </div>
                             </div>
 
@@ -306,15 +291,11 @@
                 provinceName: '',
                 cityId: '',
                 cityName: '',
-                subdistrictId: '',
-                subdistrictName: '',
 
                 courier: '',
                 shippingCost: 0,
                 shippingService: '',
-
                 cities: [],
-                subdistricts: [],
                 costs: [],
                 isLoading: false,
                 weight: {{ $totalWeight }},
@@ -322,43 +303,44 @@
                 getCity() {
                     this.provinceName = this.$el.querySelector('select[name="province_id"] option:checked').text;
                     this.cityId = '';
-                    this.subdistrictId = '';
+                    this.cityName = '';
                     this.cities = [];
-                    this.subdistricts = [];
                     this.resetOngkir();
 
                     if (!this.provinceId) return;
 
-                    fetch(`{{ url('/api/cities') }}/${this.provinceId}`)
-                        .then(res => res.json())
-                        .then(data => {
-                            this.cities = data;
-                        });
+                    fetch(`{{ url('/api/cities') }}/${this.provinceId}`).then(res => res.json()).then(data => {
+                        this.cities = data;
+                    });
                 },
 
-                getSubdistrict() {
-                    this.cityName = this.$el.querySelector('select[name="city_id"] option:checked').text;
-                    this.subdistrictId = '';
-                    this.subdistricts = [];
+                onCityChange() {
+                    let select = document.querySelector('select[name="city_id"]');
+                    this.cityName = select.options[select.selectedIndex].text;
                     this.resetOngkir();
-
-                    if (!this.cityId) return;
-
-                    fetch(`{{ url('/api/subdistricts') }}/${this.cityId}`)
-                        .then(res => res.json())
-                        .then(data => {
-                            this.subdistricts = data;
-                        });
+                    if (this.courier) {
+                        this.checkOngkir();
+                    }
                 },
+
+                // getSubdistrict() {
+                //     this.cityName = this.$el.querySelector('select[name="city_id"] option:checked').text;
+                //     this.subdistrictId = '';
+                //     this.subdistricts = [];
+                //     this.resetOngkir();
+
+                //     if (!this.cityId) return;
+
+                //     fetch(`{{ url('/api/subdistricts') }}/${this.cityId}`)
+                //         .then(res => res.json())
+                //         .then(data => {
+                //             this.subdistricts = data;
+                //         });
+                // },
 
                 checkOngkir() {
-                    const subSelect = document.querySelector('select[name="subdistrict_id"]');
-                    if (subSelect && subSelect.selectedIndex >= 0) {
-                        this.subdistrictName = subSelect.options[subSelect.selectedIndex].text;
-                    }
-
                     this.resetOngkir();
-                    if (!this.subdistrictId || !this.courier) return;
+                    if (!this.cityId || !this.courier) return;
 
                     this.isLoading = true;
 
@@ -370,25 +352,20 @@
                             },
                             body: JSON.stringify({
                                 city_id: this.cityId,
-                                subdistrict_id: this.subdistrictId,
                                 weight: this.weight,
                                 courier: this.courier
                             })
                         })
                         .then(res => res.json())
                         .then(data => {
-                            if (data.length > 0 && data[0].costs) {
-                                this.costs = data[0].costs;
-                            } else {
-                                this.costs = [];
-                                alert('Layanan pengiriman tidak tersedia untuk rute ini.');
-                            }
-                            this.isLoading = false;
+                            this.costs = data[0]?.costs || [];
+                            if (!this.costs.length) alert('Ongkir tidak tersedia');
                         })
-                        .catch(err => {
-                            this.isLoading = false;
-                            console.error(err);
-                        });
+                        .catch(() => {
+                            alert('Gagal mengambil ongkir');
+                            this.costs = [];
+                        })
+                        .finally(() => this.isLoading = false);
                 },
 
                 selectShipping(service, cost) {
@@ -406,8 +383,7 @@
                     return new Intl.NumberFormat('id-ID', {
                         style: 'currency',
                         currency: 'IDR',
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0
+                        minimumFractionDigits: 0
                     }).format(number);
                 }
             }
