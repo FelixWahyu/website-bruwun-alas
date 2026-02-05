@@ -298,7 +298,7 @@
                 cities: [],
                 costs: [],
                 isLoading: false,
-                weight: {{ $totalWeight }},
+                weight: {{ $totalWeight > 0 ? $totalWeight : 1000 }},
 
                 getCity() {
                     this.provinceName = this.$el.querySelector('select[name="province_id"] option:checked').text;
@@ -359,7 +359,7 @@
                         .then(res => res.json())
                         .then(data => {
                             this.costs = data[0]?.costs || [];
-                            if (!this.costs.length) alert('Ongkir tidak tersedia');
+                            if (!this.costs.length) alert('Rute atau layanan Ongkir tidak tersedia');
                         })
                         .catch(() => {
                             alert('Gagal mengambil ongkir');

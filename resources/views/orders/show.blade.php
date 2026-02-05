@@ -66,7 +66,6 @@
                             @php
                                 $steps = ['menunggu_pembayaran', 'diproses', 'dikirim', 'selesai'];
                                 $currentStatus = $order->status;
-                                // Handle canceled status differently
                                 if ($currentStatus == 'menunggu_konfirmasi') {
                                     $currentStatus = 'menunggu_pembayaran';
                                 }
@@ -75,32 +74,28 @@
                             <div class="flex flex-col items-center bg-white px-2">
                                 <div
                                     class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold {{ in_array($currentStatus, $steps) ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-500' }}">
-                                    1
-                                </div>
+                                    1</div>
                                 <span class="text-xs mt-2 font-medium text-gray-600">Dipesan</span>
                             </div>
 
                             <div class="flex flex-col items-center bg-white px-2">
                                 <div
                                     class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold {{ in_array($currentStatus, array_slice($steps, 1)) ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-500' }}">
-                                    2
-                                </div>
+                                    2</div>
                                 <span class="text-xs mt-2 font-medium text-gray-600">Diproses</span>
                             </div>
 
                             <div class="flex flex-col items-center bg-white px-2">
                                 <div
                                     class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold {{ in_array($currentStatus, array_slice($steps, 2)) ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-500' }}">
-                                    3
-                                </div>
+                                    3</div>
                                 <span class="text-xs mt-2 font-medium text-gray-600">Dikirim</span>
                             </div>
 
                             <div class="flex flex-col items-center bg-white px-2">
                                 <div
                                     class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold {{ $currentStatus == 'selesai' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-500' }}">
-                                    4
-                                </div>
+                                    4</div>
                                 <span class="text-xs mt-2 font-medium text-gray-600">Selesai</span>
                             </div>
                         </div>
@@ -221,8 +216,8 @@
                                 <form action="{{ route('orders.complete', $order->id) }}" method="POST">
                                     @csrf @method('PUT')
                                     <button type="submit"
-                                        onclick="return confirm('Pastikan barang sudah diterima dengan baik. Lanjutkan?')"
-                                        class="w-full px-4 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 shadow-lg hover:shadow-green-500/30 transition transform hover:-translate-y-0.5">
+                                        onclick="confirmOrderAction(event, 'Terima Barang', 'Pastikan barang sudah Anda terima dengan baik.', 'Terima', 'success')"
+                                        class="w-full px-4 py-3 bg-green-600 cursor-pointer text-white font-bold rounded-xl hover:bg-green-700 shadow-lg hover:shadow-green-500/30 transition transform hover:-translate-y-0.5">
                                         Konfirmasi Terima Barang
                                     </button>
                                 </form>
@@ -232,8 +227,8 @@
                                 <form action="{{ route('orders.cancel', $order->id) }}" method="POST">
                                     @csrf @method('PUT')
                                     <button type="submit"
-                                        onclick="return confirm('Yakin ingin membatalkan pesanan ini?')"
-                                        class="w-full px-4 py-3 bg-white border border-red-200 text-red-600 font-bold rounded-xl hover:bg-red-50 transition">
+                                        onclick="confirmOrderAction(event, 'Batalkan Pesanan?', 'Pesanan ini tidak akan diproses lebih lanjut.', 'Batalkan', 'warning', '#ef4444')"
+                                        class="w-full px-4 py-3 bg-white cursor-pointer border border-red-200 text-red-600 font-bold rounded-xl hover:bg-red-50 transition">
                                         Batalkan Pesanan
                                     </button>
                                 </form>
@@ -284,4 +279,40 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function confirmOrderAction(event, title, text, confirmBtnText, iconType, confirmBtnColor = '#10b981') {
+            event.preventDefault();
+            const form = event.target.closest('form');
+
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: iconType,
+                showCancelButton: true,
+                confirmButtonColor: confirmBtnColor,
+                cancelButtonColor: '#9ca3af',
+                confirmButtonText: confirmBtnText,
+                cancelButtonText: 'Kembali',
+                reverseButtons: true,
+                customClass: {
+                    popup: 'rounded-2xl font-sans',
+                    confirmButton: 'rounded-xl px-5 py-2.5',
+                    cancelButton: 'rounded-xl px-5 py-2.5'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Memproses...',
+                        text: 'Mohon tunggu sebentar.',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        }
+                    });
+                    form.submit();
+                }
+            });
+        }
+    </script>
 @endsection
