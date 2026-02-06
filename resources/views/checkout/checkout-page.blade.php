@@ -222,14 +222,14 @@
                                         <label
                                             class="relative flex items-center justify-between p-4 border border-gray-200 rounded-xl cursor-pointer hover:border-red-400 hover:bg-red-50/50 transition duration-200"
                                             :class="{
-                                                'ring-2 ring-red-500 bg-red-50 border-red-500': shippingService &&
+                                                'bg-gray-50 focus:outline-0': shippingService &&
                                                     shippingService.includes(cost.service)
                                             }">
 
                                             <div class="flex items-start gap-4">
                                                 <input type="radio" name="shipping_option"
                                                     @click="selectShipping(cost.service, cost.cost?.[0]?.value || 0)"
-                                                    class="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300"
+                                                    class="mt-1 h-4 w-4 text-red-600 focus:outline-0 border-gray-300"
                                                     required>
                                                 <div>
                                                     <span class="block text-sm font-bold text-gray-900"
@@ -242,7 +242,7 @@
                                                 </div>
                                             </div>
                                             <div class="text-right">
-                                                <span class="block text-base font-bold text-red-700"
+                                                <span class="block text-base font-bold text-gray-800"
                                                     x-text="formatRupiah(cost.cost?.[0]?.value || 0)"></span>
                                             </div>
                                         </label>
