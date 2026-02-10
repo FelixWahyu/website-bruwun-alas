@@ -56,6 +56,7 @@
     <section id="about" class="py-20 bg-white relative z-20 -mt-10 rounded-t-3xl md:rounded-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
                 <div class="relative">
                     <div class="absolute -top-4 -left-4 w-24 h-24 bg-red-100 rounded-full z-0"></div>
                     <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&auto=format&fit=crop"
@@ -66,46 +67,29 @@
 
                 <div>
                     <h2 class="text-base font-semibold text-red-600 uppercase tracking-wide mb-2">Tentang Kami</h2>
-                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">Membangun
-                        Ekonomi,<br>Melestarikan Alam.</h3>
-
-                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
-                        Bruwun Alas adalah destinasi wisata edukasi yang berfokus pada pelestarian alam dan pemberdayaan
-                        ekonomi lokal. Kami menyediakan wadah bagi produk olahan tangan dan hasil bumi yang dikelola
-                        langsung
-                        oleh masyarakat sekitar.
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                        Membangun Ekonomi,<br>Melestarikan Alam.
+                    </h3>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8 text-justify">
+                        Bruwun Alas adalah perusahaan yang berfokus pada produksi dan edukasi batik dan Ecoprint. Dengan
+                        tagline “Local Wisdom: Kenakan Batik, Kenalkan Budaya Kita“, kami berkomitmen untuk melestarikan dan
+                        mengembangkan warisan budaya batik lokal khususnya Banyumasan. Sebagai pusat produksi batik dan
+                        Ecoprint, Bruwun Alas menghasilkan berbagai motif batik khas
+                        Banyumas. Selain itu, kami juga berperan aktif dalam memberikan edukasi dan pelatihan pembuatan
+                        batik dan Ecoprint kepada masyarakat, memastikan bahwa seni dan keterampilan membatik dan Ecoprint
+                        dapat diteruskan ke generasi mendatang dengan mengedepankan ramah lingkungan.
                     </p>
+                    <div>
+                        <a href="{{ route('about') }}"
+                            class="inline-flex items-center px-8 py-3 bg-red-600 text-white font-bold rounded-xl shadow-lg hover:bg-red-700 hover:shadow-red-500/30 transition-all duration-300 transform hover:-translate-y-1">
+                            Pelajari Lebih Lanjut
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
 
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <div
-                                class="shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 mt-1">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-bold text-gray-900">Produk Lokal Berkualitas</h4>
-                                <p class="text-gray-500 text-sm">Dikurasi langsung dari pengrajin terbaik desa.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <div
-                                class="shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 mt-1">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064">
-                                    </path>
-                                </svg>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-bold text-gray-900">Edukasi Pembuatan Batik Ekoprint</h4>
-                                <p class="text-gray-500 text-sm">Konsep zero waste dan edukasi pengolahan limbah sampah daun
-                                    menjadi batik.</p>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>

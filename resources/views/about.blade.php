@@ -12,10 +12,10 @@
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
             <span
                 class="inline-block py-1 px-3 rounded-full bg-red-500/20 border border-red-400 text-red-300 font-semibold text-xs tracking-widest uppercase mb-4 backdrop-blur-sm">
-                Profil & Layanan
+                Visi Misi Bruwun Alas
             </span>
             <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6 tracking-tight">
-                Harmoni Alam & <br> <span
+                Wisata Edukasi & <br> <span
                     class="text-transparent bg-clip-text bg-linear-to-r from-red-300 to-amber-500">Kreativitas
                     Lokal</span>
             </h1>
@@ -35,17 +35,19 @@
                     </h3>
                     <div class="prose prose-lg text-gray-600 text-justify">
                         <p class="mb-4">
-                            <strong>Bruwun Alas</strong> lahir dari semangat gotong royong masyarakat Kulon Progo untuk
-                            melestarikan hutan sekaligus menciptakan peluang ekonomi mandiri.
+                            <strong>Bruwun Alas</strong> adalah perusahaan yang berfokus pada produksi dan
+                            edukasi batik dan Ecoprint, Dengan tagline “Local Wisdom: Kenakan Batik, Kenalkan Budaya Kita“,
+                            kami berkomitmen untuk melestarikan dan mengembangkan warisan budaya batik lokal khusnya
+                            Banyumasan Sebagai pusat produksi batik dan Ecoprint , Bruwun Alas menghasilkan berbagai motif
+                            batik khas Banyumas.
                         </p>
                         <p class="mb-4">
-                            Kami menggabungkan konsep <em>Eco-Tourism</em> (Wisata Alam) dengan <em>Edu-Tourism</em> (Wisata
-                            Edukasi). Di sini, pengunjung tidak hanya dimanjakan oleh sejuknya hutan pinus, tetapi juga
-                            diajak mengenal proses kreatif pembuatan produk lokal yang bernilai seni tinggi.
-                        </p>
-                        <p>
-                            Seluruh produk yang Anda temui—mulai dari makanan hingga kerajinan tangan—adalah murni hasil
-                            karya warga sekitar yang kami kurasi dengan standar kualitas terbaik.
+                            Selain itu, kami juga berperan aktif dalam memberikan edukasi dan pelatihan pembuatan
+                            batik dan Ecoprint kepada masyarakat, memastikan bahwa seni dan keterampilan membatik dan
+                            Ecoprint dapat diteruskan ke generasi mendatang dengan mengedepankan ramah lingkungan.
+                            Melalui kombinasi produksi berkualitas dan program edukasi yang komprehensif, Bruwun Alas
+                            berupaya menjadi terdepan dalam pelestarian dan pengembangan batik dan ecoprint sebagai warisan
+                            budaya Indonesia.
                         </p>
                     </div>
                 </div>
@@ -70,6 +72,110 @@
                         </svg>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50 relative overflow-hidden">
+        <div
+            class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-red-100 rounded-full blur-3xl opacity-50 pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-orange-100 rounded-full blur-3xl opacity-50 pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 gap-12 items-start">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-red-600 rounded-3xl rotate-3 opacity-10"></div>
+                    <div
+                        class="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-gray-100 relative hover:-translate-y-2 transition duration-300">
+                        <div class="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center text-red-600 mb-6">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Visi Kami</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed italic">
+                            "Menjadi pusat unggulan Pelatihan batik dan Ecoprint Banyumas yang berdaya saing nasional dan
+                            internasional, serta berkontribusi pada kemaslahatan umat melalui pengembangan ekonomi yang
+                            berkelanjutan dan pemberdayaan masyarakat."
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8 flex items-center">
+                        <span class="w-8 h-1 bg-red-600 rounded-full mr-3"></span>
+                        Misi Utama
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="flex gap-4 group">
+                            <div
+                                class="shrink-0 w-10 h-10 rounded-full bg-white border border-red-100 flex items-center justify-center text-red-600 shadow-sm group-hover:bg-red-600 group-hover:text-white transition duration-300">
+                                <span class="font-bold">1</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Produksi Berkelanjutan</h4>
+                                <p class="text-gray-600 text-sm mt-1">Menghasilkan batik berkualitas tinggi dengan
+                                    memperhatikan aspek keberlanjutan dan etika, serta menggunakan bahan-bahan ramah
+                                    lingkungan.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 group">
+                            <div
+                                class="shrink-0 w-10 h-10 rounded-full bg-white border border-red-100 flex items-center justify-center text-red-600 shadow-sm group-hover:bg-red-600 group-hover:text-white transition duration-300">
+                                <span class="font-bold">2</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Inovasi dan Kreativitas</h4>
+                                <p class="text-gray-600 text-sm mt-1">Mendorong inovasi dalam desain dan teknik batik yang
+                                    mengedepankan nilai-nilai budaya lokal, serta menciptakan produk yang relevan dengan
+                                    kebutuhan pasar global.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 group">
+                            <div
+                                class="shrink-0 w-10 h-10 rounded-full bg-white border border-red-100 flex items-center justify-center text-red-600 shadow-sm group-hover:bg-red-600 group-hover:text-white transition duration-300">
+                                <span class="font-bold">3</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Edukasi dan Pemberdayaan</h4>
+                                <p class="text-gray-600 text-sm mt-1">Menyelenggarakan program pelatihan dan edukasi bagi
+                                    masyarakat, terutama generasi muda, untuk meningkatkan keterampilan dan pengetahuan
+                                    tentang batik, sehingga dapat menciptakan lapangan kerja dan meningkatkan kesejahteraan.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 group">
+                            <div
+                                class="shrink-0 w-10 h-10 rounded-full bg-white border border-red-100 flex items-center justify-center text-red-600 shadow-sm group-hover:bg-red-600 group-hover:text-white transition duration-300">
+                                <span class="font-bold">4</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Keterlibatan Sosial</h4>
+                                <p class="text-gray-600 text-sm mt-1">Berkolaborasi dengan lembaga sosial dan komunitas
+                                    untuk menyelenggarakan kegiatan yang mendukung kesejahteraan masyarakat, seperti program
+                                    pendidikan, dan pengembangan ekonomi lokal.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 group">
+                            <div
+                                class="shrink-0 w-10 h-10 rounded-full bg-white border border-red-100 flex items-center justify-center text-red-600 shadow-sm group-hover:bg-red-600 group-hover:text-white transition duration-300">
+                                <span class="font-bold">5</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Promosi Budaya</h4>
+                                <p class="text-gray-600 text-sm mt-1">Memperkenalkan dan mempromosikan batik Banyumasan
+                                    sebagai warisan budaya yang harus dilestarikan, serta meningkatkan kesadaran masyarakat
+                                    tentang pentingnya menjaga dan menghargai budaya lokal.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
