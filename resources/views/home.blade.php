@@ -1,7 +1,7 @@
 @extends('layouts.app-layout')
 @section('title', 'Beranda - Wisata Edukasi Bruwun Alas')
 @section('content')
-    <section class="relative min-h-[110vh] flex items-center -mt-32 pt-40 pb-40 overflow-hidden group">
+    <section class="relative min-h-[110vh] flex items-center -mt-32 pt-46 pb-40 overflow-hidden group">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop"
                 alt="Hutan Bruwun Alas"
@@ -12,20 +12,17 @@
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-4xl text-center md:text-left">
-
                 <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg tracking-tight">
                     Temukan Kedamaian di <br>
                     <span class="text-transparent bg-clip-text bg-linear-to-r from-red-300 to-amber-600">
                         Bruwun Alas
                     </span>
                 </h1>
-
                 <p
                     class="text-lg md:text-xl text-gray-100 mb-10 leading-relaxed font-light max-w-2xl drop-shadow-md mx-auto md:mx-0">
                     Jelajahi keindahan hutan lindung, nikmati kuliner autentik, dan dukung produk lokal karya tangan-tangan
                     terampil masyarakat sekitar.
                 </p>
-
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                     <a href="{{ route('katalogProduk') }}"
                         class="inline-flex justify-center items-center px-8 py-4 text-base font-bold text-white bg-red-600 rounded-full hover:bg-red-700 transition-all duration-300 shadow-lg hover:shadow-red-500/30 hover:-translate-y-1">
@@ -35,7 +32,6 @@
                         </svg>
                         Belanja Produk
                     </a>
-
                     <a href="{{ route('about') }}"
                         class="inline-flex justify-center items-center px-8 py-4 text-base font-bold text-white border-2 border-white/30 bg-white/5 backdrop-blur-sm rounded-full hover:bg-white hover:text-red-900 transition-all duration-300 hover:border-white">
                         Tentang Kami
