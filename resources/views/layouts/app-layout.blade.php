@@ -9,6 +9,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <link rel="shortcut icon" href="{{ asset('/img/logo-ba.webp') }}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
