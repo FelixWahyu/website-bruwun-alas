@@ -1,7 +1,7 @@
 @extends('layouts.app-layout')
 @section('title', 'Tentang Kami - Wisata Edukasi Bruwun Alas')
 @section('content')
-    <div class="relative h-[60vh] min-h-100 flex items-center justify-center py-32 group overflow-hidden">
+    <div class="relative h-[70vh] min-h-100 flex items-center justify-center py-32 group overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=2070&auto=format&fit=crop"
                 alt="Tentang Bruwun Alas"
@@ -315,7 +315,6 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-auto md:h-150">
-
                 <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-2xl">
                     <img src="https://lh3.googleusercontent.com/p/AF1QipNYduVh5aPT6y5hiVWhfiUG7vbRKC5OuPwXzKtA=s680-w680-h510-rw"
                         alt="Baju batik" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
@@ -343,7 +342,6 @@
                         Workshop Ecoprint
                     </div>
                 </div>
-
             </div>
 
             <div class="mt-8 text-center md:hidden">
