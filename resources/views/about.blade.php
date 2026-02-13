@@ -3,7 +3,7 @@
 @section('content')
     <div class="relative h-[70vh] min-h-100 flex items-center justify-center py-32 group overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=2070&auto=format&fit=crop"
+            <img src="https://lh3.googleusercontent.com/p/AF1QipOF812xDVIVNTohicdMZK_fLNWb5WURGSCmco9U=s680-w680-h510-rw"
                 alt="Tentang Bruwun Alas"
                 class="w-full h-full object-cover transition-transform duration-[10s] ease-in-out group-hover:scale-110">
             <div class="absolute inset-0 bg-linear-to-b from-black/70 via-black/40 to-black/60"></div>
@@ -216,7 +216,7 @@
                             Koleksi kain batik dan pakaian dengan motif alami (ecoprint) yang dibuat menggunakan dedaunan
                             asli dari hutan Bruwun. Ramah lingkungan dan eksklusif.
                         </p>
-                        <a href="{{ route('home') }}#products"
+                        <a href="{{ route('katalogProduk') }}"
                             class="inline-flex items-center text-red-600 font-semibold hover:text-red-800">
                             Lihat Koleksi <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
@@ -251,7 +251,7 @@
                             Berbagai kerajinan tangan unik dari kayu, anyaman bambu, dan manik-manik. Sangat cocok untuk
                             oleh-oleh atau hiasan rumah yang estetik.
                         </p>
-                        <a href="{{ route('home') }}#products"
+                        <a href="{{ route('katalogProduk') }}#products"
                             class="inline-flex items-center text-red-600 font-semibold hover:text-red-800">
                             Lihat Koleksi <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
@@ -308,7 +308,7 @@
                     <h2 class="text-3xl font-bold text-gray-900">Galeri Momen</h2>
                     <p class="text-gray-500 mt-2">Rekaman lensa keindahan alam dan aktivitas di Bruwun Alas.</p>
                 </div>
-                <a href="#"
+                <a href="https://www.instagram.com/bruwunalas_wisata_edukasi" target="_blank"
                     class="hidden md:inline-flex items-center px-6 py-2 border border-gray-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">
                     Lihat Instagram
                 </a>
@@ -345,7 +345,7 @@
             </div>
 
             <div class="mt-8 text-center md:hidden">
-                <a href="#"
+                <a href="https://www.instagram.com/bruwunalas_wisata_edukasi/" target="_blank"
                     class="inline-flex items-center px-6 py-2 border border-gray-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">
                     Lihat Instagram
                 </a>

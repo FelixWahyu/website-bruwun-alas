@@ -26,7 +26,7 @@
                         </svg>
                     </a>
 
-                    <a href="#"
+                    <a href="#" target="_blank"
                         class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-red-600 hover:text-white transition-all duration-300">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path
@@ -34,7 +34,7 @@
                         </svg>
                     </a>
 
-                    <a href="#"
+                    <a href="https://www.instagram.com/bruwunalas_wisata_edukasi/" target="_blank"
                         class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-red-600 hover:text-white transition-all duration-300">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path
@@ -42,7 +42,7 @@
                         </svg>
                     </a>
 
-                    <a href="#"
+                    <a href="https://www.tiktok.com/@toko_bruwunalas" target="_blank"
                         class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-red-600 hover:text-white transition-all duration-300">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path
