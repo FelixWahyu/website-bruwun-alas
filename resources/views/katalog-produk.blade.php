@@ -5,10 +5,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto">
                 <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
-                    Katalog Produk <span class="text-red-600">Lokal</span>
+                    Katalog Produk <span class="text-red-600">Bruwun Alas</span>
                 </h1>
                 <p class="text-gray-600 text-sm md:text-base leading-relaxed">
-                    Jelajahi ragam olahan makanan, kerajinan tangan, dan cinderamata otentik hasil karya tangan terampil
+                    Jelajahi ragam olahan jajanan UMKM, kerajinan tangan, batik ecoprint, dan cinderamata otentik hasil
+                    karya tangan terampil
                     masyarakat Bruwun Alas.
                 </p>
             </div>

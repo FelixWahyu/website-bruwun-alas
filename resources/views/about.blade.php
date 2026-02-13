@@ -16,11 +16,11 @@
             </span>
             <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6 tracking-tight">
                 Wisata Edukasi & <br> <span
-                    class="text-transparent bg-clip-text bg-linear-to-r from-red-300 to-amber-500">Kreativitas
-                    Lokal</span>
+                    class="text-transparent bg-clip-text bg-linear-to-r from-red-300 to-amber-500">Batik Ecoprint</span>
             </h1>
             <p class="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
-                Menemukan ketenangan di hutan lindung sekaligus mendukung pemberdayaan ekonomi warga melalui karya autentik.
+                Lebih dari sekadar rekreasi alam. Mari belajar proses pembuatan batik ecoprint langsung dari ahlinya,
+                sekaligus mendukung kemandirian UMKM lokal kami.
             </p>
         </div>
     </div>
@@ -54,7 +54,7 @@
 
                 <div class="lg:w-1/2 order-1 lg:order-2 relative">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
-                        <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&auto=format&fit=crop"
+                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerkb-PTClF8E-Fl7jHrHLgunEiHanurzP99VLoU7rapSWQEfOflRp_ehttxOY1dz18aFb-GclxzIo4APURi4-Xtu5kwrZ75xYCa8w0MWI9Qmw6EclbKVp6i5PrZDI9_v0qnzvRrC_UDofc=s680-w680-h510-rw"
                             alt="Tentang Kami"
                             class="w-full h-125 object-cover transition duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-80"></div>
@@ -196,7 +196,7 @@
                 <div
                     class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-2">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=1965&auto=format&fit=crop"
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipM_wPvyJphJzy5VuPBs_4abOOfSjQ-KwqssuqYG=s680-w680-h510-rw"
                             alt="Pakaian Ecoprint"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div
@@ -230,7 +230,7 @@
                 <div
                     class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-2">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?q=80&w=2070&auto=format&fit=crop"
+                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwep8nInzeAwjNF_-8xyMrqYwhLdd4n6LPDvSuPLmginQ2YDeCuU-lDNCPMYHABUQPwKrAXDerp2_CWjZlbQJE5qCfZuZ3ivXk6U-3rmpYbmwN8qAPnf5E4mI-42zjXN__wBPAAlxNKG764Ky=s680-w680-h510-rw"
                             alt="Aksesoris Kayu"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div
@@ -265,12 +265,12 @@
                 <div
                     class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-2">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1626505928000-71707010f3c5?q=80&w=2070&auto=format&fit=crop"
+                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweoYWumniwv9OeAzg-eO01XOn48OSSS-i65Bjl0SHIY6-9Py1ZZ_UVbMGPNQ-htXaOYhiwXV4ou0w1tRj-nhfmG3X-rrsW-DCWwwmctWXXegMAUxLd0sKNXU9Cvi0070zfB19uNZEUDmDE7d=s680-w680-h510-rw"
                             alt="Makanan Tradisional"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div
                             class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-800">
-                            Kuliner
+                            Jajanan UMKM
                         </div>
                     </div>
                     <div class="p-8">
@@ -317,27 +317,26 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-auto md:h-150">
 
                 <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-2xl">
-                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop"
-                        alt="Hutan Pinus"
-                        class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipNYduVh5aPT6y5hiVWhfiUG7vbRKC5OuPwXzKtA=s680-w680-h510-rw"
+                        alt="Baju batik" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
                 </div>
 
                 <div class="col-span-1 row-span-1 relative group overflow-hidden rounded-2xl">
-                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1974&auto=format&fit=crop"
+                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweoYWumniwv9OeAzg-eO01XOn48OSSS-i65Bjl0SHIY6-9Py1ZZ_UVbMGPNQ-htXaOYhiwXV4ou0w1tRj-nhfmG3X-rrsW-DCWwwmctWXXegMAUxLd0sKNXU9Cvi0070zfB19uNZEUDmDE7d=s680-w680-h510-rw"
                         alt="Produk Makanan"
                         class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                 </div>
 
                 <div class="col-span-1 row-span-1 relative group overflow-hidden rounded-2xl">
-                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1972&auto=format&fit=crop"
-                        alt="Anak bermain"
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipP5K3PL6GajDQPrYVyplqCVZYRbiQFOalLaycs8=s680-w680-h510-rw"
+                        alt="Edukasi Batik Ecoprint"
                         class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                 </div>
 
                 <div class="col-span-2 md:col-span-2 row-span-1 relative group overflow-hidden rounded-2xl">
-                    <img src="https://images.unsplash.com/photo-1605218457336-d760773663b6?q=80&w=1974&auto=format&fit=crop"
-                        alt="Kegiatan Membatik"
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipM0uRxiM2m0VEBkC656QxrRbMbVm7gLvyDfcAE_=s680-w680-h510-rw"
+                        alt="Kegiatan Membatik Ecoprint"
                         class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div
                         class="absolute bottom-4 left-4 text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition translate-y-2 group-hover:translate-y-0">

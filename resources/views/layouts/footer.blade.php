@@ -13,8 +13,8 @@
                     </span>
                 </a>
                 <p class="text-gray-400 text-sm leading-relaxed">
-                    Destinasi wisata edukasi alam terbaik yang menyajikan pengalaman belajar, bermain, dan menikmati
-                    produk lokal di tengah keasrian hutan Kulon Progo.
+                    Destinasi wisata edukasi alam terbaik yang menyajikan pengalaman belajar membuat batik ecoprint,
+                    berkreasi, dan mendukung produk lokal di tengah keasrian alam.
                 </p>
 
                 <div class="flex space-x-4 pt-2">

@@ -3,8 +3,7 @@
 @section('content')
     <section class="relative min-h-[110vh] flex items-center -mt-32 pt-46 pb-40 overflow-hidden group">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop"
-                alt="Hutan Bruwun Alas"
+            <img src="{{ asset('img/bg-image/toko-batik-bruwunalas.webp') }}" alt="Hutan Bruwun Alas"
                 class="w-full h-full object-cover transition-transform duration-[20s] ease-in-out group-hover:scale-110 scale-100">
 
             <div class="absolute inset-0 bg-linear-to-b from-black/80 via-black/50 to-black/70"></div>
@@ -13,15 +12,15 @@
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-4xl text-center md:text-left">
                 <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg tracking-tight">
-                    Temukan Kedamaian di <br>
+                    Toko Batik<br>
                     <span class="text-transparent bg-clip-text bg-linear-to-r from-red-300 to-amber-600">
                         Bruwun Alas
                     </span>
                 </h1>
                 <p
                     class="text-lg md:text-xl text-gray-100 mb-10 leading-relaxed font-light max-w-2xl drop-shadow-md mx-auto md:mx-0">
-                    Jelajahi keindahan hutan lindung, nikmati kuliner autentik, dan dukung produk lokal karya tangan-tangan
-                    terampil masyarakat sekitar.
+                    Kenakan batik, kenalkan budaya kita. Temukan harmoni di tengah sejuknya hutan pinus sambil belajar
+                    menciptakan karya ecoprint otentik bersama pengrajin lokal kami.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                     <a href="{{ route('katalogProduk') }}"
@@ -55,7 +54,7 @@
 
                 <div class="relative">
                     <div class="absolute -top-4 -left-4 w-24 h-24 bg-red-100 rounded-full z-0"></div>
-                    <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&auto=format&fit=crop"
+                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerTbT4GelMaXAFbHJ9n3czoTVEwMJdVaPdnMYxGauBFf07lRVxwnxvOUKn40btMSYocpwh66iSxhAqWqNeYH1IJhMOXy2X4y50xoWiwM8eH-oSktXrimGzc31x6aIKnOmPg6c98=s680-w680-h510-rw"
                         alt="Kegiatan UMKM"
                         class="relative z-10 rounded-2xl shadow-xl w-full h-100 object-cover transform hover:scale-[1.02] transition duration-500">
                     <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-red-50 rounded-full z-0"></div>
@@ -64,7 +63,7 @@
                 <div>
                     <h2 class="text-base font-semibold text-red-600 uppercase tracking-wide mb-2">Tentang Kami</h2>
                     <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                        Membangun Ekonomi,<br>Melestarikan Alam.
+                        Waisata Edukasi & <br>Batik Ecoprint
                     </h3>
                     <p class="text-gray-600 text-lg leading-relaxed mb-8 text-justify">
                         Bruwun Alas adalah perusahaan yang berfokus pada produksi dan edukasi batik dan Ecoprint. Dengan
@@ -182,14 +181,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-red-600 font-semibold tracking-wider uppercase text-sm">Experience</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">Serunya Berpetualang di Alam</h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">Serunya Membatik Ecoprint dan
+                    Melestarikan Produk Lokal</h2>
                 <div class="w-20 h-1.5 bg-red-500 mx-auto mt-4 rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="group relative overflow-hidden rounded-3xl h-96 cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=2070&auto=format&fit=crop"
-                        alt="Camping Ground"
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipOF812xDVIVNTohicdMZK_fLNWb5WURGSCmco9U=s680-w680-h510-rw"
+                        alt="Toko Batik Bruwun Alas"
                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-8">
@@ -199,7 +199,7 @@
                                     d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Camping Ground</h3>
+                        <h3 class="text-2xl font-bold text-white mb-2">Toko Batik Bruwun Alas</h3>
                         <p
                             class="text-gray-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                             Nikmati malam bertabur bintang dengan fasilitas kemah yang aman dan nyaman untuk keluarga.
@@ -208,8 +208,7 @@
                 </div>
 
                 <div class="group relative overflow-hidden rounded-3xl h-96 cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1596464716127-f9a86255b613?q=80&w=2070&auto=format&fit=crop"
-                        alt="Edukasi Tani"
+                    <img src="{{ asset('img/event/edukasi-batik-ecoprint.webp') }}" alt="Edukasi Tani"
                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-8">
@@ -220,7 +219,7 @@
                                 </path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Edukasi Tani</h3>
+                        <h3 class="text-2xl font-bold text-white mb-2">Edukasi Batik Ecoprint</h3>
                         <p
                             class="text-gray-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                             Belajar cara menanam, memanen, dan mengolah hasil bumi langsung dari petani lokal.
@@ -229,8 +228,8 @@
                 </div>
 
                 <div class="group relative overflow-hidden rounded-3xl h-96 cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?q=80&w=1974&auto=format&fit=crop"
-                        alt="Outbound"
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipODgHvUMY16YH2SXgH_tkEqVL8_0qAc6qQOl5i2=s680-w680-h510-rw"
+                        alt="Kain Batik Ecoprint"
                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-8">
@@ -241,7 +240,7 @@
                                 </path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Outbound & Gathering</h3>
+                        <h3 class="text-2xl font-bold text-white mb-2">Kain Ecoprint</h3>
                         <p
                             class="text-gray-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                             Area luas untuk kegiatan sekolah, kantor, atau komunitas dengan permainan seru.
@@ -311,9 +310,9 @@
                 </div>
                 <div class="relative">
                     <div class="grid grid-cols-2 gap-4">
-                        <img src="https://images.unsplash.com/photo-1561577555-4c92ddbe329c?w=600&auto=format&fit=crop"
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipMFBTENc7pMNvXkX69dXX4ENdKYbKXUXcosVyIt=s680-w680-h510-rw"
                             class="rounded-2xl shadow-lg w-full h-48 object-cover transform translate-y-4">
-                        <img src="https://images.unsplash.com/photo-1562664377-709f2c337eb2?w=600&auto=format&fit=crop"
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipM_wPvyJphJzy5VuPBs_4abOOfSjQ-KwqssuqYG=s680-w680-h510-rw"
                             class="rounded-2xl shadow-lg w-full h-48 object-cover">
                     </div>
                 </div>
