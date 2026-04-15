@@ -59,7 +59,8 @@
                         Nikmati Keasrian Alam <br> dan Produk Lokal Terbaik.
                     </h2>
                     <p class="text-red-100 text-lg font-light max-w-md">
-                        Bergabunglah dengan kami untuk mendukung UMKM lokal dan melestarikan hutan Kulon Progo.
+                        Bergabunglah dengan kami untuk mendukung UMKM lokal dan melestarikan kreativitas batik dan
+                        Ecoprint.
                     </p>
                 </div>
             </div>
