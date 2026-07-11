@@ -47,19 +47,24 @@ class ProductController extends Controller
             'weight' => 'nullable|integer|min:1',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
             'variants' => 'required|array',
-            'gender' => 'required|in:pria,wanita,anak,unisex'
+            'gender' => 'required|in:pria,wanita,anak,unisex,none'
         ]);
 
         $hasEnabledVariant = false;
-        foreach ($request->variants as $variant) {
+        foreach ($request->variants as $size => $variant) {
             if (isset($variant['enabled'])) {
                 $hasEnabledVariant = true;
-                break;
+                if (!isset($variant['price']) || $variant['price'] === null || $variant['price'] === '') {
+                    return back()->withErrors(['variants' => "Harga untuk varian '{$size}' wajib diisi."])->withInput();
+                }
+                if (!isset($variant['stock']) || $variant['stock'] === null || $variant['stock'] === '') {
+                    return back()->withErrors(['variants' => "Stok untuk varian '{$size}' wajib diisi."])->withInput();
+                }
             }
         }
 
         if (!$hasEnabledVariant) {
-            return back()->withErrors(['variants' => 'Harap centang minimal satu ukuran (S, M, L...)'])->withInput();
+            return back()->withErrors(['variants' => 'Harap isi harga & stok atau pilih minimal satu varian ukuran.'])->withInput();
         }
 
 
@@ -114,8 +119,26 @@ class ProductController extends Controller
             'description' => 'required',
             'weight' => 'required|integer',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'gender' => 'required|in:pria,wanita,anak,unisex',
+            'gender' => 'required|in:pria,wanita,anak,unisex,none',
+            'variants' => 'required|array',
         ]);
+
+        $hasEnabledVariant = false;
+        foreach ($request->variants as $size => $variant) {
+            if (isset($variant['enabled'])) {
+                $hasEnabledVariant = true;
+                if (!isset($variant['price']) || $variant['price'] === null || $variant['price'] === '') {
+                    return back()->withErrors(['variants' => "Harga untuk varian '{$size}' wajib diisi."])->withInput();
+                }
+                if (!isset($variant['stock']) || $variant['stock'] === null || $variant['stock'] === '') {
+                    return back()->withErrors(['variants' => "Stok untuk varian '{$size}' wajib diisi."])->withInput();
+                }
+            }
+        }
+
+        if (!$hasEnabledVariant) {
+            return back()->withErrors(['variants' => 'Harap isi harga & stok atau pilih minimal satu varian ukuran.'])->withInput();
+        }
 
         DB::beginTransaction();
 

@@ -98,6 +98,11 @@
                                         Unisex (Semua)
                                     </option>
 
+                                    <option value="none"
+                                        {{ old('gender', $product->gender) == 'none' ? 'selected' : '' }}>
+                                        Tidak Ada (None)
+                                    </option>
+
                                     <option value="pria"
                                         {{ old('gender', $product->gender) == 'pria' ? 'selected' : '' }}>
                                         Pria
@@ -192,18 +197,52 @@
 
             <div class="lg:col-span-1 space-y-6">
 
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                @php
+                    $hasSizeVariants = $product->variants->where('size', '!=', 'Tidak Ada Ukuran')->count() > 0;
+                    $allSizeVariant = $product->variants->where('size', 'Tidak Ada Ukuran')->first();
+                @endphp
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6" x-data="{ hasVariants: {{ $hasSizeVariants ? 'true' : 'false' }} }">
                     <h3 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
                         <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                         </svg>
-                        Varian & Harga
+                        Harga & Varian
                     </h3>
-                    <p class="text-sm text-gray-500 mb-6">Atur harga dan stok untuk setiap ukuran.</p>
+                    <p class="text-sm text-gray-500 mb-4">Atur harga dan stok untuk produk ini.</p>
 
-                    <div class="space-y-3">
+                    <!-- Toggle Gunakan Varian -->
+                    <div class="mb-5 p-3.5 bg-gray-50 rounded-xl border border-gray-150 flex items-center justify-between">
+                        <span class="text-sm font-semibold text-gray-700">Mempunyai Varian Ukuran?</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer" x-model="hasVariants">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-100 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        </label>
+                    </div>
+
+                    <!-- Input Harga & Stok Umum (Jika Tanpa Varian) -->
+                    <div x-show="!hasVariants" x-transition class="space-y-4">
+                        <input type="hidden" name="variants[Tidak Ada Ukuran][enabled]" value="1" :disabled="hasVariants">
+                        <div class="grid grid-cols-1 gap-4">
+                            <div>
+                                <label class="text-xs font-semibold text-gray-500 uppercase">Harga (Rp)</label>
+                                <input type="number" name="variants[Tidak Ada Ukuran][price]" 
+                                    value="{{ $allSizeVariant ? $allSizeVariant->price : '' }}" placeholder="0" :disabled="hasVariants"
+                                    class="w-full mt-1 px-3 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-gray-500 uppercase">Stok</label>
+                                <input type="number" name="variants[Tidak Ada Ukuran][stock]" 
+                                    value="{{ $allSizeVariant ? $allSizeVariant->stock : '' }}" placeholder="0" :disabled="hasVariants"
+                                    class="w-full mt-1 px-3 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Input Varian Ukuran (Jika Ada Varian) -->
+                    <div x-show="hasVariants" x-transition class="space-y-3">
                         @foreach (['S', 'M', 'L', 'XL', 'XXL'] as $size)
                             @php
                                 $variant = $product->variants->where('size', $size)->first();
@@ -212,12 +251,11 @@
 
                             <div class="border border-gray-200 rounded-xl p-3 bg-white hover:border-blue-200 transition"
                                 x-data="{ active: {{ $hasVariant ? 'true' : 'false' }} }">
-
                                 <div class="flex items-center justify-between">
                                     <label class="flex items-center cursor-pointer">
                                         <input type="checkbox" name="variants[{{ $size }}][enabled]"
                                             class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition"
-                                            x-model="active" {{ $hasVariant ? 'checked' : '' }}>
+                                            x-model="active" {{ $hasVariant ? 'checked' : '' }} :disabled="!hasVariants">
                                         <span class="ml-3 font-semibold text-gray-700">Ukuran {{ $size }}</span>
                                     </label>
                                 </div>
@@ -227,13 +265,13 @@
                                     <div>
                                         <label class="text-xs font-semibold text-gray-500 uppercase">Harga (Rp)</label>
                                         <input type="number" name="variants[{{ $size }}][price]"
-                                            value="{{ $variant ? $variant->price : '' }}" placeholder="0"
+                                            value="{{ $variant ? $variant->price : '' }}" placeholder="0" :disabled="!hasVariants || !active"
                                             class="w-full mt-1 px-3 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                     </div>
                                     <div>
                                         <label class="text-xs font-semibold text-gray-500 uppercase">Stok</label>
                                         <input type="number" name="variants[{{ $size }}][stock]"
-                                            value="{{ $variant ? $variant->stock : '' }}" placeholder="0"
+                                            value="{{ $variant ? $variant->stock : '' }}" placeholder="0" :disabled="!hasVariants || !active"
                                             class="w-full mt-1 px-3 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                     </div>
                                 </div>

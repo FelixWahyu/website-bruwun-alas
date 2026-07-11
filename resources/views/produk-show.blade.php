@@ -43,14 +43,16 @@
                                     </svg>
                                     Berat: {{ $product->weight }}g
                                 </span>
-                                <span
-                                    class="flex items-center gap-1 bg-blue-50 text-blue-700 px-2 py-1 rounded-md font-medium capitalize">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                    </svg>
-                                    {{ $product->gender }}
-                                </span>
+                                @if ($product->gender && $product->gender !== 'none')
+                                    <span
+                                        class="flex items-center gap-1 bg-blue-50 text-blue-700 px-2 py-1 rounded-md font-medium capitalize">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        </svg>
+                                        {{ $product->gender }}
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -71,53 +73,75 @@
                         <form action="{{ route('cart.store') }}" method="POST" class="mt-auto">
                             @csrf
 
-                            <div class="mb-6">
-                                <div class="flex justify-between items-center mb-3">
-                                    <h3 class="text-sm font-bold text-gray-900">Pilih Ukuran</h3>
-                                    <span class="text-xs font-medium"
-                                        :class="{
-                                            'text-red-500': stock > 0 && stock < 5,
-                                            'text-blue-600': stock >=
-                                                5,
-                                            'text-gray-400': stock == 0
-                                        }"
-                                        x-text="stockInfo()">
-                                    </span>
-                                </div>
+                            @php
+                                $hasRealVariants = $product->variants->count() > 1 || ($product->variants->first() && $product->variants->first()->size !== 'Tidak Ada Ukuran');
+                            @endphp
 
-                                <div class="grid grid-cols-3 sm:grid-cols-5 gap-3">
-                                    @foreach ($product->variants as $variant)
-                                        <label
-                                            class="group relative flex items-center justify-center rounded-xl border py-3 px-4 text-sm font-bold uppercase hover:bg-gray-50 focus:outline-none cursor-pointer shadow-sm transition-all duration-200"
+                            @if ($hasRealVariants)
+                                <div class="mb-6">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <h3 class="text-sm font-bold text-gray-900">Pilih Ukuran</h3>
+                                        <span class="text-xs font-medium"
                                             :class="{
-                                                'ring-2 ring-red-500 border-transparent bg-red-50 text-red-700': selectedVariant ===
-                                                    {{ $variant->id }},
-                                                'border-gray-200 text-gray-900 bg-white': selectedVariant !==
-                                                    {{ $variant->id }},
-                                                'opacity-50 cursor-not-allowed bg-gray-50': {{ $variant->stock }} === 0
-                                            }">
+                                                'text-red-500': stock > 0 && stock < 5,
+                                                'text-blue-600': stock >=
+                                                    5,
+                                                'text-gray-400': stock == 0
+                                            }"
+                                            x-text="stockInfo()">
+                                        </span>
+                                    </div>
 
-                                            <input type="radio" name="product_variant_id" value="{{ $variant->id }}"
-                                                class="sr-only"
-                                                @click="{{ $variant->stock }} > 0 ? selectVariant({{ $variant->id }}, {{ $variant->price }}, {{ $variant->stock }}) : null"
-                                                {{ $variant->stock === 0 ? 'disabled' : '' }}>
+                                    <div class="grid grid-cols-3 sm:grid-cols-5 gap-3">
+                                        @foreach ($product->variants as $variant)
+                                            <label
+                                                class="group relative flex items-center justify-center rounded-xl border py-3 px-4 text-sm font-bold uppercase hover:bg-gray-50 focus:outline-none cursor-pointer shadow-sm transition-all duration-200"
+                                                :class="{
+                                                    'ring-2 ring-red-500 border-transparent bg-red-50 text-red-700': selectedVariant ===
+                                                        {{ $variant->id }},
+                                                    'border-gray-200 text-gray-900 bg-white': selectedVariant !==
+                                                        {{ $variant->id }},
+                                                    'opacity-50 cursor-not-allowed bg-gray-50': {{ $variant->stock }} === 0
+                                                }">
 
-                                            <span>{{ $variant->size }}</span>
+                                                <input type="radio" name="product_variant_id" value="{{ $variant->id }}"
+                                                    class="sr-only"
+                                                    @click="{{ $variant->stock }} > 0 ? selectVariant({{ $variant->id }}, {{ $variant->price }}, {{ $variant->stock }}) : null"
+                                                    {{ $variant->stock === 0 ? 'disabled' : '' }}>
 
-                                            @if ($variant->stock === 0)
-                                                <span class="absolute inset-0 border-2 border-gray-200 rounded-xl">
-                                                    <svg class="absolute inset-0 w-full h-full text-gray-200 stroke-2"
-                                                        viewBox="0 0 100 100" preserveAspectRatio="none"
-                                                        stroke="currentColor">
-                                                        <line x1="0" y1="100" x2="100" y2="0"
-                                                            vector-effect="non-scaling-stroke" />
-                                                    </svg>
-                                                </span>
-                                            @endif
-                                        </label>
-                                    @endforeach
+                                                <span>{{ $variant->size }}</span>
+
+                                                @if ($variant->stock === 0)
+                                                    <span class="absolute inset-0 border-2 border-gray-200 rounded-xl">
+                                                        <svg class="absolute inset-0 w-full h-full text-gray-200 stroke-2"
+                                                            viewBox="0 0 100 100" preserveAspectRatio="none"
+                                                            stroke="currentColor">
+                                                            <line x1="0" y1="100" x2="100" y2="0"
+                                                                vector-effect="non-scaling-stroke" />
+                                                        </svg>
+                                                    </span>
+                                                @endif
+                                            </label>
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                @if ($product->variants->first())
+                                    <input type="hidden" name="product_variant_id" value="{{ $product->variants->first()->id }}">
+                                    
+                                    <div class="mb-6 flex justify-between items-center bg-gray-50 p-3 rounded-xl border border-gray-200">
+                                        <span class="text-sm font-bold text-gray-700">Status Stok</span>
+                                        <span class="text-xs font-semibold"
+                                            :class="{
+                                                'text-red-500': stock > 0 && stock < 5,
+                                                'text-blue-600': stock >= 5,
+                                                'text-gray-400': stock == 0
+                                            }"
+                                            x-text="stockInfo()">
+                                        </span>
+                                    </div>
+                                @endif
+                            @endif
 
                             <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-100">
                                 <div class="w-full sm:w-32 flex items-center border border-gray-300 rounded-xl">
@@ -171,9 +195,16 @@
         function productData() {
             return {
                 selectedVariant: null,
-                currentPrice: {{ $product->variants->min('price') }},
+                currentPrice: {{ $product->variants->min('price') ?? 0 }},
                 stock: 0,
                 qty: 1,
+
+                init() {
+                    @if (!$hasRealVariants && $product->variants->first())
+                        @php $firstVariant = $product->variants->first(); @endphp
+                        this.selectVariant({{ $firstVariant->id }}, {{ $firstVariant->price }}, {{ $firstVariant->stock }});
+                    @endif
+                },
 
                 selectVariant(id, price, stock) {
                     this.selectedVariant = id;

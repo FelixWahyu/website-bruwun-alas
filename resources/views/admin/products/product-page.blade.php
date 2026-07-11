@@ -73,7 +73,11 @@
                                             {{ $totalStock }}
                                         </span>
                                         <span class="text-[10px] text-gray-400 mt-0.5">
-                                            {{ $product->variants->count() }} Varian
+                                            @if ($product->variants->count() === 1 && $product->variants->first()->size === 'Tidak Ada Ukuran')
+                                                Tanpa Varian
+                                            @else
+                                                {{ $product->variants->count() }} Varian
+                                            @endif
                                         </span>
                                     </div>
                                 </td>
