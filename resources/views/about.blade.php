@@ -54,7 +54,7 @@
 
                 <div class="lg:w-1/2 order-1 lg:order-2 relative">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
-                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerkb-PTClF8E-Fl7jHrHLgunEiHanurzP99VLoU7rapSWQEfOflRp_ehttxOY1dz18aFb-GclxzIo4APURi4-Xtu5kwrZ75xYCa8w0MWI9Qmw6EclbKVp6i5PrZDI9_v0qnzvRrC_UDofc=s680-w680-h510-rw"
+                        <img src="{{ asset('img/bg-image/toko-batik-bruwunalas.webp') }}"
                             alt="Tentang Kami"
                             class="w-full h-125 object-cover transition duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-80"></div>
@@ -230,7 +230,7 @@
                 <div
                     class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-2">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwep8nInzeAwjNF_-8xyMrqYwhLdd4n6LPDvSuPLmginQ2YDeCuU-lDNCPMYHABUQPwKrAXDerp2_CWjZlbQJE5qCfZuZ3ivXk6U-3rmpYbmwN8qAPnf5E4mI-42zjXN__wBPAAlxNKG764Ky=s680-w680-h510-rw"
+                        <img src="{{ asset('img/kriya-souvenir.png') }}"
                             alt="Aksesoris Kayu"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div
@@ -265,7 +265,7 @@
                 <div
                     class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-2">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweoYWumniwv9OeAzg-eO01XOn48OSSS-i65Bjl0SHIY6-9Py1ZZ_UVbMGPNQ-htXaOYhiwXV4ou0w1tRj-nhfmG3X-rrsW-DCWwwmctWXXegMAUxLd0sKNXU9Cvi0070zfB19uNZEUDmDE7d=s680-w680-h510-rw"
+                        <img src="{{ asset('img/makanan-khas-desa.png') }}"
                             alt="Makanan Tradisional"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div
@@ -322,8 +322,8 @@
                 </div>
 
                 <div class="col-span-1 row-span-1 relative group overflow-hidden rounded-2xl">
-                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweoYWumniwv9OeAzg-eO01XOn48OSSS-i65Bjl0SHIY6-9Py1ZZ_UVbMGPNQ-htXaOYhiwXV4ou0w1tRj-nhfmG3X-rrsW-DCWwwmctWXXegMAUxLd0sKNXU9Cvi0070zfB19uNZEUDmDE7d=s680-w680-h510-rw"
-                        alt="Produk Makanan"
+                    <img src="{{ asset('img/event/edukasi-batik-ecoprint.webp') }}"
+                        alt="Wisata Edukasi Batik Ecoprint"
                         class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                 </div>
 

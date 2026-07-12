@@ -54,7 +54,7 @@
 
                 <div class="relative">
                     <div class="absolute -top-4 -left-4 w-24 h-24 bg-red-100 rounded-full z-0"></div>
-                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerTbT4GelMaXAFbHJ9n3czoTVEwMJdVaPdnMYxGauBFf07lRVxwnxvOUKn40btMSYocpwh66iSxhAqWqNeYH1IJhMOXy2X4y50xoWiwM8eH-oSktXrimGzc31x6aIKnOmPg6c98=s680-w680-h510-rw"
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipNYduVh5aPT6y5hiVWhfiUG7vbRKC5OuPwXzKtA=s680-w680-h510-rw"
                         alt="Kegiatan UMKM"
                         class="relative z-10 rounded-2xl shadow-xl w-full h-100 object-cover transform hover:scale-[1.02] transition duration-500">
                     <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-red-50 rounded-full z-0"></div>

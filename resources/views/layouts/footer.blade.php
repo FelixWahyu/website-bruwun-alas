@@ -71,7 +71,7 @@
                 <h4 class="text-lg font-bold text-white mb-6">Hubungi Kami</h4>
                 <ul class="space-y-4 text-sm text-gray-400">
                     <li class="flex items-start">
-                        <svg class="w-5 h-5 text-red-500 mr-3 mt-0.5" fill="none" stroke="currentColor"
+                        <svg class="w-6 h-6 shrink-0 text-red-500 mr-3 mt-0.5" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
