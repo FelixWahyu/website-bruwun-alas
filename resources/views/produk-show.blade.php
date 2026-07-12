@@ -144,15 +144,16 @@
                             @endif
 
                             <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-100">
-                                <div class="w-full sm:w-32 flex items-center border border-gray-300 rounded-xl">
+                                <div class="w-full sm:w-32 flex items-center">
                                     <button type="button" @click="qty > 1 ? qty-- : null"
-                                        class="w-10 h-full text-gray-500 hover:text-red-600 focus:outline-none text-xl font-bold pb-1">-</button>
-                                    <input type="number" name="quantity" x-model="qty" min="1"
+                                        class="px-3 py-1.5 cursor-pointer bg-gray-200 text-gray-500 hover:text-red-600 focus:outline-none text-xl font-bold">-</button>
+                                    <input type="number" name="quantity" x-model.number="qty" min="1"
                                         :max="stock"
-                                        class="w-full text-center border-none focus:ring-0 text-gray-900 font-bold p-0 h-12 bg-transparent"
-                                        readonly>
+                                        @input="if (qty > stock) qty = stock;"
+                                        @blur="if (isNaN(qty) || qty < 1) qty = 1;"
+                                        class="w-full text-center border-none focus:ring-0 text-gray-900 font-bold p-0 h-10 bg-transparent">
                                     <button type="button" @click="qty < stock ? qty++ : null"
-                                        class="w-10 h-full text-gray-500 hover:text-red-600 focus:outline-none text-xl font-bold pb-1">+</button>
+                                        class="px-3 py-1.5 cursor-pointer bg-gray-200 text-gray-500 hover:text-red-600 focus:outline-none text-xl font-bold">+</button>
                                 </div>
 
                                 <button type="submit" :disabled="!selectedVariant || stock === 0"

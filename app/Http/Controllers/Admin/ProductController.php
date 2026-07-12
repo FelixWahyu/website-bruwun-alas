@@ -76,7 +76,7 @@ class ProductController extends Controller
         $product = Product::create([
             'category_id' => $request->category_id,
             'product_name' => $request->product_name,
-            'slug' => Str::slug($request->product_name) . '-' . Str::random(5),
+            'slug' => Str::slug($request->product_name),
             'description' => $request->description,
             'weight' => $request->weight,
             'thumbnail' => $thumbnailPath,
@@ -154,7 +154,7 @@ class ProductController extends Controller
             $product->update([
                 'category_id' => $request->category_id,
                 'product_name' => $request->product_name,
-                'slug' => Str::slug($request->product_name) . '-' . Str::random(5),
+                'slug' => Str::slug($request->product_name),
                 'description' => $request->description,
                 'weight' => $request->weight,
                 'gender' => $request->gender,

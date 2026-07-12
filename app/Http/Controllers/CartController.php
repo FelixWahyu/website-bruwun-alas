@@ -84,7 +84,19 @@ class CartController extends Controller
             ->where('id', $id)
             ->firstOrFail();
 
-        if ($request->type === 'increment') {
+        if ($request->has('quantity')) {
+            $request->validate([
+                'quantity' => 'required|integer|min:1'
+            ]);
+
+            $newQty = (int) $request->quantity;
+
+            if ($newQty > $cart->variant->stock) {
+                return back()->with('error', 'Stok tidak mencukupi. Stok tersedia: ' . $cart->variant->stock);
+            }
+
+            $cart->update(['quantity' => $newQty]);
+        } elseif ($request->type === 'increment') {
             if ($cart->variant->stock > $cart->quantity) {
                 $cart->increment('quantity');
             } else {

@@ -68,9 +68,9 @@
                         </div>
 
                         <div class="space-y-3">
-                            <a href="mailto:admin@bruwunalas.com"
+                            <a href="mailto:info@bruwunalas.com"
                                 class="block text-sm font-medium text-gray-600 hover:text-red-600 transition">
-                                admin@bruwunalas.com
+                                info@bruwunalas.com
                             </a>
                             <a href="#" class="block text-sm font-medium text-gray-600 hover:text-red-600 transition">
                                 @bruwunalas.official (Instagram)

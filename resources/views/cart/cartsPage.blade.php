@@ -75,8 +75,7 @@
                                     </div>
 
                                     <div class="flex justify-between items-end mt-4">
-                                        <td class="px-6 py-4 whitespace-nowrap text-center">
-                                            <div class="flex items-center justify-center">
+                                            <div class="flex items-center justify-center" x-data="{ qty: {{ $cart->quantity }}, stock: {{ $cart->variant->stock }} }">
                                                 @if ($cart->quantity > 1)
                                                     <form action="{{ route('cart.update', $cart->id) }}" method="POST">
                                                         @csrf
@@ -96,10 +95,16 @@
                                                         </button>
                                                     </form>
                                                 @endif
-                                                <div
-                                                    class="w-12 h-8 border-t border-b border-gray-300 flex items-center justify-center text-sm font-semibold text-gray-700">
-                                                    {{ $cart->quantity }}
-                                                </div>
+                                                
+                                                <form action="{{ route('cart.update', $cart->id) }}" method="POST">
+                                                    @csrf
+                                                    <input type="number" name="quantity" x-model.number="qty"
+                                                        @input="if (qty > stock) qty = stock;"
+                                                        @blur="if (isNaN(qty) || qty < 1) { qty = 1; } this.form.submit();"
+                                                        @keydown.enter.prevent="this.form.submit();"
+                                                        class="w-12 h-8 border-t border-b border-l-0 border-r-0 border-gray-300 text-center text-sm font-semibold text-gray-700 focus:outline-none focus:ring-0 p-0 bg-transparent">
+                                                </form>
+
                                                 <form action="{{ route('cart.update', $cart->id) }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="type" value="increment">
@@ -109,7 +114,6 @@
                                                     </button>
                                                 </form>
                                             </div>
-                                        </td>
 
                                         <div class="text-left flex flex-row items-center gap-2">
                                             <p class="text-sm text-gray-400 mb-0.5">SubTotal : </p>
